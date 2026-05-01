@@ -3,176 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AREX CHEAPEST PRICE HOSTING SELLER</title>
+    <title>AREX | Client Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f8fafc;
-            --surface: #ffffff;
             --primary: #2563eb;
-            --text-main: #0f172a;
+            --bg: #0f172a;
+            --sidebar: #ffffff;
+            --text-main: #1e293b;
             --text-dim: #64748b;
             --border: #e2e8f0;
             --success: #10b981;
-            --danger: #ef4444;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; }
+        body { background-color: #f1f5f9; color: var(--text-main); }
 
-        /* Sidebar */
-        .sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100vh; background: var(--surface); z-index: 1000; transition: 0.3s ease; padding: 40px 24px; border-right: 1px solid var(--border); }
-        .sidebar.active { left: 0; box-shadow: 20px 0 50px rgba(0,0,0,0.05); }
-        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(4px); display: none; z-index: 999; }
+        /* Sidebar Navigation Like Screenshot */
+        .sidebar { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: var(--sidebar); border-right: 1px solid var(--border); padding: 20px; overflow-y: auto; z-index: 1000; }
         
-        .menu-item { padding: 12px 16px; display: block; color: var(--text-dim); text-decoration: none; border-radius: 10px; margin-bottom: 6px; transition: 0.2s; font-weight: 600; cursor: pointer; }
-        .menu-item:hover, .menu-item.active { background: #f1f5f9; color: var(--primary); }
+        .nav-item { margin-bottom: 5px; }
+        .nav-header { display: flex; align-items: center; justify-content: space-between; padding: 12px; cursor: pointer; border-radius: 8px; transition: 0.2s; font-weight: 600; color: #334155; }
+        .nav-header:hover { background: #f8fafc; color: var(--primary); }
+        .nav-header i { font-size: 20px; margin-right: 12px; }
 
-        /* Header */
-        header { padding: 16px 6%; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
-        .menu-btn { font-size: 24px; cursor: pointer; }
+        .dropdown-content { display: none; padding-left: 45px; margin-top: 5px; border-left: 2px solid #f1f5f9; margin-left: 22px; }
+        .dropdown-content a { display: block; padding: 8px 0; font-size: 0.9rem; color: var(--text-dim); text-decoration: none; transition: 0.2s; }
+        .dropdown-content a:hover { color: var(--primary); }
 
-        /* Content */
-        .container { padding: 60px 6%; max-width: 1100px; margin: 0 auto; }
-        .section { display: none; animation: fadeIn 0.4s ease; }
-        .section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        /* Active Dropdown Class */
+        .nav-item.active .dropdown-content { display: block; }
+        .nav-item.active .nav-header { color: var(--primary); }
 
-        /* Cards & Stats */
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 32px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        /* Main Content Area */
+        .main-content { margin-left: 280px; padding: 40px; }
+        .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        /* Status Cards Like Screenshot */
+        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .status-card { background: var(--success); color: white; padding: 25px; border-radius: 12px; position: relative; }
+        .status-card.uptime { background: #10b981; }
+        .status-card h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 5px; }
+        .status-card p { font-size: 0.85rem; opacity: 0.9; }
+
+        /* Chart Section */
+        .chart-box { background: #1e293b; color: white; padding: 30px; border-radius: 16px; margin-top: 30px; }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         
-        .status-dot { width: 10px; height: 10px; background: var(--success); border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .pulse-line { width: 100%; height: 150px; background: linear-gradient(transparent 149px, #334155 150px), linear-gradient(90deg, transparent 149px, #334155 150px); background-size: 40px 40px; border-bottom: 2px solid #334155; position: relative; overflow: hidden; }
+        .pulse-wave { position: absolute; bottom: 40px; left: 0; width: 100%; height: 60px; stroke: #10b981; stroke-width: 3; fill: none; }
 
-        /* Buttons */
-        .btn { display: block; width: 100%; padding: 16px; border-radius: 12px; font-weight: 700; text-align: center; cursor: pointer; border: none; transition: 0.2s; text-decoration: none; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-wa { background: var(--success); color: white; margin-top: 12px; }
+        /* Action Buttons */
+        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 30px; }
+        .action-btn { padding: 14px; text-align: center; border-radius: 10px; font-weight: 700; text-decoration: none; border: 1px solid var(--border); transition: 0.2s; }
+        .btn-login { background: var(--primary); color: white; border: none; }
+        .btn-reg { background: white; color: var(--text-main); }
 
-        .price { font-size: 3rem; font-weight: 800; margin: 12px 0; }
+        /* Mobile View */
+        @media (max-width: 900px) {
+            .sidebar { left: -280px; transition: 0.3s; }
+            .sidebar.open { left: 0; }
+            .main-content { margin-left: 0; padding: 20px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="sidebar" id="sidebar">
-        <div style="font-size: 1.4rem; font-weight: 800; margin-bottom: 40px;">AREX <span style="color:var(--primary)">HOST</span></div>
-        <div class="menu-item active" onclick="nav('home')">Dashboard Hub</div>
-        <div class="menu-item" onclick="nav('plans')">Infrastructure</div>
-        <div class="menu-item" onclick="nav('monitor')">System Monitor</div>
-        <div class="menu-item" onclick="nav('pay')">Payment Center</div>
-    </div>
-    <div class="sidebar-overlay" id="overlay" onclick="toggleMenu()"></div>
+        <div style="font-size: 1.5rem; font-weight: 800; margin-bottom: 35px; color: var(--primary);">AREX HOST</div>
 
-    <header>
-        <div class="menu-btn" onclick="toggleMenu()">☰</div>
-        <div style="font-weight: 800;">AREX CHEAPEST PRICE HOSTING SELLER</div>
-        <div style="width: 24px;"></div>
-    </header>
-
-    <div class="container">
-        
-        <div id="home" class="section active">
-            <h1 style="font-size: 3rem; font-weight: 800; text-align: center; margin-bottom: 20px;">Deploy at the Edge.</h1>
-            <p style="text-align: center; color: var(--text-dim); margin-bottom: 40px;">India's most aggressive NVMe pricing for developers.</p>
-            <center><button class="btn btn-primary" style="max-width: 250px;" onclick="nav('plans')">View Nodes</button></center>
-        </div>
-
-        <div id="plans" class="section">
-            <h1 style="margin-bottom: 30px;">Active Nodes</h1>
-            <div class="grid">
-                <div class="card">
-                    <div style="color: var(--primary); font-weight: 700;">Starter Node</div>
-                    <div class="price">₹11<span>/mo</span></div>
-                    <button class="btn btn-primary" onclick="nav('pay')">Deploy Now</button>
-                </div>
-                <div class="card" style="border-color: var(--primary);">
-                    <div style="color: var(--primary); font-weight: 700;">Professional Pro</div>
-                    <div class="price">₹31<span>/mo</span></div>
-                    <button class="btn btn-primary" onclick="nav('pay')">Deploy Now</button>
-                </div>
+        <div class="nav-item">
+            <div class="nav-header" onclick="toggleDrop(this)">
+                <span>📦 Products</span>
+                <span>▾</span>
+            </div>
+            <div class="dropdown-content">
+                <a href="#">Shared Hosting</a>
+                <a href="#">Reseller Hosting</a>
+                <a href="#">Master Reseller</a>
+                <a href="#">WordPress Hosting</a>
+                <a href="#">VPS Hosting</a>
             </div>
         </div>
 
-        <div id="monitor" class="section">
-            <h1 style="margin-bottom: 30px;">Network Transparency</h1>
-            <div class="card" style="border-left: 6px solid var(--success);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                    <h3>Live System Pulse</h3>
-                    <span style="color: var(--success); font-weight: 700; font-size: 0.8rem;"><span class="status-dot"></span> OPERATIONAL</span>
-                </div>
-                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                    <div style="padding: 16px; background: #f8fafc; border-radius: 12px;">
-                        <small style="color: var(--text-dim);">UPTIME</small>
-                        <div id="uptime-clock" style="font-weight: 800; color: var(--primary);">Loading...</div>
-                    </div>
-                    <div style="padding: 16px; background: #f8fafc; border-radius: 12px;">
-                        <small style="color: var(--text-dim);">NEXT MAINTENANCE</small>
-                        <div style="font-weight: 800; color: var(--danger);">30 May, 02:00 AM</div>
-                    </div>
-                </div>
+        <div class="nav-item">
+            <div class="nav-header" onclick="toggleDrop(this)">
+                <span>🌐 Domains</span>
+                <span>▾</span>
             </div>
-
-            <div class="grid">
-                <div class="card">
-                    <h4 style="margin-bottom: 16px;">Active Deployments</h4>
-                    <div style="font-size: 0.9rem; color: var(--text-dim);">
-                        <p style="margin-bottom: 8px;">Abhi*** - Pro Runner <span style="color: var(--success); float: right;">● Active</span></p>
-                        <p style="margin-bottom: 8px;">Karan*** - Budget Node <span style="color: var(--success); float: right;">● Active</span></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <h4 style="margin-bottom: 16px;">Node Distribution</h4>
-                    <div style="width: 100%; height: 8px; background: #f1f5f9; border-radius: 10px; margin-top: 10px;">
-                        <div style="width: 75%; height: 100%; background: var(--primary); border-radius: 10px;"></div>
-                    </div>
-                    <small style="display: block; margin-top: 10px; color: var(--text-dim);">75% Capacity Utilized</small>
-                </div>
+            <div class="dropdown-content">
+                <a href="#">Register New Domain</a>
+                <a href="#">Transfer Domain</a>
+                <a href="#">Domain Pricing</a>
             </div>
         </div>
 
-        <div id="pay" class="section">
-            <h1 style="text-align: center; margin-bottom: 30px;">Finalize Billing</h1>
-            <div class="card" style="max-width: 450px; margin: 0 auto; text-align: center;">
-                <div style="background: #f8fafc; padding: 20px; border-radius: 20px; margin-bottom: 20px;">
-                    <img src="1000003225.jpg" style="width: 200px; border-radius: 10px;" alt="QR Code">
-                </div>
-                <div style="font-weight: 800; color: var(--primary); margin-bottom: 24px;">Abhimassey@fam</div>
-                <a href="https://wa.me/918979785907?text=Payment verified. Activate my node." class="btn btn-wa">Verify on WhatsApp</a>
+        <div class="nav-item">
+            <div class="nav-header" onclick="toggleDrop(this)">
+                <span>💬 Support</span>
+                <span>▾</span>
+            </div>
+            <div class="dropdown-content">
+                <a href="#">Contact Us</a>
+                <a href="#">Network Status</a>
+                <a href="#">Knowledgebase</a>
+                <a href="#">News</a>
             </div>
         </div>
 
+        <div class="nav-header"><span>📊 Uptime</span></div>
+        <a href="https://wa.me/918979785907" style="text-decoration:none">
+            <div class="nav-header" style="color: #25d366;"><span>🎧 WhatsApp Support</span></div>
+        </a>
+
+        <div class="btn-group">
+            <a href="#" class="action-btn btn-reg">Register</a>
+            <a href="#" class="action-btn btn-login">Login</a>
+        </div>
     </div>
 
-    <a href="https://wa.me/918979785907" style="position: fixed; bottom: 30px; right: 30px; background: var(--success); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">💬</a>
+    <div class="main-content">
+        <div class="header-bar">
+            <h1 style="font-weight: 800;">System Dashboard</h1>
+            <div style="color: var(--text-dim);">UTC+05:30 (India)</div>
+        </div>
+
+        <div class="status-grid">
+            <div class="status-card uptime">
+                <p>Overall Uptime</p>
+                <h2>99.98%</h2>
+                <div style="font-size: 0.7rem; margin-top: 10px;">ONLINE SINCE 458 DAYS</div>
+            </div>
+            <div class="status-card" style="background: #3b82f6;">
+                <p>Recent Avg. Load</p>
+                <h2>245ms</h2>
+                <div style="font-size: 0.7rem; margin-top: 10px;">GLOBAL PERFORMANCE: EXCELLENT</div>
+            </div>
+        </div>
+
+        <div class="chart-box">
+            <div class="chart-header">
+                <h3>Recent Network Stats</h3>
+                <div style="display: flex; gap: 15px; font-size: 0.8rem;">
+                    <span>● DNS Lookup</span>
+                    <span>● TCP Connect</span>
+                </div>
+            </div>
+            <div class="pulse-line">
+                <svg viewBox="0 0 1000 100" class="pulse-wave">
+                    <path d="M0,50 Q50,10 100,50 T200,50 T300,20 T400,80 T500,50 T600,30 T700,70 T800,50 T900,40 T1000,50" stroke="#10b981" stroke-width="2" fill="none" />
+                </svg>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 15px; color: var(--text-dim); font-size: 0.8rem;">
+                <span>28 Apr</span>
+                <span>29 Apr</span>
+                <span>30 Apr</span>
+                <span>01 May</span>
+            </div>
+        </div>
+    </div>
 
     <script>
-        function toggleMenu() {
-            const sb = document.getElementById('sidebar');
-            const ov = document.getElementById('overlay');
-            sb.classList.toggle('active');
-            ov.style.display = sb.classList.contains('active') ? 'block' : 'none';
+        function toggleDrop(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            
+            // Open clicked one
+            if (!isActive) {
+                item.classList.add('active');
+            }
         }
-
-        function nav(id) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            if(window.innerWidth < 1000) toggleMenu();
-            window.scrollTo(0,0);
-        }
-
-        function updateClock() {
-            const start = new Date("May 1, 2026 09:00:00").getTime();
-            const now = new Date().getTime();
-            const diff = now - start;
-            const days = Math.floor(diff / (1000*60*60*24));
-            const hrs = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-            const mins = Math.floor((diff%(1000*60*60))/(1000*60));
-            const secs = Math.floor((diff%(1000*60))/1000);
-            document.getElementById("uptime-clock").innerHTML = `${days}d ${hrs}h ${mins}m ${secs}s`;
-        }
-        setInterval(updateClock, 1000);
     </script>
 </body>
 </html>
