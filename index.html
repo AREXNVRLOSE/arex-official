@@ -1,138 +1,92 @@
+cat <<EOF > index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AREX | Premium Hosting</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>AREX Hosting | High Performance Cloud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050505;
-            --accent: #ffffff;
-            --secondary: #111111;
-            --text-dim: #888888;
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text-gray: #64748b;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-        }
+        /* Navigation */
+        nav { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid #e2e8f0; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
 
-        /* Ambient Glow Background */
-        body::before {
-            content: "";
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-            top: 10%;
-            left: 10%;
-            z-index: -1;
-        }
+        /* Hero Section */
+        .hero { padding: 80px 5%; text-align: center; background: radial-gradient(circle at top, #eff6ff 0%, #ffffff 100%); }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: var(--dark); }
+        .hero p { font-size: 1.2rem; color: var(--text-gray); max-width: 700px; margin: 0 auto 40px; }
 
-        .main-card {
-            width: 90%;
-            max-width: 420px;
-            text-align: center;
-            padding: 40px 20px;
-        }
+        /* Buttons */
+        .btn-group { display: flex; gap: 15px; justify-content: center; }
+        .btn { padding: 14px 32px; border-radius: 8px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); background: #1d4ed8; }
+        .btn-secondary { background: #e2e8f0; color: var(--dark); }
 
-        .logo-box {
-            font-size: 12px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
+        /* Features Grid */
+        .features { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .f-card { background: white; padding: 30px; border-radius: 16px; border: 1px solid #f1f5f9; transition: 0.3s; }
+        .f-card:hover { border-color: var(--primary); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); }
+        .f-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
+        .f-icon { width: 45px; height: 45px; background: #dbeafe; color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-weight: bold; }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            line-height: 0.9;
-            margin-bottom: 15px;
-        }
-
-        p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        .actions {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .btn {
-            padding: 18px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .btn-black {
-            background: var(--accent);
-            color: var(--bg);
-        }
-
-        .btn-black:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid #333;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent);
-            background: rgba(255,255,255,0.03);
-        }
-
-        .footer-tag {
-            margin-top: 50px;
-            font-size: 10px;
-            color: #333;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .btn-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-card">
-        <div class="logo-box">Official Portal</div>
-        <h1>AREX.<br>HOSTING</h1>
-        <p>Aesthetic cloud infrastructure & automation solutions for the next generation.</p>
+    <nav>
+        <div class="logo">AREX HOST</div>
+        <a href="https://t.me/AREXNVRLOSE" class="btn btn-secondary" style="padding: 8px 20px;">Support</a>
+    </nav>
 
-        <div class="actions">
-            <a href="https://t.me/AREXNVRLOSE" class="btn btn-black">Get Started Now</a>
-            <a href="https://github.com/AREXNVRLOSE" class="btn btn-outline">Project Portfolio</a>
+    <section class="hero">
+        <h1>Cloud Hosting<br>Simplified for You.</h1>
+        <p>Deploy your projects on high-speed infrastructure with 99.9% uptime. Managed and optimized by AREX Official.</p>
+        <div class="btn-group">
+            <a href="https://t.me/AREXNVRLOSE" class="btn btn-primary">Get Started Now</a>
+            <a href="https://github.com/AREXNVRLOSE" class="btn btn-secondary">View Projects</a>
         </div>
+    </section>
 
-        <div class="footer-tag">© 2026 AREX NVRLOSE</div>
-    </div>
+    <section class="features">
+        <div class="f-card">
+            <div class="f-icon">🚀</div>
+            <h3>Fast Deployment</h3>
+            <p>Setup your automation and scripts in minutes with our pre-configured environments.</p>
+        </div>
+        <div class="f-card">
+            <div class="f-icon">🛡️</div>
+            <h3>Secure Hosting</h3>
+            <p>Advanced DDoS protection and daily backups to keep your data safe at all times.</p>
+        </div>
+        <div class="f-card">
+            <div class="f-icon">⚡</div>
+            <h3>LiteSpeed Tech</h3>
+            <p>Powered by the fastest servers to ensure your web services load in a blink.</p>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; color: var(--text-gray); font-size: 0.9rem;">
+        © 2026 AREX NVRLOSE Solutions. All rights reserved.
+    </footer>
 
 </body>
 </html>
+EOF
+
 
