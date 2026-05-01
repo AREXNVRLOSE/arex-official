@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AREX HOST | Enterprise Cloud Portal</title>
+    <title>AREX CHEAPEST PRICE HOSTING SELLER | Client Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
+            --primary-hover: #1d4ed8;
             --primary-light: #eff6ff;
             --bg: #f8fafc;
             --surface: #ffffff;
@@ -15,88 +16,120 @@
             --text-dim: #64748b;
             --border: #e2e8f0;
             --success: #10b981;
-            --dark: #1e293b;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --sidebar-width: 280px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg); color: var(--text-main); display: flex; }
+        body { background-color: var(--bg); color: var(--text-main); display: flex; overflow-x: hidden; }
 
-        /* Sidebar */
-        .sidebar { position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: var(--surface); border-right: 1px solid var(--border); padding: 20px; overflow-y: auto; z-index: 1000; transition: transform 0.3s ease; }
-        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; display: none; backdrop-filter: blur(2px); }
+        /* --- SIDEBAR & NAVIGATION --- */
+        .sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh; background: var(--surface); border-right: 1px solid var(--border); padding: 20px 15px; overflow-y: auto; z-index: 1000; transition: transform 0.3s ease; }
+        .sidebar-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); z-index: 999; display: none; backdrop-filter: blur(3px); animation: fadeIn 0.3s; }
         
-        .brand { font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
-        .brand-icon { width: 32px; height: 32px; background: var(--primary); border-radius: 8px; }
+        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 30px; display: flex; align-items: center; gap: 12px; padding-left: 10px; }
+        .brand-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), #60a5fa); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 1.2rem; }
 
-        .nav-item { margin-bottom: 5px; }
-        .nav-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 10px; cursor: pointer; font-weight: 600; color: #475569; transition: 0.2s; font-size: 0.95rem; }
+        .nav-item { margin-bottom: 4px; }
+        .nav-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; border-radius: 10px; cursor: pointer; font-weight: 600; color: #475569; transition: all 0.2s ease; font-size: 0.95rem; }
         .nav-header:hover { background: var(--primary-light); color: var(--primary); }
-        .nav-header.direct-link { color: #475569; text-decoration: none; display: block; }
+        .nav-header.direct-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        
+        .nav-icon { width: 20px; height: 20px; opacity: 0.7; transition: 0.2s; }
+        .nav-header:hover .nav-icon { opacity: 1; fill: var(--primary); }
         .arrow { font-size: 0.7rem; transition: transform 0.3s; }
         
-        .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; margin-left: 10px; padding-left: 15px; border-left: 2px solid var(--border); }
-        .submenu a { display: block; padding: 10px 15px; font-size: 0.85rem; color: var(--text-dim); text-decoration: none; border-radius: 8px; margin-top: 2px; transition: 0.2s; font-weight: 500; }
-        .submenu a:hover, .submenu a.active-link { background: var(--primary-light); color: var(--primary); }
+        /* Submenu */
+        .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1); margin-left: 12px; padding-left: 15px; border-left: 2px solid var(--border); }
+        .submenu a { display: block; padding: 10px 15px; font-size: 0.85rem; color: var(--text-dim); text-decoration: none; border-radius: 8px; margin-top: 4px; transition: 0.2s; font-weight: 500; }
+        .submenu a:hover, .submenu a.active-link { background: var(--primary-light); color: var(--primary); font-weight: 600; }
 
-        .nav-item.active .submenu { max-height: 400px; padding-bottom: 5px; }
-        .nav-item.active .nav-header { color: var(--primary); font-weight: 700; }
+        .nav-item.active .submenu { max-height: 500px; padding-bottom: 5px; }
+        .nav-item.active .nav-header { color: var(--primary); background: var(--primary-light); }
         .nav-item.active .arrow { transform: rotate(180deg); }
 
-        /* Main Content Area */
-        .main-content { margin-left: 280px; width: calc(100% - 280px); min-height: 100vh; transition: 0.3s ease; }
-        .top-bar { display: flex; align-items: center; padding: 20px 40px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-        .menu-btn { font-size: 24px; cursor: pointer; margin-right: 20px; display: none; color: var(--text-main); }
+        /* --- MAIN CONTENT AREA --- */
+        .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); min-height: 100vh; display: flex; flex-direction: column; }
+        .top-bar { display: flex; align-items: center; justify-content: space-between; padding: 15px 40px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .menu-btn { font-size: 24px; cursor: pointer; display: none; color: var(--text-main); padding: 5px; }
         
-        .content-area { padding: 40px; }
-        .page-view { display: none; animation: fadeIn 0.4s ease; }
+        .user-profile { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.9rem; }
+        .avatar { width: 35px; height: 35px; background: var(--primary-light); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+
+        .content-area { padding: 40px; flex: 1; }
+        .page-view { display: none; animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .page-view.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Global Cards & Typography */
-        .title-main { font-size: 2.2rem; font-weight: 800; margin-bottom: 25px; letter-spacing: -0.5px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: 0.3s; }
-        .card:hover { border-color: var(--primary); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.08); transform: translateY(-4px); }
+        /* --- GLOBAL UI COMPONENTS --- */
+        .title-main { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; color: var(--text-main); }
+        .subtitle { color: var(--text-dim); font-size: 1.05rem; margin-bottom: 30px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 30px; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .card:hover { border-color: var(--primary); box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.1); transform: translateY(-4px); }
 
-        .btn { display: inline-block; width: 100%; padding: 15px; text-align: center; border-radius: 12px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; font-size: 1rem; transition: 0.2s; }
-        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2); }
-        .btn-primary:hover { background: #1d4ed8; }
+        .btn { display: inline-block; width: 100%; padding: 16px; text-align: center; border-radius: 12px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; font-size: 1rem; transition: 0.2s; }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35); }
+        .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-outline:hover { background: var(--primary-light); }
 
-        /* Domain Search & TLD Grid */
-        .domain-search { display: flex; gap: 10px; margin-bottom: 30px; }
-        .domain-search input { flex: 1; padding: 20px; border-radius: 12px; border: 2px solid var(--border); font-size: 1.1rem; outline: none; font-weight: 500; transition: 0.2s; }
-        .domain-search input:focus { border-color: var(--primary); }
+        /* --- ADVANCED VPS CONFIGURATOR --- */
+        .config-section { margin-bottom: 40px; }
+        .config-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .config-num { width: 28px; height: 28px; background: var(--text-main); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+        
+        .select-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .select-box { background: var(--surface); border: 2px solid var(--border); border-radius: 15px; padding: 20px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .select-box:hover { border-color: #93c5fd; background: var(--primary-light); }
+        .select-box.active { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15); }
+        .select-box img { width: 40px; height: 40px; margin-bottom: 10px; }
+        .select-box .name { font-weight: 700; font-size: 1rem; color: var(--text-main); }
+        .select-box .desc { font-size: 0.8rem; color: var(--text-dim); margin-top: 5px; }
+
+        /* VPS Plan Table */
+        .vps-table-wrapper { overflow-x: auto; background: var(--surface); border-radius: 15px; border: 1px solid var(--border); }
+        .vps-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .vps-table th, .vps-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); }
+        .vps-table th { background: #f8fafc; font-weight: 700; color: var(--text-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .vps-table tr { cursor: pointer; transition: 0.2s; }
+        .vps-table tr:hover { background: #f1f5f9; }
+        .vps-table tr.active { background: var(--primary-light); border-left: 4px solid var(--primary); }
+        .vps-table td { font-weight: 600; font-size: 0.95rem; }
+        .vps-price { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
+
+        /* Floating Summary Bar */
+        .summary-bar { background: var(--text-main); color: white; padding: 20px 40px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-top: 40px; position: sticky; bottom: 20px; z-index: 50; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .summary-details { display: flex; flex-direction: column; gap: 5px; }
+        .summary-title { font-size: 0.85rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; }
+        .summary-config { font-size: 1.2rem; font-weight: 800; }
+        .summary-total { font-size: 2rem; font-weight: 800; color: var(--success); }
+
+        /* --- DOMAIN & NETWORK UI --- */
+        .domain-search { display: flex; gap: 15px; margin-bottom: 30px; }
+        .domain-search input { flex: 1; padding: 20px 25px; border-radius: 15px; border: 2px solid var(--border); font-size: 1.1rem; outline: none; font-weight: 500; transition: 0.2s; }
+        .domain-search input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
         .domain-search button { width: auto; padding: 0 40px; }
 
-        .tld-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 20px; }
-        .tld-box { background: var(--bg); border: 1px solid var(--border); padding: 20px; border-radius: 15px; text-align: center; }
-        .tld-ext { font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
-        .tld-price { font-size: 0.9rem; color: var(--text-dim); margin-top: 5px; font-weight: 600; }
-
-        /* Network Status UI */
         .status-dot { width: 12px; height: 12px; background: var(--success); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-        
-        .server-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--border); }
-        .server-row:last-child { border: none; padding-bottom: 0; }
-        .server-name { font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
-        .server-ping { font-size: 0.85rem; font-weight: 600; color: var(--text-dim); background: var(--bg); padding: 4px 10px; border-radius: 20px; }
+        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
 
-        /* Custom Enterprise CTA */
-        .enterprise-card { background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 40px; border-radius: 20px; position: relative; overflow: hidden; margin-top: 30px; }
-        .enterprise-card h2 { font-size: 2rem; margin-bottom: 15px; color: #fff; }
-        .enterprise-card p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 25px; max-width: 600px; }
-
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 1024px) {
             .sidebar { transform: translateX(-100%); }
             .sidebar.open { transform: translateX(0); }
             .sidebar-overlay.show { display: block; }
             .main-content { margin-left: 0; width: 100%; }
-            .top-bar { padding: 15px 20px; }
+            .top-bar { padding: 15px 25px; }
             .menu-btn { display: block; }
-            .content-area { padding: 20px; }
+            .content-area { padding: 25px; }
             .domain-search { flex-direction: column; }
             .domain-search button { width: 100%; padding: 20px; }
+            .summary-bar { flex-direction: column; gap: 20px; text-align: center; padding: 20px; }
+            .summary-bar .btn { width: 100%; }
         }
     </style>
 </head>
@@ -105,157 +138,343 @@
     <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
 
     <div class="sidebar" id="sidebar">
-        <div class="brand"><div class="brand-icon"></div> AREX HOST</div>
-        <a href="#" class="nav-header direct-link" onclick="loadPage('dashboard', this)">🏠 Dashboard</a>
+        <div class="brand">
+            <div class="brand-icon">A</div>
+            AREX HOST
+        </div>
+
+        <div class="nav-item">
+            <a href="#" class="nav-header direct-link" onclick="loadPage('dashboard', this)">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                <span>Dashboard</span>
+            </a>
+        </div>
 
         <div class="nav-item">
             <div class="nav-header" onclick="toggleAccordion(this)">
-                <span>📦 Products</span><span class="arrow">▼</span>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                    <span>Products</span>
+                </div>
+                <span class="arrow">▼</span>
             </div>
             <div class="submenu">
                 <a href="#" onclick="loadPage('shared-hosting', this)">Shared Hosting</a>
                 <a href="#" onclick="loadPage('vps-hosting', this)">VPS Cloud Nodes</a>
+                <a href="#" onclick="loadPage('reseller-hosting', this)">Reseller Hosting</a>
             </div>
         </div>
 
         <div class="nav-item">
             <div class="nav-header" onclick="toggleAccordion(this)">
-                <span>🌐 Domains</span><span class="arrow">▼</span>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+                    <span>Domains</span>
+                </div>
+                <span class="arrow">▼</span>
             </div>
             <div class="submenu">
                 <a href="#" onclick="loadPage('domain-reg', this)">Register Domain</a>
             </div>
         </div>
 
-        <a href="#" class="nav-header direct-link" onclick="loadPage('uptime', this)">📉 Network Status</a>
-        <a href="#" class="nav-header direct-link" onclick="loadPage('payment', this)">💳 Secure Payment</a>
-        <a href="https://wa.me/918979785907" class="nav-header direct-link" style="color: var(--success);">🎧 WhatsApp Support</a>
+        <div class="nav-item">
+            <a href="#" class="nav-header direct-link" onclick="loadPage('uptime', this)">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                <span>Network Status</span>
+            </a>
+        </div>
+
+        <div class="nav-item">
+            <a href="#" class="nav-header direct-link" onclick="loadPage('payment', this)">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                <span>Payment Center</span>
+            </a>
+        </div>
+
+        <div class="nav-item" style="margin-top: 20px;">
+            <a href="https://wa.me/918979785907" class="nav-header direct-link" style="background: #ecfdf5; color: var(--success); border: 1px solid #a7f3d0;">
+                <svg class="nav-icon" style="fill: var(--success);" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 13.58c-.22.62-1.28 1.15-1.8 1.22-.49.07-1.13.11-2.42-.42-1.54-.64-3.41-2.22-4.66-3.79-.83-1.04-1.36-1.96-1.36-2.92 0-1.03.53-1.54.72-1.74.2-.21.49-.24.66-.24.16 0 .33.01.47.33.15.35.52 1.25.56 1.34.05.1.08.21.02.32-.06.11-.09.18-.18.29-.09.1-.21.23-.29.31-.08.09-.17.18-.07.35.1.17.44.73.96 1.19.67.6 1.22.78 1.4.87.18.09.28.08.38-.03.11-.12.48-.56.61-.75.13-.2.27-.16.45-.1.18.06 1.16.55 1.36.65.2.1.33.15.38.24.05.09.05.51-.17 1.13z"/></svg>
+                <span>WhatsApp Support</span>
+            </a>
+        </div>
     </div>
 
     <div class="main-content">
         <div class="top-bar">
-            <div class="menu-btn" onclick="toggleSidebar()">☰</div>
-            <h2 style="font-size: 1.2rem; font-weight: 700;">Client Portal</h2>
+            <div style="display: flex; align-items: center;">
+                <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+                <h2 style="font-size: 1.1rem; font-weight: 700;">AREX CHEAPEST PRICE HOSTING SELLER</h2>
+            </div>
+            <div class="user-profile">
+                <div class="avatar">A</div>
+                <span style="display: none; @media(min-width: 600px){display: block;}">Hi, Abhi</span>
+            </div>
         </div>
 
         <div class="content-area">
             
             <div id="dashboard" class="page-view active">
-                <h1 class="title-main">Overview</h1>
+                <h1 class="title-main">Infrastructure Overview</h1>
+                <p class="subtitle">Deploy and manage your web applications with ease.</p>
+                
                 <div class="grid">
                     <div class="card">
-                        <h3 style="color: var(--text-dim); font-size: 1rem;">Active Services</h3>
-                        <h2 style="font-size: 3rem; margin-top: 10px;">0</h2>
+                        <h3 style="color: var(--text-dim); font-size: 0.9rem; text-transform: uppercase;">Compute Nodes</h3>
+                        <h2 style="font-size: 3.5rem; margin: 10px 0;">0</h2>
+                        <button class="btn btn-primary" onclick="loadPage('vps-hosting', null)">Deploy New Node</button>
+                    </div>
+                    <div class="card">
+                        <h3 style="color: var(--text-dim); font-size: 0.9rem; text-transform: uppercase;">Shared Services</h3>
+                        <h2 style="font-size: 3.5rem; margin: 10px 0;">0</h2>
+                        <button class="btn btn-outline" onclick="loadPage('shared-hosting', null)">View Web Hosting</button>
+                    </div>
+                    <div class="card" style="background: var(--text-main); color: white;">
+                        <h3 style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;">Enterprise Network</h3>
+                        <h2 style="font-size: 1.8rem; margin: 15px 0;">Build Custom Scalable Infrastructure</h2>
+                        <a href="https://wa.me/918979785907" class="btn" style="background: white; color: var(--text-main);">Contact Engineering</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="vps-hosting" class="page-view">
+                <h1 class="title-main">Deploy Cloud Instance</h1>
+                <p class="subtitle">Configure your high-performance NVMe compute node.</p>
+
+                <div class="config-section">
+                    <div class="config-title"><div class="config-num">1</div> Choose an Image</div>
+                    <div class="select-grid" id="os-grid">
+                        <div class="select-box active" onclick="selectOption('os', 'Ubuntu 22.04', this)">
+                            <div class="name">Ubuntu</div>
+                            <div class="desc">22.04 LTS</div>
+                        </div>
+                        <div class="select-box" onclick="selectOption('os', 'Debian 11', this)">
+                            <div class="name">Debian</div>
+                            <div class="desc">Version 11</div>
+                        </div>
+                        <div class="select-box" onclick="selectOption('os', 'AlmaLinux 9', this)">
+                            <div class="name">AlmaLinux</div>
+                            <div class="desc">Version 9</div>
+                        </div>
+                        <div class="select-box" onclick="selectOption('os', 'Windows Server', this)">
+                            <div class="name">Windows</div>
+                            <div class="desc">Server 2022</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="enterprise-card">
-                    <h2>Build Custom Network System?</h2>
-                    <p>Want to build your own large-scale infrastructure, data center, or private network? Connect with our enterprise engineering team.</p>
-                    <a href="https://wa.me/918979785907?text=Hi, I want to build a custom network system/infrastructure." class="btn" style="background: white; color: var(--dark); max-width: 250px;">Contact Engineering Team</a>
+                <div class="config-section">
+                    <div class="config-title"><div class="config-num">2</div> Choose Datacenter Region</div>
+                    <div class="select-grid" id="region-grid">
+                        <div class="select-box active" onclick="selectOption('region', 'Mumbai, IN', this)">
+                            <div style="font-size: 2rem; margin-bottom: 5px;">🇮🇳</div>
+                            <div class="name">Mumbai</div>
+                            <div class="desc">Asia South</div>
+                        </div>
+                        <div class="select-box" onclick="selectOption('region', 'Singapore, SG', this)">
+                            <div style="font-size: 2rem; margin-bottom: 5px;">🇸🇬</div>
+                            <div class="name">Singapore</div>
+                            <div class="desc">Asia Pacific</div>
+                        </div>
+                        <div class="select-box" onclick="selectOption('region', 'Frankfurt, DE', this)">
+                            <div style="font-size: 2rem; margin-bottom: 5px;">🇩🇪</div>
+                            <div class="name">Frankfurt</div>
+                            <div class="desc">Europe</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <div class="config-title"><div class="config-num">3</div> Choose Instance Size</div>
+                    <div class="vps-table-wrapper">
+                        <table class="vps-table" id="plan-table">
+                            <thead>
+                                <tr>
+                                    <th>Plan Name</th>
+                                    <th>Memory (RAM)</th>
+                                    <th>vCPUs</th>
+                                    <th>NVMe SSD</th>
+                                    <th>Transfer</th>
+                                    <th>Monthly Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr onclick="selectPlan('Nano', 49, this)">
+                                    <td><b style="color: var(--primary);">Nano Node</b></td>
+                                    <td>1 GB</td>
+                                    <td>1 Core</td>
+                                    <td>20 GB</td>
+                                    <td>1 TB</td>
+                                    <td class="vps-price">₹49/mo</td>
+                                </tr>
+                                <tr class="active" onclick="selectPlan('Micro', 99, this)">
+                                    <td><b style="color: var(--primary);">Micro Node</b></td>
+                                    <td>2 GB</td>
+                                    <td>1 Core</td>
+                                    <td>40 GB</td>
+                                    <td>2 TB</td>
+                                    <td class="vps-price">₹99/mo</td>
+                                </tr>
+                                <tr onclick="selectPlan('Standard', 199, this)">
+                                    <td><b style="color: var(--primary);">Standard</b></td>
+                                    <td>4 GB</td>
+                                    <td>2 Cores</td>
+                                    <td>80 GB</td>
+                                    <td>4 TB</td>
+                                    <td class="vps-price">₹199/mo</td>
+                                </tr>
+                                <tr onclick="selectPlan('Professional', 499, this)">
+                                    <td><b style="color: var(--primary);">Professional</b></td>
+                                    <td>8 GB</td>
+                                    <td>4 Cores</td>
+                                    <td>160 GB</td>
+                                    <td>8 TB</td>
+                                    <td class="vps-price">₹499/mo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <div class="config-title"><div class="config-num">4</div> Authentication</div>
+                    <div class="card" style="padding: 20px;">
+                        <p style="margin-bottom: 10px; font-weight: 600;">Root Password</p>
+                        <input type="password" placeholder="Enter a strong root password..." style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid var(--border); outline: none;">
+                    </div>
+                </div>
+
+                <div class="summary-bar">
+                    <div class="summary-details">
+                        <div class="summary-title">Instance Summary</div>
+                        <div class="summary-config" id="summary-text">Ubuntu 22.04 • Mumbai, IN • Micro Node</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                        <div style="text-align: right;">
+                            <div class="summary-title">Total Estimated</div>
+                            <div class="summary-total" id="summary-price">₹99<span style="font-size:1rem; font-weight:500; color:#cbd5e1;">/mo</span></div>
+                        </div>
+                        <button class="btn btn-primary" style="width: auto; padding: 15px 40px; background: var(--success);" onclick="loadPage('payment', null)">Deploy Now</button>
+                    </div>
                 </div>
             </div>
 
             <div id="shared-hosting" class="page-view">
-                <h1 class="title-main">Shared Cloud Nodes</h1>
+                <h1 class="title-main">Shared Web Hosting</h1>
+                <p class="subtitle">cPanel powered web hosting for sites and basic scripts.</p>
                 <div class="grid">
                     <div class="card">
                         <h3 style="color: var(--primary);">Budget Starter</h3>
-                        <div style="font-size: 2.5rem; font-weight: 800; margin: 15px 0;">₹11<span style="font-size: 1rem; color: var(--text-dim);">/mo</span></div>
-                        <ul style="list-style: none; line-height: 2; margin-bottom: 20px;">
-                            <li>✅ 10GB NVMe SSD</li>
-                            <li>✅ 1GB DDR4 RAM</li>
+                        <div style="font-size: 3rem; font-weight: 800; margin: 15px 0;">₹11<span style="font-size: 1rem; color: var(--text-dim);">/mo</span></div>
+                        <ul style="list-style: none; line-height: 2.2; margin-bottom: 25px; font-size: 0.95rem;">
+                            <li><b style="color: var(--success);">✓</b> 10 GB NVMe Storage</li>
+                            <li><b style="color: var(--success);">✓</b> 1 GB Dedicated RAM</li>
+                            <li><b style="color: var(--success);">✓</b> 1 Hosted Domain</li>
+                            <li><b style="color: var(--success);">✓</b> Free SSL Certificate</li>
+                            <li><b style="color: var(--success);">✓</b> Telegram Bot Optimization</li>
                         </ul>
-                        <button class="btn btn-primary" onclick="loadPage('payment', null)">Deploy Node</button>
+                        <button class="btn btn-primary" onclick="loadPage('payment', null)">Order Now</button>
                     </div>
-                    <div class="card" style="border-color: var(--primary);">
-                        <h3 style="color: var(--primary);">Pro Runner</h3>
-                        <div style="font-size: 2.5rem; font-weight: 800; margin: 15px 0;">₹31<span style="font-size: 1rem; color: var(--text-dim);">/mo</span></div>
-                        <ul style="list-style: none; line-height: 2; margin-bottom: 20px;">
-                            <li>✅ 40GB NVMe SSD</li>
-                            <li>✅ 4GB DDR4 RAM</li>
+                    <div class="card" style="border-color: var(--primary); box-shadow: 0 10px 30px rgba(37,99,235,0.1);">
+                        <div style="position: absolute; top: 0; right: 0; background: var(--primary); color: white; padding: 5px 15px; border-bottom-left-radius: 15px; font-size: 0.8rem; font-weight: 700;">RECOMMENDED</div>
+                        <h3 style="color: var(--primary);">Professional Node</h3>
+                        <div style="font-size: 3rem; font-weight: 800; margin: 15px 0;">₹31<span style="font-size: 1rem; color: var(--text-dim);">/mo</span></div>
+                        <ul style="list-style: none; line-height: 2.2; margin-bottom: 25px; font-size: 0.95rem;">
+                            <li><b style="color: var(--success);">✓</b> 40 GB NVMe Storage</li>
+                            <li><b style="color: var(--success);">✓</b> 4 GB Dedicated RAM</li>
+                            <li><b style="color: var(--success);">✓</b> Unlimited Domains</li>
+                            <li><b style="color: var(--success);">✓</b> Free SSL & Daily Backups</li>
+                            <li><b style="color: var(--success);">✓</b> Priority Chat Support</li>
                         </ul>
-                        <button class="btn btn-primary" onclick="loadPage('payment', null)">Deploy Node</button>
+                        <button class="btn btn-primary" onclick="loadPage('payment', null)">Order Now</button>
                     </div>
                 </div>
             </div>
 
+            <div id="reseller-hosting" class="page-view">
+                <h1 class="title-main">Reseller Hosting (WHM)</h1>
+                <p class="subtitle">Start your own hosting company with white-labeled WHM access.</p>
+                <div class="card" style="text-align: center; padding: 60px 20px;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🏢</div>
+                    <h2>Master Reseller Plans</h2>
+                    <p style="color: var(--text-dim); margin: 15px auto; max-width: 500px;">Create your own hosting packages, set your own prices, and manage your clients effortlessly with WHMCS integration.</p>
+                    <button class="btn btn-primary" style="max-width: 250px;" onclick="loadPage('payment', null)">Start at ₹149/mo</button>
+                </div>
+            </div>
+
             <div id="domain-reg" class="page-view">
-                <h1 class="title-main">Find Your Perfect Domain</h1>
-                <div class="card">
+                <h1 class="title-main">Search Domain Names</h1>
+                <p class="subtitle">Secure your digital identity today.</p>
+                <div class="card" style="padding: 40px;">
                     <div class="domain-search">
-                        <input type="text" placeholder="e.g. myawesomewebsite.com">
-                        <button class="btn btn-primary">Search Domain</button>
+                        <input type="text" placeholder="Find your perfect domain (e.g. myproject.com)">
+                        <button class="btn btn-primary">Search Availability</button>
                     </div>
                     
-                    <h3 style="margin: 30px 0 15px; font-size: 1rem; color: var(--text-dim);">POPULAR EXTENSIONS</h3>
-                    <div class="tld-grid">
-                        <div class="tld-box">
-                            <div class="tld-ext">.com</div>
-                            <div class="tld-price">₹899 /yr</div>
+                    <h3 style="margin: 40px 0 20px; font-size: 0.9rem; color: var(--text-dim); text-transform: uppercase;">Popular Extensions</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                        <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
+                            <h2 style="color: var(--primary);">.com</h2><p style="font-weight: 600; margin-top: 5px;">₹899/yr</p>
                         </div>
-                        <div class="tld-box">
-                            <div class="tld-ext">.in</div>
-                            <div class="tld-price">₹499 /yr</div>
+                        <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
+                            <h2 style="color: var(--primary);">.in</h2><p style="font-weight: 600; margin-top: 5px;">₹499/yr</p>
                         </div>
-                        <div class="tld-box">
-                            <div class="tld-ext">.co.in</div>
-                            <div class="tld-price">₹399 /yr</div>
+                        <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
+                            <h2 style="color: var(--primary);">.org</h2><p style="font-weight: 600; margin-top: 5px;">₹999/yr</p>
                         </div>
-                        <div class="tld-box">
-                            <div class="tld-ext">.net</div>
-                            <div class="tld-price">₹999 /yr</div>
+                        <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
+                            <h2 style="color: var(--primary);">.co.in</h2><p style="font-weight: 600; margin-top: 5px;">₹399/yr</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div id="uptime" class="page-view">
-                <h1 class="title-main">Global Network Health</h1>
+                <h1 class="title-main">Network Health Dashboard</h1>
+                <p class="subtitle">Real-time status of our global infrastructure.</p>
                 
-                <div class="grid">
-                    <div class="card" style="border-left: 5px solid var(--success);">
-                        <h2 style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-                            <div class="status-dot"></div> All Systems Operational
-                        </h2>
-                        <p style="color: var(--text-dim); font-size: 1.1rem;">Overall Global Uptime: <strong style="color: var(--text-main);">99.982%</strong></p>
-                    </div>
-
-                    <div class="card">
-                        <h3 style="margin-bottom: 20px; color: var(--text-dim); font-size: 0.9rem; text-transform: uppercase;">Regional Data Centers</h3>
-                        <div class="server-row">
-                            <span class="server-name">🇮🇳 Asia South (Mumbai)</span>
-                            <span class="server-ping" style="color: var(--success);">Online • 28ms</span>
-                        </div>
-                        <div class="server-row">
-                            <span class="server-name">🇸🇬 Asia Pacific (Singapore)</span>
-                            <span class="server-ping" style="color: var(--success);">Online • 54ms</span>
-                        </div>
-                        <div class="server-row">
-                            <span class="server-name">🇩🇪 Europe (Frankfurt)</span>
-                            <span class="server-ping" style="color: var(--success);">Online • 142ms</span>
-                        </div>
-                    </div>
+                <div class="card" style="border-left: 6px solid var(--success); margin-bottom: 30px;">
+                    <h2 style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                        <div class="status-dot"></div> All Systems Fully Operational
+                    </h2>
+                    <p style="color: var(--text-dim);">Global Uptime: <strong style="color: var(--text-main);">99.98%</strong> across all regions.</p>
                 </div>
 
-                <div class="card" style="margin-top: 24px; text-align: center; background: var(--bg);">
-                    <h3 style="margin-bottom: 10px;">Need a dedicated enterprise network?</h3>
-                    <p style="color: var(--text-dim); margin-bottom: 15px;">We design, deploy and manage custom networking infrastructure for scale.</p>
-                    <button class="btn btn-primary" style="max-width: 250px; display: inline-block;" onclick="window.location.href='https://wa.me/918979785907?text=Hi, I want a custom network infrastructure.'">Contact Network Experts</button>
+                <div class="card">
+                    <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 15px;">Datacenter Ping Status</h3>
+                    <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--border);">
+                        <strong style="display: flex; align-items: center; gap: 10px;">🇮🇳 Asia South (Mumbai)</strong>
+                        <span style="background: #ecfdf5; color: var(--success); padding: 5px 12px; border-radius: 20px; font-weight: 600; font-size: 0.85rem;">Online • 26ms</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--border);">
+                        <strong style="display: flex; align-items: center; gap: 10px;">🇸🇬 Asia Pacific (Singapore)</strong>
+                        <span style="background: #ecfdf5; color: var(--success); padding: 5px 12px; border-radius: 20px; font-weight: 600; font-size: 0.85rem;">Online • 52ms</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 15px 0;">
+                        <strong style="display: flex; align-items: center; gap: 10px;">🇩🇪 Europe (Frankfurt)</strong>
+                        <span style="background: #ecfdf5; color: var(--success); padding: 5px 12px; border-radius: 20px; font-weight: 600; font-size: 0.85rem;">Online • 140ms</span>
+                    </div>
                 </div>
             </div>
 
             <div id="payment" class="page-view">
-                <h1 class="title-main" style="text-align: center;">Secure Activation</h1>
-                <div class="card pay-box">
-                    <p style="color: var(--text-dim); margin-bottom: 20px;">Scan QR code to initiate service activation.</p>
-                    <div class="qr-frame">
-                        <img src="1000003225.jpg" alt="UPI QR Code">
+                <h1 class="title-main" style="text-align: center;">Secure Activation Portal</h1>
+                <p class="subtitle" style="text-align: center;">Complete your payment to instantly provision resources.</p>
+                
+                <div class="card" style="max-width: 480px; margin: 0 auto; text-align: center; border-top: 5px solid var(--primary);">
+                    <div style="background: #f8fafc; padding: 25px; border-radius: 20px; border: 1px solid var(--border); display: inline-block; margin-bottom: 25px;">
+                        <img src="1000003225.jpg" alt="UPI QR Code" style="width: 220px; border-radius: 12px; display: block;">
                     </div>
-                    <div style="background: var(--primary-light); color: var(--primary); padding: 15px; border-radius: 10px; font-weight: 800; border: 1.5px dashed var(--primary); margin-bottom: 25px;">
+                    
+                    <p style="font-weight: 600; color: var(--text-dim); margin-bottom: 8px;">Official Business UPI</p>
+                    <div style="background: var(--primary-light); color: var(--primary); padding: 18px; border-radius: 12px; font-size: 1.2rem; font-weight: 800; border: 2px dashed var(--primary); margin-bottom: 30px; letter-spacing: 1px;">
                         Abhimassey@fam
                     </div>
-                    <a href="https://wa.me/918979785907?text=Hi, I have made the payment. Please activate my service." class="btn btn-primary" style="background: var(--success);">Verify via WhatsApp</a>
+                    
+                    <a href="https://wa.me/918979785907?text=Hi AREX HOST, I have made the payment. Please activate my service." class="btn btn-primary" style="background: var(--success); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 13.58c-.22.62-1.28 1.15-1.8 1.22-.49.07-1.13.11-2.42-.42-1.54-.64-3.41-2.22-4.66-3.79-.83-1.04-1.36-1.96-1.36-2.92 0-1.03.53-1.54.72-1.74.2-.21.49-.24.66-.24.16 0 .33.01.47.33.15.35.52 1.25.56 1.34.05.1.08.21.02.32-.06.11-.09.18-.18.29-.09.1-.21.23-.29.31-.08.09-.17.18-.07.35.1.17.44.73.96 1.19.67.6 1.22.78 1.4.87.18.09.28.08.38-.03.11-.12.48-.56.61-.75.13-.2.27-.16.45-.1.18.06 1.16.55 1.36.65.2.1.33.15.38.24.05.09.05.51-.17 1.13z"/></svg>
+                        Send Screenshot on WhatsApp
+                    </a>
                 </div>
             </div>
 
@@ -263,11 +482,13 @@
     </div>
 
     <script>
+        // 1. Mobile Sidebar Toggle
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
             document.getElementById('overlay').classList.toggle('show');
         }
 
+        // 2. Dropdown Accordion
         function toggleAccordion(element) {
             const parent = element.parentElement;
             if (parent.classList.contains('active')) {
@@ -278,24 +499,66 @@
             }
         }
 
+        // 3. Page Router (SPA Logic)
         function loadPage(pageId, linkElement) {
-            document.querySelectorAll('.page-view').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            const targetPage = document.getElementById(pageId);
-            if(targetPage) targetPage.classList.add('active');
+            // Hide all pages
+            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
+            // Show target
+            const target = document.getElementById(pageId);
+            if(target) target.classList.add('active');
 
+            // Update active state in sidebar
             if(linkElement) {
                 document.querySelectorAll('.submenu a, .direct-link').forEach(link => link.classList.remove('active-link'));
                 linkElement.classList.add('active-link');
             }
 
+            // Close mobile menu
             if (window.innerWidth <= 1024) {
                 document.getElementById('sidebar').classList.remove('open');
                 document.getElementById('overlay').classList.remove('show');
             }
             window.scrollTo(0, 0);
+        }
+
+        // 4. VPS CONFIGURATOR ENGINE
+        let vpsConfig = {
+            os: 'Ubuntu 22.04',
+            region: 'Mumbai, IN',
+            planName: 'Micro Node',
+            price: 99
+        };
+
+        function selectOption(type, value, element) {
+            // Update Data
+            vpsConfig[type] = value;
+            
+            // UI Update: Remove active class from siblings
+            const siblings = element.parentElement.children;
+            for(let i=0; i<siblings.length; i++) {
+                siblings[i].classList.remove('active');
+            }
+            // Add active to clicked
+            element.classList.add('active');
+            
+            updateSummary();
+        }
+
+        function selectPlan(name, price, element) {
+            vpsConfig.planName = name;
+            vpsConfig.price = price;
+
+            // Table Row UI Update
+            const rows = document.querySelectorAll('#plan-table tbody tr');
+            rows.forEach(row => row.classList.remove('active'));
+            element.classList.add('active');
+
+            updateSummary();
+        }
+
+        function updateSummary() {
+            document.getElementById('summary-text').innerText = `${vpsConfig.os} • ${vpsConfig.region} • ${vpsConfig.planName}`;
+            document.getElementById('summary-price').innerHTML = `₹${vpsConfig.price}<span style="font-size:1rem; font-weight:500; color:#cbd5e1;">/mo</span>`;
         }
     </script>
 </body>
