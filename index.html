@@ -1,158 +1,172 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AREX PRO | Cloud Infrastructure</title>
+    <title>AREX PRO | Advanced Cloud Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #3b82f6;
-            --bg: #020617;
-            --sidebar: #0f172a;
-            --card: rgba(30, 41, 59, 0.5);
-            --border: rgba(255, 255, 255, 0.1);
-            --text: #f8fafc;
-            --whatsapp: #22c55e;
+            --bg: #010409;
+            --card-bg: rgba(22, 27, 34, 0.6);
+            --primary: #00ffff;
+            --secondary: #3b82f6;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #e6edf3;
+            --text-dim: #8b949e;
+            --whatsapp: #25d366;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg); color: var(--text); }
+        body { background-color: var(--bg); color: var(--text-main); overflow-x: hidden; }
 
-        /* Sidebar & Navigation */
-        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
-        .sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100vh; background: var(--sidebar); z-index: 1000; transition: 0.4s; padding: 30px 20px; border-right: 1px solid var(--border); }
-        .sidebar.active { left: 0; }
-        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 999; }
+        /* Neon Glass Header */
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(1, 4, 9, 0.85); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); box-shadow: 0 4px 30px rgba(0, 255, 255, 0.1); }
+        .logo { font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+        .menu-btn { font-size: 26px; cursor: pointer; color: var(--primary); }
+
+        /* Modern Sidebar */
+        .sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #0d1117; z-index: 1000; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); padding: 40px 20px; border-right: 1px solid var(--border); }
+        .sidebar.active { left: 0; box-shadow: 15px 0 50px rgba(0,0,0,0.6); }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; z-index: 999; backdrop-filter: blur(4px); }
         
-        .menu-item { padding: 15px; display: block; color: #94a3b8; text-decoration: none; border-radius: 12px; margin-bottom: 10px; transition: 0.3s; font-weight: 600; cursor: pointer; }
-        .menu-item:hover, .menu-item.active { background: var(--primary); color: white; }
+        .nav-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); margin: 25px 0 10px 10px; display: block; }
+        .menu-item { padding: 14px 18px; display: block; color: var(--text-dim); text-decoration: none; border-radius: 14px; transition: 0.3s; font-weight: 600; }
+        .menu-item:hover, .menu-item.active { background: rgba(0, 255, 255, 0.1); color: var(--primary); }
 
-        /* Main Sections */
-        .container { padding: 50px 5%; max-width: 1200px; margin: 0 auto; min-height: 100vh; }
-        .section { display: none; }
+        /* Dashboard Content */
+        .container { padding: 60px 5%; max-width: 1300px; margin: 0 auto; }
+        .hero-title { font-size: 3rem; font-weight: 800; text-align: center; margin-bottom: 50px; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .section { display: none; animation: fadeIn 0.5s ease; }
         .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Premium Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 40px; border-radius: 30px; position: relative; transition: 0.4s; backdrop-filter: blur(10px); }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 20px 40px -10px rgba(0, 255, 255, 0.2); }
         
-        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 40px; text-align: center; }
-
-        /* Plans Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .card { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 35px; transition: 0.3s; position: relative; }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .price { font-size: 3rem; font-weight: 800; margin: 15px 0; }
-        .price span { font-size: 1rem; color: #64748b; }
+        .price { font-size: 3.5rem; font-weight: 800; margin: 20px 0; display: flex; align-items: baseline; gap: 8px; }
+        .price span { font-size: 1.1rem; color: var(--text-dim); font-weight: 400; }
         
-        .feat { list-style: none; margin-bottom: 25px; }
-        .feat li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; display: flex; justify-content: space-between; }
+        .specs { list-style: none; margin-bottom: 30px; border-top: 1px solid var(--border); padding-top: 25px; }
+        .spec-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.95rem; }
+        .spec-row span:first-child { color: var(--text-dim); }
+        .spec-row span:last-child { color: #fff; font-weight: 700; }
 
-        /* Payment Box */
-        .pay-box { max-width: 500px; margin: 0 auto; background: var(--card); padding: 40px; border-radius: 30px; text-align: center; border: 2px solid var(--primary); }
-        .qr-img { width: 220px; background: white; padding: 15px; border-radius: 20px; margin: 20px 0; }
-        .upi-id { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px; font-weight: 700; border: 1px dashed var(--primary); margin: 15px 0; }
+        /* Enhanced Payment UI */
+        .payment-box { max-width: 500px; margin: 0 auto; background: var(--card-bg); border: 1.5px solid var(--primary); border-radius: 35px; padding: 45px; text-align: center; }
+        .qr-frame { background: #fff; padding: 20px; border-radius: 25px; width: 240px; margin: 25px auto; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 5px solid rgba(0,255,255,0.1); }
+        .qr-frame img { width: 100%; display: block; }
+        
+        .upi-tag { background: rgba(0, 255, 255, 0.1); color: var(--primary); padding: 12px 25px; border-radius: 15px; font-weight: 800; border: 1.5px dashed var(--primary); font-size: 1.2rem; display: inline-block; margin: 15px 0; cursor: pointer; }
 
-        .btn { display: block; width: 100%; padding: 16px; border-radius: 14px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; cursor: pointer; border: none; }
-        .btn-blue { background: var(--primary); color: white; }
-        .btn-wa { background: var(--whatsapp); color: white; margin-top: 20px; }
+        /* High-End Buttons */
+        .btn { display: block; width: 100%; padding: 20px; border-radius: 18px; font-weight: 800; text-decoration: none; text-align: center; transition: 0.3s; border: none; cursor: pointer; font-size: 1rem; }
+        .btn-glow { background: var(--secondary); color: white; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4); }
+        .btn-wa { background: var(--whatsapp); color: white; margin-top: 20px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+        .btn:hover { transform: scale(1.03); opacity: 0.9; }
 
-        .float-wa { position: fixed; bottom: 30px; right: 30px; background: var(--whatsapp); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; text-decoration: none; z-index: 100; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .floating-action { position: fixed; bottom: 35px; right: 35px; background: var(--whatsapp); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; color: white; box-shadow: 0 15px 30px rgba(0,0,0,0.4); z-index: 100; text-decoration: none; transition: 0.3s; }
+        .floating-action:hover { transform: rotate(15deg) scale(1.1); }
+
+        @media (max-width: 768px) { .hero-title { font-size: 2.2rem; } .card { padding: 30px; } }
     </style>
 </head>
 <body>
 
     <div class="sidebar" id="sidebar">
-        <h2 style="margin-bottom: 30px;">AREX MENU</h2>
-        <div class="menu-item active" onclick="showSection('home')">🏠 Dashboard</div>
-        <div class="menu-item" onclick="showSection('plans')">💎 Premium Plans</div>
-        <div class="menu-item" onclick="showSection('payment')">💳 Payment Option</div>
-        <a href="https://wa.me/918979785907" class="menu-item" style="color:var(--whatsapp)">💬 WhatsApp Help</a>
+        <h2 style="font-weight: 800; color: #fff;">AREX <span style="color:var(--primary)">PRO</span></h2>
+        <span class="nav-label">Management</span>
+        <div class="menu-item active" onclick="navigate('home')">🏠 My Dashboard</div>
+        <div class="menu-item" onclick="navigate('plans')">💎 Premium Plans</div>
+        
+        <span class="nav-label">Billing</span>
+        <div class="menu-item" onclick="navigate('payment')">💳 Secure Payment</div>
+        
+        <span class="nav-label">Support</span>
+        <a href="https://wa.me/91897978507" class="menu-item" style="color:var(--whatsapp)">💬 WhatsApp Help</a>
+        <a href="https://t.me/AREXNVRLOSE" class="menu-item">📢 Official Telegram</a>
     </div>
     <div class="sidebar-overlay" id="overlay" onclick="toggleMenu()"></div>
 
     <header>
-        <div onclick="toggleMenu()" style="cursor:pointer; font-size: 24px; color: var(--primary);">☰</div>
-        <div style="font-weight: 800; font-size: 1.4rem;">AREX HOST</div>
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+        <div class="logo">AREX ENTERPRISE</div>
         <div style="width: 24px;"></div>
     </header>
 
     <div class="container">
         <div id="home" class="section active">
-            <h1>Welcome to AREX Cloud</h1>
-            <p style="text-align: center; color: #94a3b8;">Manage your high-performance NVMe servers from one place.</p>
-            <div style="margin-top: 40px; text-align: center;">
-                <button class="btn btn-blue" style="width: auto; padding: 15px 40px;" onclick="showSection('plans')">View Available Plans</button>
-            </div>
+            <h1 class="hero-title">Next-Gen Hosting Control</h1>
+            <p style="text-align: center; color: var(--text-dim); font-size: 1.1rem; margin-bottom: 40px;">Professional infrastructure optimized for scale and speed.</p>
+            <center><button class="btn btn-glow" style="max-width: 300px;" onclick="navigate('plans')">Explore Premium Infrastructure</button></center>
         </div>
 
         <div id="plans" class="section">
-            <h1>Premium Hosting Plans</h1>
+            <h1 class="hero-title">Select Your Plan</h1>
             <div class="grid">
                 <div class="card">
-                    <h3>Starter Saver</h3>
+                    <h3>Starter Node</h3>
                     <div class="price">₹31<span>/mo</span></div>
-                    <ul class="feat">
-                        <li><span>Storage</span><b>10 GB NVMe</b></li>
-                        <li><span>RAM</span><b>2 GB</b></li>
-                        <li><span>vCPU</span><b>1 Core</b></li>
+                    <ul class="specs">
+                        <li class="spec-row"><span>NVMe SSD</span><span>10 GB</span></li>
+                        <li class="spec-row"><span>Dedicated RAM</span><span>2 GB</span></li>
+                        <li class="spec-row"><span>CPU Cores</span><span>1 vCPU</span></li>
                     </ul>
-                    <button class="btn btn-blue" onclick="showSection('payment')">Choose Plan</button>
+                    <button class="btn btn-glow" onclick="navigate('payment')">Deploy Now</button>
                 </div>
+                
                 <div class="card" style="border-color: var(--primary);">
-                    <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--primary); padding:4px 15px; border-radius:20px; font-size:12px; font-weight:800;">BEST SELLER</div>
+                    <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--primary); color:#000; font-size:11px; padding:5px 15px; border-radius:20px; font-weight:900;">HIGH PERFORMANCE</div>
                     <h3>Pro Runner</h3>
                     <div class="price">₹99<span>/mo</span></div>
-                    <ul class="feat">
-                        <li><span>Storage</span><b>50 GB NVMe</b></li>
-                        <li><span>RAM</span><b>8 GB</b></li>
-                        <li><span>vCPU</span><b>2 Cores</b></li>
+                    <ul class="specs">
+                        <li class="spec-row"><span>NVMe SSD</span><span>50 GB</span></li>
+                        <li class="spec-row)<span>Dedicated RAM</span><span>8 GB</span></li>
+                        <li class="spec-row"><span>CPU Cores</span><span>2 vCPU</span></li>
                     </ul>
-                    <button class="btn btn-blue" onclick="showSection('payment')">Choose Plan</button>
-                </div>
-                <div class="card">
-                    <h3>Enterprise VIP</h3>
-                    <div class="price">₹199<span>/mo</span></div>
-                    <ul class="feat">
-                        <li><span>Storage</span><b>Unlimited</b></li>
-                        <li><span>RAM</span><b>16 GB</b></li>
-                        <li><span>vCPU</span><b>4 Cores</b></li>
-                    </ul>
-                    <button class="btn btn-blue" onclick="showSection('payment')">Choose Plan</button>
+                    <button class="btn btn-glow" onclick="navigate('payment')">Deploy Now</button>
                 </div>
             </div>
         </div>
 
         <div id="payment" class="section">
-            <h1>Billing & Payment</h1>
-            <div class="pay-box">
-                <p style="font-weight: 600;">Scan QR to complete Payment</p>
-                <img src="1000003225.jpg" class="qr-img" alt="Payment QR">
-                <div class="upi-id">Abhimassey@fam</div>
-                <p style="font-size: 0.8rem; color: #94a3b8;">Pay the amount and send screenshot below.</p>
-                <a href="https://wa.me/918979785907?text=Hi, I have paid for the plan. Here is my screenshot." class="btn btn-wa">Send Proof (WhatsApp)</a>
+            <h1 class="hero-title">Complete Transaction</h1>
+            <div class="payment-box">
+                <p style="color: var(--text-dim); font-weight: 600;">Scan QR to pay ₹31 and activate services</p>
+                <div class="qr-frame">
+                    <img src="1000003225.jpg" alt="Payment QR Code">
+                </div>
+                <div class="upi-tag">Abhimassey@fam</div>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 10px;">Instant Activation after screenshot verification.</p>
+                <a href="https://wa.me/91897978507?text=Hi AREX, I have paid ₹31 for the plan. Here is my screenshot." class="btn btn-wa">
+                    Verify via WhatsApp
+                </a>
             </div>
         </div>
     </div>
 
-    <a href="https://wa.me/918979785907" class="float-wa">💬</a>
+    <a href="https://wa.me/91897978507" class="floating-action">💬</a>
 
     <script>
         function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-            const overlay = document.getElementById('overlay');
-            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+            const sb = document.getElementById('sidebar');
+            const ov = document.getElementById('overlay');
+            sb.classList.toggle('active');
+            ov.style.display = sb.classList.contains('active') ? 'block' : 'none';
         }
 
-        function showSection(sectionId) {
-            // Hide all sections
+        function navigate(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            // Remove active class from menu items
             document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
             
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
             
-            // Close sidebar
             if(window.innerWidth < 1000) toggleMenu();
+            window.scrollTo(0,0);
         }
     </script>
 </body>
