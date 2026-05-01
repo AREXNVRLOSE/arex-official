@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AREX | Premium Cloud Infrastructure</title>
+    <title>AREX CHEAPEST PRICE HOSTING SELLER</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,134 +14,137 @@
             --text-dim: #64748b;
             --border: #e2e8f0;
             --success: #10b981;
+            --danger: #ef4444;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; }
 
-        /* Modern Sidebar */
-        .sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100vh; background: var(--surface); z-index: 1000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 40px 24px; border-right: 1px solid var(--border); }
+        /* Sidebar */
+        .sidebar { position: fixed; top: 0; left: -280px; width: 280px; height: 100vh; background: var(--surface); z-index: 1000; transition: 0.3s ease; padding: 40px 24px; border-right: 1px solid var(--border); }
         .sidebar.active { left: 0; box-shadow: 20px 0 50px rgba(0,0,0,0.05); }
         .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(4px); display: none; z-index: 999; }
         
-        .nav-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin: 24px 0 12px; display: block; }
-        .menu-item { padding: 12px 16px; display: block; color: var(--text-dim); text-decoration: none; border-radius: 10px; margin-bottom: 6px; transition: 0.2s; font-weight: 600; }
+        .menu-item { padding: 12px 16px; display: block; color: var(--text-dim); text-decoration: none; border-radius: 10px; margin-bottom: 6px; transition: 0.2s; font-weight: 600; cursor: pointer; }
         .menu-item:hover, .menu-item.active { background: #f1f5f9; color: var(--primary); }
 
-        /* Sleek Header */
+        /* Header */
         header { padding: 16px 6%; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
-        .menu-btn { font-size: 24px; cursor: pointer; color: var(--text-main); }
-        .logo { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-main); }
-        .logo span { color: var(--primary); }
+        .menu-btn { font-size: 24px; cursor: pointer; }
 
-        /* Main Container */
-        .container { padding: 80px 6% 40px; max-width: 1100px; margin: 0 auto; min-height: 100vh; }
+        /* Content */
+        .container { padding: 60px 6%; max-width: 1100px; margin: 0 auto; }
         .section { display: none; animation: fadeIn 0.4s ease; }
         .section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
 
-        .hero-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 16px; text-align: center; letter-spacing: -2px; color: #020617; }
-        .hero-desc { color: var(--text-dim); text-align: center; max-width: 600px; margin: 0 auto 48px; font-size: 1.1rem; }
-
-        /* Clean Pricing Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; transition: 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .card:hover { border-color: var(--primary); transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        /* Cards & Stats */
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 32px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
         
-        .card-header { margin-bottom: 24px; }
-        .plan-name { font-size: 0.9rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
-        .price { font-size: 3.5rem; font-weight: 800; color: #020617; margin: 8px 0; }
-        .price span { font-size: 1rem; color: var(--text-dim); font-weight: 500; }
-
-        .feature-list { list-style: none; margin-bottom: 32px; }
-        .feature-item { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
-        .feature-item span { color: var(--text-dim); }
-        .feature-item b { color: var(--text-main); font-weight: 700; }
-
-        /* Payment Center */
-        .payment-box { max-width: 440px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: 32px; padding: 48px 32px; text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        .qr-frame { background: #f8fafc; padding: 20px; border-radius: 24px; width: 220px; margin: 0 auto 24px; border: 1px solid var(--border); }
-        .qr-frame img { width: 100%; display: block; mix-blend-mode: multiply; }
-        .upi-id { background: #f1f5f9; padding: 12px; border-radius: 12px; font-weight: 700; color: var(--primary); margin-bottom: 32px; font-size: 1.1rem; border: 1px dashed var(--primary); }
+        .status-dot { width: 10px; height: 10px; background: var(--success); border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         /* Buttons */
-        .btn { display: block; width: 100%; padding: 16px; border-radius: 12px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.2s; cursor: pointer; border: none; font-size: 1rem; }
-        .btn-primary { background: var(--primary); color: white; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4); }
+        .btn { display: block; width: 100%; padding: 16px; border-radius: 12px; font-weight: 700; text-align: center; cursor: pointer; border: none; transition: 0.2s; text-decoration: none; }
+        .btn-primary { background: var(--primary); color: white; }
         .btn-wa { background: var(--success); color: white; margin-top: 12px; }
-        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
-        .float-wa { position: fixed; bottom: 32px; right: 32px; background: var(--success); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; text-decoration: none; z-index: 100; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
-
-        @media (max-width: 640px) { .hero-title { font-size: 2.5rem; } }
+        .price { font-size: 3rem; font-weight: 800; margin: 12px 0; }
     </style>
 </head>
 <body>
 
     <div class="sidebar" id="sidebar">
-        <div class="logo" style="font-size: 1.5rem; margin-bottom: 40px;">AREX<span>HOST</span></div>
-        <span class="nav-label">Management</span>
-        <div class="menu-item active" onclick="nav('home')">Cloud Dashboard</div>
+        <div style="font-size: 1.4rem; font-weight: 800; margin-bottom: 40px;">AREX <span style="color:var(--primary)">HOST</span></div>
+        <div class="menu-item active" onclick="nav('home')">Dashboard Hub</div>
         <div class="menu-item" onclick="nav('plans')">Infrastructure</div>
-        <span class="nav-label">Support</span>
-        <a href="https://wa.me/918979785907" class="menu-item" style="color: var(--success);">WhatsApp Support</a>
-        <a href="https://t.me/AREXNVRLOSE" class="menu-item">Network Status</a>
+        <div class="menu-item" onclick="nav('monitor')">System Monitor</div>
+        <div class="menu-item" onclick="nav('pay')">Payment Center</div>
     </div>
     <div class="sidebar-overlay" id="overlay" onclick="toggleMenu()"></div>
 
     <header>
         <div class="menu-btn" onclick="toggleMenu()">☰</div>
-        <div class="logo">AREX CHEAPEST PRICE <span>HOSTING SELLER</span></div>
+        <div style="font-weight: 800;">AREX CHEAPEST PRICE HOSTING SELLER</div>
         <div style="width: 24px;"></div>
     </header>
 
     <div class="container">
         
         <div id="home" class="section active">
-            <h1 class="hero-title">Cloud Hosting<br>Reimagined.</h1>
-            <p class="hero-desc">Experience enterprise-grade NVMe infrastructure at India's most aggressive price point. Built for developers, by developers.</p>
-            <center><button class="btn btn-primary" style="max-width: 300px;" onclick="nav('plans')">View Infrastructure</button></center>
+            <h1 style="font-size: 3rem; font-weight: 800; text-align: center; margin-bottom: 20px;">Deploy at the Edge.</h1>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 40px;">India's most aggressive NVMe pricing for developers.</p>
+            <center><button class="btn btn-primary" style="max-width: 250px;" onclick="nav('plans')">View Nodes</button></center>
         </div>
 
         <div id="plans" class="section">
-            <h1 class="hero-title" style="font-size: 2.5rem;">Nodes & Pricing</h1>
+            <h1 style="margin-bottom: 30px;">Active Nodes</h1>
             <div class="grid">
                 <div class="card">
-                    <div class="plan-name">Starter Node</div>
+                    <div style="color: var(--primary); font-weight: 700;">Starter Node</div>
                     <div class="price">₹11<span>/mo</span></div>
-                    <ul class="feature-list">
-                        <li class="feature-item"><span>Storage</span><b>10 GB NVMe</b></li>
-                        <li class="feature-item"><span>RAM</span><b>1 GB DDR4</b></li>
-                        <li class="feature-item"><span>Network</span><b>1 Gbps Shared</b></li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="nav('pay')">Deploy Node</button>
+                    <button class="btn btn-primary" onclick="nav('pay')">Deploy Now</button>
                 </div>
                 <div class="card" style="border-color: var(--primary);">
-                    <div class="plan-name">Professional</div>
+                    <div style="color: var(--primary); font-weight: 700;">Professional Pro</div>
                     <div class="price">₹31<span>/mo</span></div>
-                    <ul class="feature-list">
-                        <li class="feature-item"><span>Storage</span><b>40 GB NVMe</b></li>
-                        <li class="feature-item"><span>RAM</span><b>4 GB DDR4</b></li>
-                        <li class="feature-item"><span>Network</span><b>Dedicated Port</b></li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="nav('pay')">Deploy Node</button>
+                    <button class="btn btn-primary" onclick="nav('pay')">Deploy Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="monitor" class="section">
+            <h1 style="margin-bottom: 30px;">Network Transparency</h1>
+            <div class="card" style="border-left: 6px solid var(--success);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <h3>Live System Pulse</h3>
+                    <span style="color: var(--success); font-weight: 700; font-size: 0.8rem;"><span class="status-dot"></span> OPERATIONAL</span>
+                </div>
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div style="padding: 16px; background: #f8fafc; border-radius: 12px;">
+                        <small style="color: var(--text-dim);">UPTIME</small>
+                        <div id="uptime-clock" style="font-weight: 800; color: var(--primary);">Loading...</div>
+                    </div>
+                    <div style="padding: 16px; background: #f8fafc; border-radius: 12px;">
+                        <small style="color: var(--text-dim);">NEXT MAINTENANCE</small>
+                        <div style="font-weight: 800; color: var(--danger);">30 May, 02:00 AM</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h4 style="margin-bottom: 16px;">Active Deployments</h4>
+                    <div style="font-size: 0.9rem; color: var(--text-dim);">
+                        <p style="margin-bottom: 8px;">Abhi*** - Pro Runner <span style="color: var(--success); float: right;">● Active</span></p>
+                        <p style="margin-bottom: 8px;">Karan*** - Budget Node <span style="color: var(--success); float: right;">● Active</span></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4 style="margin-bottom: 16px;">Node Distribution</h4>
+                    <div style="width: 100%; height: 8px; background: #f1f5f9; border-radius: 10px; margin-top: 10px;">
+                        <div style="width: 75%; height: 100%; background: var(--primary); border-radius: 10px;"></div>
+                    </div>
+                    <small style="display: block; margin-top: 10px; color: var(--text-dim);">75% Capacity Utilized</small>
                 </div>
             </div>
         </div>
 
         <div id="pay" class="section">
-            <h1 class="hero-title" style="font-size: 2.5rem;">Secure Activation</h1>
-            <div class="payment-box">
-                <div class="qr-frame">
-                    <img src="1000003225.jpg" alt="Payment QR Code">
+            <h1 style="text-align: center; margin-bottom: 30px;">Finalize Billing</h1>
+            <div class="card" style="max-width: 450px; margin: 0 auto; text-align: center;">
+                <div style="background: #f8fafc; padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+                    <img src="1000003225.jpg" style="width: 200px; border-radius: 10px;" alt="QR Code">
                 </div>
-                <div class="upi-id">Abhimassey@fam</div>
-                <a href="https://wa.me/918979785907?text=Payment verified. Please activate my node." class="btn btn-wa">Verify Transaction</a>
+                <div style="font-weight: 800; color: var(--primary); margin-bottom: 24px;">Abhimassey@fam</div>
+                <a href="https://wa.me/918979785907?text=Payment verified. Activate my node." class="btn btn-wa">Verify on WhatsApp</a>
             </div>
         </div>
 
     </div>
 
-    <a href="https://wa.me/918979785907" class="float-wa">💬</a>
+    <a href="https://wa.me/918979785907" style="position: fixed; bottom: 30px; right: 30px; background: var(--success); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">💬</a>
 
     <script>
         function toggleMenu() {
@@ -155,9 +158,21 @@
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if(window.innerWidth < 1024 && document.getElementById('sidebar').classList.contains('active')) toggleMenu();
+            if(window.innerWidth < 1000) toggleMenu();
             window.scrollTo(0,0);
         }
+
+        function updateClock() {
+            const start = new Date("May 1, 2026 09:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = now - start;
+            const days = Math.floor(diff / (1000*60*60*24));
+            const hrs = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+            const mins = Math.floor((diff%(1000*60*60))/(1000*60));
+            const secs = Math.floor((diff%(1000*60))/1000);
+            document.getElementById("uptime-clock").innerHTML = `${days}d ${hrs}h ${mins}m ${secs}s`;
+        }
+        setInterval(updateClock, 1000);
     </script>
 </body>
 </html>
