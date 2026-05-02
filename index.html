@@ -265,12 +265,12 @@
     </script>
 </body>
     </html>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arex Pro · Working UI</title>
+    <title>Arex Pro · Contact Support</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -427,8 +427,18 @@
             <div class="card">
                 <h2>💬 Support</h2>
                 <p>Reach out to us anytime. Average response time is under 2 minutes.</p>
-                <button class="btn-primary btn-soft"><i class="fab fa-telegram"></i> Telegram</button>
-                <button class="btn-primary" style="margin-left: 10px;"><i class="fas fa-comments"></i> Live Chat</button>
+                
+                <!-- Telegram Button (Your ID) -->
+                <button class="btn-primary btn-soft" onclick="window.open('https://t.me/Arexnvrlose', '_blank')">
+                    <i class="fab fa-telegram"></i> Telegram (@Arexnvrlose)
+                </button>
+
+                <!-- WhatsApp Button (Your Number) -->
+                <button class="btn-primary" style="margin-left: 10px; background: #25D366; box-shadow: 0 8px 18px -6px rgba(37, 211, 102, 0.3);" onclick="window.open('https://wa.me/918979785907', '_blank')">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                
+                <button class="btn-primary" style="margin-left: 10px; background: #0f172a;"><i class="fas fa-comments"></i> Live Chat</button>
             </div>
         </div>
 
@@ -494,13 +504,8 @@
                 alert('📄 Preparing invoice PDF download...');
             });
 
-            // Support: Telegram
-            document.querySelector('#support .btn-soft')?.addEventListener('click', function() {
-                window.open('https://t.me/your_bot_username', '_blank');
-            });
-
-            // Support: Live chat
-            document.querySelector('#support .btn-primary')?.addEventListener('click', function() {
+            // Live chat (Support)
+            document.querySelector('#support .btn-primary:last-child')?.addEventListener('click', function() {
                 alert('💬 Connecting to live support agent...');
             });
 
@@ -539,4 +544,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
