@@ -265,3 +265,278 @@
     </script>
 </body>
     </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arex Pro · Working UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #f0f4f8; display: flex; min-height: 100vh; }
+
+        .sidebar {
+            width: 240px;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 10;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.02);
+        }
+
+        .logo { text-align: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9; }
+        .logo h2 { font-size: 20px; font-weight: 700; color: #0f172a; letter-spacing: -0.5px; }
+        .logo h2 span { color: #f97316; }
+
+        .sidebar-btn {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            color: #475569;
+            font-weight: 500;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 4px;
+        }
+        .sidebar-btn i { width: 20px; font-size: 16px; color: #94a3b8; }
+        .sidebar-btn:hover { background: #f1f5f9; color: #0f172a; }
+        .sidebar-btn:hover i { color: #0f172a; }
+        .sidebar-btn.active { background: #0f172a; color: white; }
+        .sidebar-btn.active i { color: white; }
+
+        .sidebar-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 20px; }
+
+        .main { margin-left: 240px; flex: 1; padding: 40px; background: #f8fafc; min-height: 100vh; }
+
+        .page { display: none; animation: fadeSlide 0.35s ease; }
+        .page.active { display: block; }
+
+        @keyframes fadeSlide { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .card { background: white; border-radius: 24px; padding: 40px; box-shadow: 0 8px 30px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; max-width: 700px; }
+        .card h2 { font-size: 24px; color: #0f172a; margin-bottom: 12px; }
+        .card p { color: #475569; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+
+        .btn-primary { background: #0f172a; color: white; border: none; padding: 14px 32px; border-radius: 60px; font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.25s; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 8px 18px -6px rgba(15,23,42,0.15); }
+        .btn-primary:hover { transform: translateY(-3px); background: #1e293b; box-shadow: 0 12px 24px -8px rgba(15,23,42,0.2); }
+
+        .btn-soft { background: #f1f5f9; color: #0f172a; box-shadow: none; }
+        .btn-soft:hover { background: #e2e8f0; }
+
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+        .plan { background: #f8fafc; border-radius: 16px; padding: 20px; border: 1px solid #e2e8f0; }
+        .plan h4 { color: #0f172a; margin-bottom: 4px; }
+        .plan .price { font-weight: 700; font-size: 20px; color: #0f172a; }
+        .plan .price small { font-size: 14px; color: #64748b; }
+        .plan-btn { background: white; border: 1px solid #e2e8f0; padding: 6px 16px; border-radius: 40px; cursor: pointer; font-weight: 500; margin-top: 8px; transition: 0.2s; }
+        .plan-btn:hover { background: #0f172a; color: white; border-color: #0f172a; }
+
+        @media (max-width: 768px) {
+            .sidebar { width: 80px; padding: 16px 8px; }
+            .sidebar-btn span { display: none; }
+            .sidebar-btn { justify-content: center; padding: 12px; }
+            .logo h2 { font-size: 12px; }
+            .main { margin-left: 80px; padding: 20px; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>AREX <span>PRO</span></h2>
+        </div>
+        <nav>
+            <button class="sidebar-btn active" onclick="showPage('dashboard', this)">
+                <i class="fas fa-home"></i> <span>Dashboard</span>
+            </button>
+            <button class="sidebar-btn" onclick="showPage('pricing', this)">
+                <i class="fas fa-cubes"></i> <span>Pricing</span>
+            </button>
+            <button class="sidebar-btn" onclick="showPage('billing', this)">
+                <i class="fas fa-wallet"></i> <span>Billing</span>
+            </button>
+            <button class="sidebar-btn" onclick="showPage('support', this)">
+                <i class="fas fa-headset"></i> <span>Support</span>
+            </button>
+            <button class="sidebar-btn" onclick="showPage('profile', this)">
+                <i class="fas fa-user-circle"></i> <span>Profile</span>
+            </button>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="sidebar-btn" onclick="showPage('settings', this)">
+                <i class="fas fa-cog"></i> <span>Settings</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div id="dashboard" class="page active">
+            <div class="card">
+                <h2>🟢 Dashboard</h2>
+                <p>Everything is running smoothly. You have 3 active services.</p>
+                <button class="btn-primary"><i class="fas fa-chart-line"></i> View Analytics</button>
+            </div>
+        </div>
+
+        <div id="pricing" class="page">
+            <div class="card">
+                <h2>📦 Pricing</h2>
+                <p>Choose a plan that fits your needs.</p>
+                <div class="pricing-grid">
+                    <div class="plan">
+                        <h4>Starter</h4>
+                        <div class="price">$9 <small>/mo</small></div>
+                        <button class="plan-btn">Choose</button>
+                    </div>
+                    <div class="plan" style="background: #0f172a; border-color: #0f172a;">
+                        <h4 style="color: white;">Pro</h4>
+                        <div class="price" style="color: white;">$19 <small style="color: #94a3b8;">/mo</small></div>
+                        <button class="plan-btn" style="background: #f97316; border-color: #f97316; color: white;">Choose</button>
+                    </div>
+                </div>
+                <button class="btn-primary btn-soft"><i class="fas fa-file-invoice"></i> Compare Plans</button>
+            </div>
+        </div>
+
+        <div id="billing" class="page">
+            <div class="card">
+                <h2>🧾 Billing</h2>
+                <p>Your next invoice will be generated on 1st June.</p>
+                <button class="btn-primary"><i class="fas fa-credit-card"></i> Pay Now</button>
+                <button class="btn-primary btn-soft" style="margin-left: 10px;"><i class="fas fa-download"></i> Download Invoice</button>
+            </div>
+        </div>
+
+        <div id="support" class="page">
+            <div class="card">
+                <h2>💬 Support</h2>
+                <p>Reach out to us anytime. Average response time is under 2 minutes.</p>
+                <button class="btn-primary btn-soft"><i class="fab fa-telegram"></i> Telegram</button>
+                <button class="btn-primary" style="margin-left: 10px;"><i class="fas fa-comments"></i> Live Chat</button>
+            </div>
+        </div>
+
+        <div id="profile" class="page">
+            <div class="card">
+                <h2>👤 Profile</h2>
+                <p>Manage your personal information here.</p>
+                <button class="btn-primary"><i class="fas fa-edit"></i> Edit Profile</button>
+                <button class="btn-primary btn-soft" style="margin-left: 10px;"><i class="fas fa-key"></i> Reset Password</button>
+            </div>
+        </div>
+
+        <div id="settings" class="page">
+            <div class="card">
+                <h2>⚙️ Settings</h2>
+                <p>Customize your hosting portal preferences.</p>
+                <button class="btn-primary btn-soft"><i class="fas fa-palette"></i> Theme</button>
+                <button class="btn-primary" style="margin-left: 10px;"><i class="fas fa-bell"></i> Notifications</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- PAGE NAVIGATION ---
+        function showPage(pageId, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+        }
+
+        // --- ALL BUTTON POWER ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dashboard analytics
+            document.querySelector('#dashboard .btn-primary')?.addEventListener('click', function() {
+                alert('📊 Opening Analytics Dashboard...');
+            });
+
+            // Pricing: Choose plan
+            document.querySelectorAll('.plan-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const planName = this.closest('.plan').querySelector('h4').innerText;
+                    if (confirm(`🛒 Select "${planName}" plan?`)) {
+                        alert(`✅ "${planName}" added to cart!`);
+                    }
+                });
+            });
+
+            // Pricing: Compare plans
+            document.querySelector('#pricing .btn-soft')?.addEventListener('click', function() {
+                alert('🔍 Opening Compare Plans page...');
+            });
+
+            // Billing: Pay now
+            document.querySelector('#billing .btn-primary')?.addEventListener('click', function() {
+                if (confirm('💳 Proceed to payment gateway?')) {
+                    alert('Redirecting to secure payment...');
+                }
+            });
+
+            // Billing: Download invoice
+            document.querySelector('#billing .btn-soft')?.addEventListener('click', function() {
+                alert('📄 Preparing invoice PDF download...');
+            });
+
+            // Support: Telegram
+            document.querySelector('#support .btn-soft')?.addEventListener('click', function() {
+                window.open('https://t.me/your_bot_username', '_blank');
+            });
+
+            // Support: Live chat
+            document.querySelector('#support .btn-primary')?.addEventListener('click', function() {
+                alert('💬 Connecting to live support agent...');
+            });
+
+            // Profile: Edit profile
+            document.querySelector('#profile .btn-primary')?.addEventListener('click', function() {
+                const name = prompt('✏️ Enter your name:', 'John Doe');
+                if (name) alert(`✅ Profile updated to: ${name}`);
+            });
+
+            // Profile: Reset password
+            document.querySelector('#profile .btn-soft')?.addEventListener('click', function() {
+                if (confirm('🔐 Send password reset link to your email?')) {
+                    alert('📧 Reset link sent to registered email.');
+                }
+            });
+
+            // Settings: Theme toggle
+            let darkMode = false;
+            document.querySelector('#settings .btn-soft')?.addEventListener('click', function() {
+                darkMode = !darkMode;
+                if (darkMode) {
+                    document.body.style.background = '#0f172a';
+                    document.body.style.color = '#f8fafc';
+                    this.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                } else {
+                    document.body.style.background = '#f0f4f8';
+                    document.body.style.color = '#0f172a';
+                    this.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                }
+            });
+
+            // Settings: Notifications
+            document.querySelector('#settings .btn-primary')?.addEventListener('click', function() {
+                alert('🔔 Notification settings opened.');
+            });
+        });
+    </script>
+</body>
+    </html>
