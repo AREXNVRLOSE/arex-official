@@ -60,7 +60,44 @@
         }
     </style>
 </head>
-<body>
+<body> /* Arex Pro UI - Glassmorphism Sidebar Style */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    background: rgba(15, 23, 42, 0.8); /* Semi-transparent navy */
+    backdrop-filter: blur(12px); /* Sexy blur effect */
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+    background: #020617; /* Pitch black background */
+    min-height: 100vh;
+    color: #f8fafc;
+}
+
+.nav-item {
+    padding: 15px;
+    color: #94a3b8;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s;
+    border-radius: 8px;
+}
+
+.nav-item:hover {
+    background: rgba(6, 182, 212, 0.1);
+    color: #06b6d4; /* Electric Cyan */
+}
+    
 
     <header class="header">
         <div class="logo" onclick="showPage('dashboard')"><div>A</div>AREX <span>HOSTING</span></div>
