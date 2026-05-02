@@ -163,7 +163,7 @@ function loadUsers(){
 userList.innerHTML="";
 db.collection("users").get().then(snap=>{
 snap.forEach(doc=>{
-userList.innerHTML+=`<p>${doc.data().email}</p>`;
+userList.innerHTML+=<p>${doc.data().email}</p>;
 });
 });
 }
