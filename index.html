@@ -2,424 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="google-site-verification" content="HsYnoFWLu8CwqFze48EK2fjGONopioQx73js35MjOEY" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AREX HOSTING | Premium Cloud Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <title>AREX HOSTING | Official Founder Aryan Massey</title>
+    <meta name="description" content="Aryan Massey (AREXNVRLOSE), 18-year-old Founder of AREX HOSTING in Agra, UP. Premium NVMe Cloud Infrastructure.">
+    <meta name="author" content="Aryan Massey">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Aryan Massey",
+      "alternateName": "AREXNVRLOSE",
+      "address": { "@type": "PostalAddress", "addressLocality": "Agra", "addressRegion": "Uttar Pradesh" },
+      "jobTitle": "Founder & CEO",
+      "worksFor": { "@type": "Organization", "name": "AREX HOSTING" }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- CORE VARIABLES --- */
-        :root {
-            --primary: #0066cc;
-            --primary-hover: #0052a3;
-            --primary-light: #eff6ff;
-            --bg-body: #f8fafc;
-            --white: #ffffff;
-            --text-main: #0f172a;
-            --text-dim: #64748b;
-            --border: #e2e8f0;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --dark-surface: #0f172a;
-        }
-
+        :root { --primary: #0066cc; --bg: #f8fafc; --white: #ffffff; --border: #e2e8f0; --dark: #0f172a; --success: #10b981; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-        a { text-decoration: none; display: block; color: inherit; }
+        body { background: var(--bg); color: var(--dark); overflow-x: hidden; }
 
-        /* --- HEADER --- */
-        .header { background: var(--white); height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
-        .header-left { display: flex; align-items: center; gap: 15px; }
-        .menu-toggle-btn { font-size: 28px; cursor: pointer; color: var(--text-main); padding: 5px; font-weight: 800; }
-        .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .logo-box { width: 32px; height: 32px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; }
-        
-        .header-right { display: flex; align-items: center; gap: 20px; }
-        .login-shortcut { font-weight: 700; color: var(--primary); padding: 10px 18px; background: var(--primary-light); border-radius: 10px; border: 1px solid #bfdbfe; transition: 0.2s; }
+        /* NAVIGATION */
+        .header { background: var(--white); height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .logo { font-weight: 800; font-size: 1.3rem; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .logo span { color: var(--primary); }
+        .menu-toggle { font-size: 24px; cursor: pointer; }
 
-        /* --- SIDEBAR --- */
-        .sidebar-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 1001; visibility: hidden; opacity: 0; transition: 0.3s ease; backdrop-filter: blur(3px); }
-        .sidebar-overlay.active { visibility: visible; opacity: 1; }
-        
-        .sidebar { position: fixed; top: 0; left: -320px; width: 300px; height: 100vh; background: var(--white); z-index: 1002; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; padding-bottom: 50px; box-shadow: 10px 0 40px rgba(0,0,0,0.1); }
-        .sidebar.active { transform: translateX(320px); }
-        
-        .sidebar-header { padding: 30px 24px 20px; font-size: 1.6rem; font-weight: 800; border-bottom: 1px solid var(--border); margin-bottom: 15px; color: var(--text-main); }
-        .nav-group-label { padding: 15px 24px 8px; font-size: 0.75rem; font-weight: 800; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+        /* SIDEBAR PANEL */
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1001; display: none; backdrop-filter: blur(4px); }
+        .sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100vh; background: var(--white); z-index: 1002; transition: 0.3s; padding: 20px; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
+        .sidebar.active { left: 0; }
+        .nav-link { display: block; padding: 15px; font-weight: 700; color: #475569; text-decoration: none; border-radius: 10px; margin-bottom: 5px; }
+        .nav-link:hover { background: #f1f5f9; color: var(--primary); }
 
-        .nav-item { padding: 0 15px; margin-bottom: 4px; }
-        .nav-link { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; font-weight: 700; color: #475569; border-radius: 12px; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
-        .nav-link:hover { background: var(--bg-body); color: var(--primary); }
-        
-        .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 20px; }
-        .nav-item.open .submenu { max-height: 500px; margin-top: 5px; }
-        .nav-item.open .nav-link { color: var(--primary); background: var(--primary-light); }
-        .nav-item.open .arrow { transform: rotate(180deg); }
-        .arrow { transition: transform 0.3s; font-size: 0.7rem; }
-        .submenu a { padding: 12px 16px; color: var(--text-dim); font-size: 0.9rem; font-weight: 600; border-radius: 8px; margin-bottom: 2px; }
+        /* MAIN CONTENT AREA */
+        .main { margin-top: 70px; padding: 20px; transition: 0.3s; }
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- MAIN VIEWPORT --- */
-        .main-wrapper { margin-top: 72px; padding: 24px; flex: 1; }
-        .page-view { display: none; animation: slideIn 0.4s ease; max-width: 1100px; margin: 0 auto; }
-        .page-view.active { display: block; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        /* UI COMPONENTS */
+        .card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .btn { display: block; width: 100%; padding: 15px; border-radius: 12px; font-weight: 800; text-align: center; border: none; cursor: pointer; transition: 0.2s; font-size: 1rem; text-decoration: none; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-wa { background: #22c55e; color: white; margin-top: 10px; }
 
-        /* --- UI COMPONENTS --- */
-        .title-huge { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
-        .subtitle { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 30px; }
-        
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 30px; }
-        .card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); position: relative; overflow: hidden; }
-
-        .btn { display: block; width: 100%; padding: 16px; border-radius: 12px; font-weight: 800; text-align: center; border: none; cursor: pointer; transition: 0.2s; font-size: 1rem; }
-        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,102,204,0.2); }
-        .btn-outline { background: var(--white); color: var(--text-main); border: 1px solid var(--border); }
-        .btn-wa { background: var(--success); color: white; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 12px rgba(16,185,129,0.2); }
-
-        /* --- TRUST ELEMENTS --- */
-        .trust-banner { display: flex; align-items: center; gap: 15px; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 15px 20px; border-radius: 12px; margin-bottom: 25px; }
-        .trust-banner-icon { font-size: 2rem; }
-        .trust-text h4 { color: #166534; font-weight: 800; margin-bottom: 2px; font-size: 1rem; }
-        .trust-text p { color: #15803d; font-size: 0.85rem; font-weight: 500; }
-
-        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; margin-bottom: 20px; }
-        .review-card { background: var(--white); border: 1px solid var(--border); padding: 25px; border-radius: 16px; }
-        .stars { color: #f59e0b; letter-spacing: 2px; font-size: 1.1rem; margin-bottom: 10px; }
-
-        .footer { background: var(--dark-surface); color: white; padding: 50px 24px; margin-top: auto; }
-        .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer h3 { font-size: 1.2rem; margin-bottom: 20px; color: white; }
-        .footer p, .footer a { color: #94a3b8; font-size: 0.9rem; margin-bottom: 10px; transition: 0.2s; }
-        .footer a:hover { color: white; }
-        .footer-bottom { text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #334155; color: #64748b; font-size: 0.85rem; }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
-            .sidebar { left: -320px; }
-            .main-wrapper { margin-left: 0; }
-            .menu-toggle-btn { display: block; }
-        }
-        @media (min-width: 1025px) {
-            .sidebar { left: 0; border-right: 1px solid var(--border); }
-            .main-wrapper { margin-left: 300px; padding: 40px; }
-            .menu-toggle-btn { display: none; }
+        @media (min-width: 1024px) {
+            .sidebar { left: 0; }
+            .main { margin-left: 280px; }
+            .menu-toggle { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <div class="header-left">
-            <div class="menu-toggle-btn" id="openMenu">☰</div>
-            <a href="#dashboard" class="logo">
-                <div class="logo-box">A</div>
-                AREX <span>HOSTING</span>
-            </a>
-        </div>
-        <div class="header-right">
-            <a href="#auth" class="login-shortcut">Client Area</a>
-        </div>
+        <div class="logo" onclick="showPage('dashboard')"><div>A</div>AREX <span>HOSTING</span></div>
+        <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
     </header>
 
-    <div class="sidebar-overlay" id="overlay"></div>
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
     
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">AREX CONTROL</div>
-        
-        <div class="nav-group-label">General</div>
-        <div class="nav-item"><a href="#dashboard" class="nav-link sidebar-close"><span>📊 Dashboard</span></a></div>
-
-        <div class="nav-group-label">Services</div>
-        <div class="nav-item has-accordion">
-            <div class="nav-link accordion-header"><span>📦 Cloud Products</span><span class="arrow">▼</span></div>
-            <div class="submenu">
-                <a href="#shared" class="sidebar-close">Web Hosting (₹31)</a>
-                <a href="#vps" class="sidebar-close">VPS Cloud Nodes</a>
-            </div>
-        </div>
-
-        <div class="nav-item has-accordion">
-            <div class="nav-link accordion-header"><span>🌐 Domains</span><span class="arrow">▼</span></div>
-            <div class="submenu">
-                <a href="#domains" class="sidebar-close">Register Domain</a>
-            </div>
-        </div>
-
-        <div class="nav-group-label">Support & Billing</div>
-        <div class="nav-item"><a href="#status" class="nav-link sidebar-close"><span>📉 Network Status</span></a></div>
-        <div class="nav-item"><a href="#checkout" class="nav-link sidebar-close"><span>💳 Billing & Payment</span></a></div>
-
-        <div style="padding: 25px 20px;">
-            <a href="https://wa.me/918979785907" class="btn btn-wa"><span>💬 WhatsApp Support</span></a>
-        </div>
+        <h2 style="color: var(--primary); margin-bottom: 20px;">AREX MENU</h2>
+        <a href="#dashboard" class="nav-link" onclick="showPage('dashboard')">📊 Dashboard</a>
+        <a href="#vps" class="nav-link" onclick="showPage('vps')">💻 Cloud VPS</a>
+        <a href="#hosting" class="nav-link" onclick="showPage('hosting')">📦 Web Hosting</a>
+        <a href="#checkout" class="nav-link" onclick="showPage('checkout')">💳 Billing</a>
+        <hr style="margin: 20px 0; opacity: 0.1;">
+        <a href="https://wa.me/918979785907" class="btn btn-wa">WhatsApp Support</a>
     </aside>
 
-    <main class="main-wrapper">
-        
-        <div id="dashboard" class="page-view active">
-            <h1 class="title-huge">Welcome to AREX</h1>
-            <p class="subtitle">India's most trusted NVMe cloud infrastructure provider.</p>
+    <main class="main">
+        <div id="dashboard" class="page active">
+            <h1 style="font-size: 2rem;">Hello, Aryan Massey</h1>
+            <p style="color: #64748b; margin-bottom: 20px;">Founder Portal | Agra North Node</p>
             
-            <div class="trust-banner">
-                <div class="trust-banner-icon">🛡️</div>
-                <div class="trust-text">
-                    <h4>30-Day Money-Back Guarantee</h4>
-                    <p>Not satisfied? Get a full refund within 30 days. No questions asked. 100% Risk-Free.</p>
-                </div>
-            </div>
-
-            <div class="card-grid">
-                <div class="card" style="background: var(--dark-surface); color: white;">
-                    <div style="background: var(--warning); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; display: inline-block; margin-bottom: 15px;">FLASH SALE</div>
-                    <h2 style="font-size: 1.8rem; margin-bottom: 15px;">NVMe SSD Hosting</h2>
-                    <p style="color: #94a3b8; margin-bottom: 25px;">Ultra-fast hosting optimized for India. Plans starting at just <b>₹31/mo</b>.</p>
-                    <a href="#shared" class="btn" style="background: white; color: var(--text-main);">View Nodes</a>
-                </div>
-                
-                <div class="card">
-                    <h3 style="color: var(--text-dim); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 12px;">Global System Pulse</h3>
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-                        <div style="width: 14px; height: 14px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success);"></div>
-                        <h2 style="font-size: 1.6rem;">All Nodes Online</h2>
-                    </div>
-                    <p style="color: var(--text-dim); margin-bottom: 25px;">Network Uptime: <b>99.985%</b></p>
-                    <a href="#status" class="btn btn-outline">Check Status Details</a>
-                </div>
-            </div>
-
-            <h3 style="margin-top: 40px; font-size: 1.5rem; text-align: center;">Trusted by 500+ Developers</h3>
-            <div class="review-grid">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p style="font-size: 0.95rem; margin-bottom: 15px; color: var(--text-main);">"The ₹31 plan is unbeatable. My Telegram bots run 24/7 without any downtime. The WhatsApp support is extremely fast!"</p>
-                    <div style="font-weight: 800; font-size: 0.9rem;">- Rahul Sharma, Bot Developer</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p style="font-size: 0.95rem; margin-bottom: 15px; color: var(--text-main);">"Moved my WordPress site to AREX VPS. The NVMe speeds are real. Server setup took just 10 minutes after payment."</p>
-                    <div style="font-weight: 800; font-size: 0.9rem;">- Ankit Verma, Blogger</div>
-                </div>
+            <div class="card" style="background: var(--dark); color: white;">
+                <h3>NVMe SSD Nodes</h3>
+                <p style="opacity: 0.8; margin: 10px 0;">Premium hosting starts at ₹31/mo.</p>
+                <button class="btn" style="background: white; color: black;" onclick="showPage('hosting')">Deploy Now</button>
             </div>
         </div>
 
-        <div id="shared" class="page-view">
-            <h1 class="title-huge">Web Hosting Nodes</h1>
-            <p class="subtitle">Blazing fast LiteSpeed servers for websites.</p>
-            <div class="card-grid">
-                <div class="card">
-                    <h3 style="color: var(--primary); font-weight: 800; font-size: 1.5rem;">Starter Node</h3>
-                    <div style="font-size: 3rem; font-weight: 800; margin: 15px 0;">₹31<span style="font-size: 1rem; color: var(--text-dim);">/mo</span></div>
-                    <ul style="list-style: none; margin-bottom: 25px;">
-                        <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>1</b> Hosted Website</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>10 GB</b> NVMe SSD</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>1 GB</b> Dedicated RAM</li>
-                        <li style="padding: 10px 0;">✅ Free SSL Certificate</li>
-                    </ul>
-                    <a href="#checkout" class="btn btn-primary">Order Node</a>
-                </div>
-                <div class="card" style="border: 2px solid var(--primary);">
-                    <div style="position: absolute; top: 0; right: 0; background: var(--primary); color: white; padding: 6px 15px; border-bottom-left-radius: 12px; font-size: 0.7rem; font-weight: 800;">RECOMMENDED</div>
-                    <h3 style="color: var(--primary); font-weight: 800; font-size: 1.5rem;">Master Pro</h3>
-                    <div style="font-size: 3rem; font-weight: 800; margin: 15px 0;">₹99<span style="font-size: 1rem; color: var(--text-dim);">/mo</span></div>
-                    <ul style="list-style: none; margin-bottom: 25px;">
-                        <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>5</b> Hosted Websites</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>50 GB</b> NVMe SSD</li>
-                        <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>4 GB</b> Dedicated RAM</li>
-                        <li style="padding: 10px 0;">✅ Unlimited Databases</li>
-                    </ul>
-                    <a href="#checkout" class="btn btn-primary">Order Node</a>
-                </div>
-            </div>
-        </div>
-
-        <div id="vps" class="page-view">
-            <h1 class="title-huge">VPS Cloud Nodes</h1>
-            <p class="subtitle">Dedicated resources with full root access.</p>
+        <div id="vps" class="page">
+            <h1>Cloud VPS Config</h1>
             <div class="card">
-                <h2 style="font-size: 1.8rem;">Standard Cloud Instance</h2>
-                <div style="font-size: 2.5rem; font-weight: 800; margin: 15px 0;">₹299<span style="font-size: 1rem; color: var(--text-dim);">/mo</span></div>
-                <p style="color: var(--text-muted); margin-bottom: 20px;">Instantly provision highly available virtual machines with industry-leading NVMe storage.</p>
-                <ul style="list-style: none; margin-bottom: 25px;">
-                    <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>1 vCPU</b> Intel Core</li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>2 GB</b> RAM Memory</li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">✅ <b>40 GB</b> NVMe Storage</li>
-                    <li style="padding: 10px 0;">✅ Dedicated IPv4 Address</li>
-                </ul>
-                <a href="#checkout" class="btn btn-primary">Deploy Server Now</a>
+                <h3>Select Plan</h3>
+                <div style="background: #f8fafc; padding: 15px; border-radius: 10px; margin: 15px 0; border: 1px solid var(--border);">
+                    <div style="display: flex; justify-content: space-between;">
+                        <b>AREX-V1 (2GB RAM)</b>
+                        <span style="color: var(--primary); font-weight: 800;">₹299/mo</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="showPage('checkout')">Order VPS</button>
             </div>
         </div>
 
-        <div id="domains" class="page-view">
-            <h1 class="title-huge">Domain Registrar</h1>
-            <p class="subtitle">Secure your project's digital identity.</p>
-            <div class="card" style="padding: 40px;">
-                <input type="text" placeholder="Type your perfect domain name..." style="width: 100%; padding: 18px; border-radius: 12px; border: 2px solid var(--border); font-size: 1.1rem; margin-bottom: 15px; outline: none;">
-                <button class="btn btn-primary" onclick="alert('Searching registrar database...')">Search Availability</button>
-                
-                <h3 style="margin: 40px 0 20px; font-size: 1rem;">Pricing Overview</h3>
-                <div style="display: flex; gap: 15px; overflow-x: auto;">
-                    <div style="border: 1px solid var(--border); padding: 20px; border-radius: 12px; min-width: 120px; text-align: center;"><b>.com</b><div style="color: var(--primary); margin-top: 5px; font-weight: 800;">₹899</div></div>
-                    <div style="border: 1px solid var(--border); padding: 20px; border-radius: 12px; min-width: 120px; text-align: center;"><b>.in</b><div style="color: var(--primary); margin-top: 5px; font-weight: 800;">₹499</div></div>
-                </div>
+        <div id="hosting" class="page">
+            <h1>Web Hosting</h1>
+            <div class="card">
+                <h2 style="color: var(--primary);">Starter Plan</h2>
+                <div style="font-size: 2.5rem; font-weight: 800; margin: 10px 0;">₹31<small>/mo</small></div>
+                <p style="color: #64748b; margin-bottom: 20px;">10GB NVMe SSD | Unlimited SSL</p>
+                <button class="btn btn-primary" onclick="showPage('checkout')">Get Started</button>
             </div>
         </div>
 
-        <div id="status" class="page-view">
-            <h1 class="title-huge">Network Health</h1>
-            <p class="subtitle">Real-time status of our global infrastructure.</p>
-            <div class="card" style="border-left: 6px solid var(--success);">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="width: 14px; height: 14px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success);"></div>
-                    <h2 style="font-size: 1.5rem;">Infrastructure is Online</h2>
-                </div>
-                <p style="margin-top: 10px; color: var(--text-dim);">Global Uptime Average: 99.98%</p>
+        <div id="checkout" class="page">
+            <h1 style="text-align: center;">Secure Billing</h1>
+            <div class="card" style="max-width: 400px; margin: 0 auto; text-align: center;">
+                <img src="1000003225.jpg" style="width: 200px; border-radius: 15px; border: 1px solid var(--border); padding: 5px;">
+                <p style="margin: 15px 0; font-weight: 700; color: #64748b;">UPI ID: Abhimassey@fam</p>
+                <a href="https://wa.me/918979785907" class="btn btn-wa">Verify Payment on WhatsApp</a>
             </div>
         </div>
-
-        <div id="checkout" class="page-view">
-            <h1 class="title-huge" style="text-align: center;">Secure Checkout</h1>
-            <p class="subtitle" style="text-align: center;">Scan to activate your services instantly.</p>
-            
-            <div class="card" style="max-width: 480px; margin: 0 auto; text-align: center; border-top: 5px solid var(--primary);">
-                <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; color: var(--success); font-size: 0.85rem; font-weight: 800;">
-                    <span>🔒 256-Bit SSL Secured</span>
-                    <span>✓ Verified Business</span>
-                </div>
-
-                <div style="background: var(--bg-body); padding: 20px; border-radius: 20px; display: inline-block; margin-bottom: 20px; border: 1px solid var(--border);">
-                    <img src="1000003225.jpg" alt="UPI QR" style="width: 220px; border-radius: 10px; display: block;">
-                </div>
-                
-                <div style="font-weight: 700; color: var(--text-dim); margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem;">Official Business UPI ID</div>
-                <div style="background: var(--primary-light); color: var(--primary); padding: 18px; border-radius: 12px; font-weight: 900; font-size: 1.3rem; border: 2px dashed var(--primary); margin-bottom: 30px; letter-spacing: 1px;">
-                    Abhimassey@fam
-                </div>
-                <a href="https://wa.me/918979785907?text=Payment completed. Please activate my service." class="btn btn-wa" style="font-size: 1.1rem;">
-                    🚀 Verify Payment on WhatsApp
-                </a>
-            </div>
-        </div>
-
-        <div id="auth" class="page-view">
-            <h1 class="title-huge" style="text-align: center;">Client Portal</h1>
-            <div class="card" style="max-width: 450px; margin: 0 auto;">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; font-weight: 800; font-size: 0.9rem; margin-bottom: 8px;">Email Address</label>
-                    <input type="email" style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid var(--border); outline: none;" placeholder="client@example.com">
-                </div>
-                <div style="margin-bottom: 25px;">
-                    <label style="display: block; font-weight: 800; font-size: 0.9rem; margin-bottom: 8px;">Password</label>
-                    <input type="password" style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid var(--border); outline: none;" placeholder="••••••••">
-                </div>
-                <button class="btn btn-primary" onclick="alert('Auth System initializing...')">Login to Dashboard</button>
-            </div>
-        </div>
-
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div>
-                <h3>AREX HOSTING</h3>
-                <p>Providing high-performance, affordable cloud infrastructure and domain registration services across India since 2024.</p>
-            </div>
-            <div>
-                <h3>Quick Links</h3>
-                <a href="#shared">Web Hosting</a>
-                <a href="#vps">VPS Cloud Nodes</a>
-                <a href="#domains">Domain Names</a>
-                <a href="#auth">Client Login</a>
-            </div>
-            <div>
-                <h3>Legal & Policies</h3>
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Refund Policy (30-Days)</a>
-                <a href="#">Acceptable Use Policy</a>
-            </div>
-            <div>
-                <h3>Contact Us</h3>
-                <p>Email: support@arexhosting.com</p>
-                <p>WhatsApp: +91 89797 85907</p>
-                <p>Support Hours: 24/7/365</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2024 AREX HOSTING. All rights reserved. 100% Secure & Verified.
-        </div>
-    </footer>
-
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // 1. NATIVE ROUTING SYSTEM
-            function syncRoute() {
-                const hash = window.location.hash || '#dashboard';
-                const targetId = hash.substring(1);
-                
-                // Hide all views
-                document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-                
-                // Show requested view
-                const targetPage = document.getElementById(targetId);
-                if (targetPage) {
-                    targetPage.classList.add('active');
-                } else {
-                    document.getElementById('dashboard').classList.add('active');
-                }
-                
-                window.scrollTo(0, 0);
-            }
-            window.addEventListener('hashchange', syncRoute);
-            syncRoute();
-
-            // 2. SIDEBAR ENGINE
-            const openBtn = document.getElementById('openMenu');
-            const sidebar = document.getElementById('sidebar');
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
             const overlay = document.getElementById('overlay');
-            const closeLinks = document.querySelectorAll('.sidebar-close');
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+        }
 
-            openBtn.addEventListener('click', () => {
-                sidebar.classList.add('active');
-                overlay.classList.add('active');
-            });
-
-            const closeSidebar = () => {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-            };
-
-            overlay.addEventListener('click', closeSidebar);
-            closeLinks.forEach(link => link.addEventListener('click', closeSidebar));
-
-            // 3. ACCORDION SYSTEM
-            document.querySelectorAll('.accordion-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    const parent = this.parentElement;
-                    parent.classList.toggle('open');
-                });
-            });
-        });
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            if(window.innerWidth < 1024) toggleSidebar();
+            window.scrollTo(0,0);
+        }
     </script>
 </body>
 </html>
-<meta name="description" content="AREXNVRLOSE - Professional Web Developer and Founder of AREX HOSTING. Providing cheapest NVMe Cloud Hosting solutions.">
-<meta name="keywords" content="AREXNVRLOSE, Who is AREXNVRLOSE, AREX HOSTING Owner, Abhi Massey, Cheapest Hosting India">
-<meta name="author" content="AREXNVRLOSE">
-
-<meta property="og:title" content="AREXNVRLOSE | Official Portfolio & Hosting">
-<meta property="og:description" content="Meet AREXNVRLOSE, the mind behind India's most affordable hosting service.">
-<meta property="og:type" content="profile">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "AREXNVRLOSE",
-  "url": "https://arex-official.vercel.app",
-  "jobTitle": "Founder & CEO",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "AREX HOSTING"
-  },
-  "description": "AREXNVRLOSE is a prominent Web Developer and Entrepreneur known for founding AREX HOSTING, India's cheapest price hosting provider."
-}
-</script>
