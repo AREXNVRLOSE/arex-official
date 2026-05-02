@@ -176,13 +176,27 @@
 <!-- PLAN LIST -->
 <h3>Plans</h3>
 <div id="planList"></div>
+    <img src="logo.png" alt="AREX Logo">
+    
 
 </div>
 <div class="nav-item" onclick="openPage('admin')">Admin</div>
 <script>
 function openPage(id){
+    logo.png
   document.querySelectorAll('.page').forEach(p=>p.style.display='none');
   document.getElementById(id).style.display='block';
+.logo-box {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(14,165,233,0.5);
 }
-    </script>
 
+.logo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
