@@ -4,94 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="HsYnoFWLu8CwqFze48EK2fjGONopioQx73js35MjOEY" />
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AREX PRO | Hosting UI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>4 Page UI</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: #0f172a; color: #f8fafc; display: flex; padding: 30px; }
+        body { background: #f8fafc; display: flex; flex-direction: column; align-items: center; padding: 30px; }
+        
+        .tabs { display: flex; gap: 10px; margin-bottom: 30px; }
+        .tab-btn { background: white; border: 1px solid #e2e8f0; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: 500; color: #475569; }
+        .tab-btn.active { background: #f97316; color: white; border-color: #f97316; }
 
-        /* SIDEBAR */
-        .sidebar { width: 260px; background: #020617; border-radius: 20px; padding: 25px 15px; border: 1px solid rgba(255,255,255,0.05); }
-        .logo { text-align: center; margin-bottom: 40px; }
-        .logo img { width: 70px; border-radius: 50%; border: 2px solid #f97316; padding: 4px; }
-        .logo h2 { font-family: 'Urbanist'; color: #f97316; margin-top: 10px; font-size: 18px; letter-spacing: 2px; }
-        .menu a { display: flex; align-items: center; gap: 15px; color: #94a3b8; text-decoration: none; padding: 14px; border-radius: 12px; margin-bottom: 5px; font-weight: 500; transition: 0.3s; }
-        .menu a:hover, .menu a.active { background: rgba(249, 115, 22, 0.1); color: #f97316; }
+        .page { display: none; max-width: 500px; width: 100%; background: white; border-radius: 20px; border: 1px solid #e2e8f0; padding: 40px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .page.active { display: block; }
 
-        /* MAIN UI */
-        .main { flex: 1; margin-left: 30px; padding: 0 10px; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .header h1 { font-size: 28px; font-weight: 700; }
-        .badge { background: rgba(34,197,94,0.1); color: #22c55e; padding: 6px 15px; border-radius: 30px; font-size: 12px; border: 1px solid rgba(34,197,94,0.2); display: flex; align-items: center; gap: 8px; }
-        .badge i { font-size: 8px; }
+        h3 { color: #0f172a; margin-bottom: 8px; }
+        p { color: #475569; font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
 
-        /* PRICING CARDS */
-        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
-        .card { background: #1e293b; padding: 35px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); text-align: center; position: relative; }
-        .card.featured { border: 2px solid #f97316; background: #1e2a3a; }
-        .card h3 { font-size: 22px; font-weight: 700; }
-        .price { font-size: 40px; font-weight: 700; color: #f97316; margin: 15px 0; }
-        .price small { font-size: 14px; color: #94a3b8; font-weight: 400; }
-        ul { list-style: none; color: #94a3b8; font-size: 14px; text-align: left; display: inline-block; margin: 20px 0; line-height: 2.2; }
-        ul i { color: #f97316; margin-right: 8px; }
-        .btn { background: #f97316; color: black; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; transition: 0.3s; }
-        .btn:hover { background: white; transform: scale(1.03); }
-        .pop { position: absolute; top: -12px; right: 20px; background: #f97316; color: black; font-size: 10px; padding: 4px 14px; border-radius: 20px; font-weight: 700; }
+        .btn { background: #f97316; color: white; border: none; padding: 12px 30px; border-radius: 12px; font-weight: 600; font-size: 14px; cursor: pointer; box-shadow: 0 4px 12px rgba(249,115,22,0.2); transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn:hover { background: #ea6a0c; transform: translateY(-2px); }
+
+        .btn-outline { background: transparent; color: #f97316; border: 1px solid #f97316; box-shadow: none; }
+        .btn-outline:hover { background: #f97316; color: white; }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="logo">
-            <img src="https://i.ibb.co/Lzt9YV3/IMG-20260502-072355-683.webp" alt="Logo">
-            <h2>AREX PRO</h2>
-        </div>
-        <div class="menu">
-            <a href="#" class="active"><i class="fas fa-server"></i> Hosting</a>
-            <a href="#"><i class="fas fa-wallet"></i> Billing</a>
-            <a href="#"><i class="fab fa-telegram"></i> Support</a>
-        </div>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchPage('page1')">Home</button>
+        <button class="tab-btn" onclick="switchPage('page2')">Pricing</button>
+        <button class="tab-btn" onclick="switchPage('page3')">Billing</button>
+        <button class="tab-btn" onclick="switchPage('page4')">Support</button>
     </div>
 
-    <div class="main">
-        <div class="header">
-            <h1>Choose Your Plan</h1>
-            <div class="badge"><i class="fas fa-circle"></i> System Online</div>
-        </div>
-
-        <div class="pricing-grid">
-            <div class="card">
-                <h3>Personnel</h3>
-                <div class="price">$30.00 <small>/mo</small></div>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> 1 Website</li>
-                    <li><i class="fas fa-check-circle"></i> 25K Visitors/mo</li>
-                    <li><i class="fas fa-check-circle"></i> 10GB Bandwidth</li>
-                    <li><i class="fas fa-check-circle"></i> Free SSL</li>
-                </ul>
-                <button class="btn">Order Now</button>
-            </div>
-
-            <div class="card featured">
-                <div class="pop">Popular</div>
-                <h3>Professional</h3>
-                <div class="price">$40.00 <small>/mo</small></div>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> 3 Websites</li>
-                    <li><i class="fas fa-check-circle"></i> 100K Visitors/mo</li>
-                    <li><i class="fas fa-check-circle"></i> 50GB Bandwidth</li>
-                    <li><i class="fas fa-check-circle"></i> Enterprise Tools</li>
-                </ul>
-                <button class="btn">Order Now</button>
-            </div>
-        </div>
+    <!-- PAGE 1 -->
+    <div id="page1" class="page active">
+        <h3>🏠 Welcome to Arex Pro</h3>
+        <p>Your all-in-one hosting dashboard.</p>
+        <button class="btn"><i class="fas fa-rocket"></i> Launch Dashboard</button>
     </div>
+
+    <!-- PAGE 2 -->
+    <div id="page2" class="page">
+        <h3>💰 Choose Your Plan</h3>
+        <p>Start with our most popular hosting plan.</p>
+        <button class="btn"><i class="fas fa-crown"></i> Select Plan</button>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div id="page3" class="page">
+        <h3>📄 Your Invoices</h3>
+        <p>View and pay your outstanding bills instantly.</p>
+        <button class="btn"><i class="fas fa-file-invoice"></i> View Invoices</button>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div id="page4" class="page">
+        <h3>💬 Need Help?</h3>
+        <p>Reach out to our support team anytime.</p>
+        <button class="btn btn-outline"><i class="fab fa-telegram"></i> Contact Telegram</button>
+        <button class="btn" style="margin-left: 10px;"><i class="fas fa-envelope"></i> Email Support</button>
+    </div>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        function switchPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
 
 </body>
-</html>    
+</html>
