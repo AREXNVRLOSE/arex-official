@@ -160,3 +160,29 @@
     </script>
 </body>
 </html>
+<!-- ADMIN PANEL -->
+<div id="admin" class="page" style="display:none;">
+
+<h2>Admin Panel</h2>
+
+<!-- ADD PLAN -->
+<input id="planName" placeholder="Plan Name"><br><br>
+<input id="planPrice" placeholder="Price"><br><br>
+
+<button onclick="addPlan()">Add Plan</button>
+
+<hr>
+
+<!-- PLAN LIST -->
+<h3>Plans</h3>
+<div id="planList"></div>
+
+</div>
+<div class="nav-item" onclick="openPage('admin')">Admin</div>
+<script>
+function openPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+    </script>
+
