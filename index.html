@@ -265,12 +265,14 @@
     </script>
 </body>
     </html>
+
+
     <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arex Pro · Contact Support</title>
+    <title>Arex Pro · Support</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -336,6 +338,9 @@
 
         .btn-soft { background: #f1f5f9; color: #0f172a; box-shadow: none; }
         .btn-soft:hover { background: #e2e8f0; }
+
+        .btn-whatsapp { background: #25D366; color: white; box-shadow: 0 8px 18px -6px rgba(37, 211, 102, 0.3); }
+        .btn-whatsapp:hover { background: #1da851; }
 
         .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
         .plan { background: #f8fafc; border-radius: 16px; padding: 20px; border: 1px solid #e2e8f0; }
@@ -428,17 +433,20 @@
                 <h2>💬 Support</h2>
                 <p>Reach out to us anytime. Average response time is under 2 minutes.</p>
                 
-                <!-- Telegram Button (Your ID) -->
+                <!-- Telegram -->
                 <button class="btn-primary btn-soft" onclick="window.open('https://t.me/Arexnvrlose', '_blank')">
                     <i class="fab fa-telegram"></i> Telegram (@Arexnvrlose)
                 </button>
 
-                <!-- WhatsApp Button (Your Number) -->
-                <button class="btn-primary" style="margin-left: 10px; background: #25D366; box-shadow: 0 8px 18px -6px rgba(37, 211, 102, 0.3);" onclick="window.open('https://wa.me/918979785907', '_blank')">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
+                <!-- WhatsApp (Live Chat) -->
+                <button class="btn-primary btn-whatsapp" style="margin-left: 10px;" onclick="window.open('https://wa.me/918979785907', '_blank')">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Live
                 </button>
-                
-                <button class="btn-primary" style="margin-left: 10px; background: #0f172a;"><i class="fas fa-comments"></i> Live Chat</button>
+
+                <!-- Live Chat (Extra) -->
+                <button class="btn-primary" style="margin-left: 10px; background: #0f172a;" onclick="alert('💬 Live chat connecting...')">
+                    <i class="fas fa-comments"></i> Live Chat
+                </button>
             </div>
         </div>
 
@@ -462,7 +470,6 @@
     </main>
 
     <script>
-        // --- PAGE NAVIGATION ---
         function showPage(pageId, btn) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
@@ -470,14 +477,11 @@
             if (btn) btn.classList.add('active');
         }
 
-        // --- ALL BUTTON POWER ---
         document.addEventListener('DOMContentLoaded', function() {
-            // Dashboard analytics
             document.querySelector('#dashboard .btn-primary')?.addEventListener('click', function() {
                 alert('📊 Opening Analytics Dashboard...');
             });
 
-            // Pricing: Choose plan
             document.querySelectorAll('.plan-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const planName = this.closest('.plan').querySelector('h4').innerText;
@@ -487,42 +491,31 @@
                 });
             });
 
-            // Pricing: Compare plans
             document.querySelector('#pricing .btn-soft')?.addEventListener('click', function() {
                 alert('🔍 Opening Compare Plans page...');
             });
 
-            // Billing: Pay now
             document.querySelector('#billing .btn-primary')?.addEventListener('click', function() {
                 if (confirm('💳 Proceed to payment gateway?')) {
                     alert('Redirecting to secure payment...');
                 }
             });
 
-            // Billing: Download invoice
             document.querySelector('#billing .btn-soft')?.addEventListener('click', function() {
                 alert('📄 Preparing invoice PDF download...');
             });
 
-            // Live chat (Support)
-            document.querySelector('#support .btn-primary:last-child')?.addEventListener('click', function() {
-                alert('💬 Connecting to live support agent...');
-            });
-
-            // Profile: Edit profile
             document.querySelector('#profile .btn-primary')?.addEventListener('click', function() {
                 const name = prompt('✏️ Enter your name:', 'John Doe');
                 if (name) alert(`✅ Profile updated to: ${name}`);
             });
 
-            // Profile: Reset password
             document.querySelector('#profile .btn-soft')?.addEventListener('click', function() {
                 if (confirm('🔐 Send password reset link to your email?')) {
                     alert('📧 Reset link sent to registered email.');
                 }
             });
 
-            // Settings: Theme toggle
             let darkMode = false;
             document.querySelector('#settings .btn-soft')?.addEventListener('click', function() {
                 darkMode = !darkMode;
@@ -537,11 +530,10 @@
                 }
             });
 
-            // Settings: Notifications
             document.querySelector('#settings .btn-primary')?.addEventListener('click', function() {
                 alert('🔔 Notification settings opened.');
             });
         });
     </script>
 </body>
-</html>
+    </html>
