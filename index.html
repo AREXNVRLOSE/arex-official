@@ -1,116 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="HsYnoFWLu8CwqFze48EK2fjGONopioQx73js35MjOEY" />
 
-<!-- ✅ GOOGLE VERIFY (IMPORTANT - untouched) -->
-<meta name="google-site-verification" content="HsYnoFWLu8CwqFze48EK2fjGONopioQx73js35MjOEY" />
+    <title>AREX HOSTING | Pro Dashboard</title>
 
-<title>AREX HOSTING | Pro Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --sidebar-bg: rgba(15, 23, 42, 0.85);
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.4);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.4);
+        }
 
-<style>
-:root {
-    --bg-dark: #020617;
-    --sidebar-bg: rgba(15, 23, 42, 0.8);
-    --accent: #06b6d4;
-    --text-main: #f8fafc;
-    --text-dim: #94a3b8;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-main); overflow-x: hidden; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Sidebar UI */
+        .sidebar {
+            position: fixed; left: 0; top: 0; height: 100vh; width: 260px;
+            background: var(--sidebar-bg); backdrop-filter: blur(20px);
+            padding: 30px 20px; border-right: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.5); z-index: 100;
+        }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-main);
-}
+        .logo-area { text-align: center; margin-bottom: 45px; }
+        .logo-area img { 
+            width: 100px; border-radius: 50%; border: 3px solid var(--accent);
+            filter: drop-shadow(0 0 10px var(--accent-glow));
+        }
+        .brand-name { font-family: 'Urbanist'; font-size: 22px; color: var(--accent); font-weight: 700; margin-top: 15px; letter-spacing: 1px; }
 
-/* Sidebar */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: 260px;
-    background: var(--sidebar-bg);
-    backdrop-filter: blur(15px);
-    padding: 30px 20px;
-}
+        .nav-menu { display: flex; flex-direction: column; gap: 8px; }
+        .nav-item {
+            display: flex; align-items: center; gap: 15px; padding: 14px 18px;
+            border-radius: 12px; color: var(--text-dim); text-decoration: none;
+            cursor: pointer; font-weight: 500;
+        }
+        .nav-item:hover, .nav-item.active { background: rgba(6,182,212,0.15); color: var(--accent); box-shadow: inset 0 0 10px rgba(6,182,212,0.05); }
 
-.logo-area {
-    text-align: center;
-    margin-bottom: 40px;
-}
+        /* Main Content */
+        .main-content { margin-left: 260px; padding: 40px; min-height: 100vh; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .time-widget { font-family: 'Urbanist'; font-weight: 600; color: var(--accent); background: rgba(6,182,212,0.1); padding: 5px 15px; border-radius: 20px; }
 
-.logo-area img {
-    width: 110px;
-    border-radius: 50%;
-    border: 2px solid var(--accent);
-}
+        /* Pro Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { 
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05);
+            padding: 25px; border-radius: 20px; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .card::after { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); opacity: 0; transition: 0.3s; }
+        .card:hover::after { opacity: 1; }
 
-.brand-name {
-    font-size: 20px;
-    color: var(--accent);
-    margin-top: 10px;
-}
+        .card h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 15px; }
+        .card h2 { font-size: 32px; font-family: 'Urbanist'; }
 
-/* Nav */
-.nav-menu a {
-    display: flex;
-    gap: 12px;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    color: var(--text-dim);
-    text-decoration: none;
-    cursor: pointer;
-}
+        /* Professional Buttons */
+        .btn {
+            background: var(--accent); border: none; padding: 12px 20px;
+            border-radius: 10px; color: #000; font-weight: 700; font-size: 13px;
+            cursor: pointer; margin-top: 15px; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn:hover { background: #fff; transform: scale(1.05); }
+        .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+        .btn-outline:hover { background: var(--accent); color: #000; }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-    background: rgba(6,182,212,0.1);
-    color: var(--accent);
-}
+        /* Mobile Fix */
+        @media(max-width:768px){
+            .sidebar { width: 75px; padding: 20px 10px; }
+            .brand-name, .nav-item span { display: none; }
+            .main-content { margin-left: 75px; padding: 20px; }
+            .grid { grid-template-columns: 1fr; }
+        }
 
-/* Main */
-.main-content {
-    margin-left: 260px;
-    padding: 30px;
-}
-
-.card {
-    background: rgba(30, 41, 59, 0.5);
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 20px;
-}
-
-button {
-    background: var(--accent);
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    color: black;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-/* Mobile */
-@media(max-width:768px){
-    .sidebar { width: 80px; }
-    .main-content { margin-left: 80px; }
-    .nav-menu span { display:none; }
-}
-</style>
+        .status-dot { height: 10px; width: 10px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 10px #22c55e; }
+    </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
 <div class="sidebar">
     <div class="logo-area">
         <img src="https://i.ibb.co/Lzt9YV3/IMG-20260502-072355-683.webp">
@@ -118,83 +96,113 @@ button {
     </div>
 
     <div class="nav-menu">
-        <a class="nav-item active" onclick="showPage('dashboard')"><i class="fa fa-home"></i> <span>Dashboard</span></a>
-        <a class="nav-item" onclick="showPage('services')"><i class="fa fa-server"></i> <span>Services</span></a>
-        <a class="nav-item" onclick="showPage('billing')"><i class="fa fa-credit-card"></i> <span>Billing</span></a>
-        <a class="nav-item" onclick="showPage('support')"><i class="fa fa-headset"></i> <span>Support</span></a>
+        <a class="nav-item active" onclick="showPage('dashboard', this)"><i class="fa fa-home"></i> <span>Dashboard</span></a>
+        <a class="nav-item" onclick="showPage('services', this)"><i class="fa fa-server"></i> <span>Services</span></a>
+        <a class="nav-item" onclick="showPage('billing', this)"><i class="fa fa-wallet"></i> <span>Billing</span></a>
+        <a class="nav-item" onclick="showPage('support', this)"><i class="fa fa-headset"></i> <span>Support</span></a>
     </div>
 </div>
 
-<!-- MAIN -->
 <div class="main-content">
-
-<!-- DASHBOARD -->
-<div id="dashboard" class="page">
-    <h1>Welcome, Aryan</h1>
-    <p style="color:gray;">AREX Control Panel</p>
-
-    <div class="card">
-        <h3>Active Services</h3>
-        <h2>03</h2>
+    <div class="page-header">
+        <div>
+            <h4 style="color:var(--text-dim)">Control Center</h4>
+            <div id="page-title" style="font-size: 24px; font-weight: 700;">Dashboard</div>
+        </div>
+        <div class="time-widget" id="clock">00:00:00</div>
     </div>
 
-    <div class="card">
-        <h3>Server Status</h3>
-        <p style="color:lightgreen;">Running on Port 8080</p>
-        <button onclick="alert('Server Restarted')">Restart Server</button>
+    <div id="dashboard" class="page-content">
+        <div class="grid">
+            <div class="card">
+                <h3>Account Summary</h3>
+                <h2>Aryan Massey</h2>
+                <p style="color:var(--text-dim); margin-top:5px;">Master Owner | Arex Project</p>
+                <button class="btn" onclick="alert('Profile Settings Coming Soon')"><i class="fa fa-user"></i> Manage Profile</button>
+            </div>
+            <div class="card">
+                <h3>Global Traffic</h3>
+                <h2>4.2k <span style="font-size:14px; color:#22c55e;">+12%</span></h2>
+                <p style="color:var(--text-dim); margin-top:5px;">Unique Visitors (Live)</p>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-top:20px; width:100%">
+            <h3>Master Command Center</h3>
+            <div style="background:rgba(0,0,0,0.3); padding:15px; border-radius:10px; font-family:monospace; color:var(--accent); border:1px solid rgba(255,255,255,0.05);">
+                python -m http.server 8080 & cloudflared tunnel --url http://127.0.0.1:8080
+            </div>
+            <button class="btn btn-outline" onclick="copyCommand()"><i class="fa fa-copy"></i> Copy Script</button>
+        </div>
     </div>
+
+    <div id="services" class="page-content" style="display:none;">
+        <div class="grid">
+            <div class="card">
+                <h3>Node-01 (Agra)</h3>
+                <p><span class="status-dot"></span> Online</p>
+                <h2 style="margin-top:10px;">Cloud Tunnel</h2>
+                <button class="btn" onclick="showAction('Tunnel Restarted Successfully')"><i class="fa fa-sync"></i> Reboot Tunnel</button>
+            </div>
+            <div class="card">
+                <h3>Web Hosting</h3>
+                <p><span class="status-dot"></span> Active</p>
+                <h2 style="margin-top:10px;">Arex V.7.0</h2>
+                <button class="btn btn-outline" onclick="showAction('Fetching Server Logs...')"><i class="fa fa-file-alt"></i> View Logs</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="billing" class="page-content" style="display:none;">
+        <div class="card">
+            <h3>Total Credits</h3>
+            <h2 style="font-size:48px;">₹0.00</h2>
+            <p style="color:var(--text-dim)">No pending invoices</p>
+            <button class="btn" onclick="showAction('UPI Gateway Loading...')"><i class="fa fa-plus"></i> Recharge Wallet</button>
+        </div>
+    </div>
+
+    <div id="support" class="page-content" style="display:none;">
+        <div class="card">
+            <h3>Technical Support</h3>
+            <p>Direct contact with <b>Arex Owner</b></p>
+            <button class="btn" onclick="window.location.href='https://t.me/Arex_owner'"><i class="fab fa-telegram"></i> Message Admin</button>
+            <button class="btn btn-outline" onclick="showAction('Ticket #AREX42 Created')">Open Ticket</button>
+        </div>
+    </div>
+
 </div>
 
-<!-- SERVICES -->
-<div id="services" class="page" style="display:none;">
-    <h1>My Services</h1>
-
-    <div class="card">
-        <h3>Web Hosting</h3>
-        <p>Status: Active</p>
-        <button onclick="alert('Opening panel...')">Manage</button>
-    </div>
-
-    <div class="card">
-        <h3>Cloud Tunnel</h3>
-        <p>Status: Running</p>
-        <button onclick="alert('Tunnel Restarted')">Restart</button>
-    </div>
-</div>
-
-<!-- BILLING -->
-<div id="billing" class="page" style="display:none;">
-    <h1>Billing</h1>
-
-    <div class="card">
-        <h3>Balance</h3>
-        <h2>₹0.00</h2>
-        <button onclick="alert('Add Money Coming Soon')">Add Funds</button>
-    </div>
-</div>
-
-<!-- SUPPORT -->
-<div id="support" class="page" style="display:none;">
-    <h1>Support</h1>
-
-    <div class="card">
-        <h3>Contact Support</h3>
-        <button onclick="alert('Support Ticket Created')">Create Ticket</button>
-    </div>
-</div>
-
-</div>
-
-<!-- JS -->
 <script>
-function showPage(pageId){
-    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-    document.getElementById(pageId).style.display = 'block';
+    function showPage(pageId, element){
+        // Hide all pages
+        document.querySelectorAll('.page-content').forEach(p => p.style.display = 'none');
+        // Show target page
+        document.getElementById(pageId).style.display = 'block';
+        // Update Title
+        document.getElementById('page-title').innerText = pageId.charAt(0).toUpperCase() + pageId.slice(1);
+        // Active class update
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        element.classList.add('active');
+    }
 
-    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-    event.currentTarget.classList.add('active');
-}
+    function showAction(msg) {
+        alert("AREX PRO SYSTEM: " + msg);
+    }
+
+    function copyCommand() {
+        const cmd = "python -m http.server 8080 & cloudflared tunnel --url http://127.0.0.1:8080";
+        navigator.clipboard.writeText(cmd);
+        alert("Command Copied to Clipboard!");
+    }
+
+    // Real-time Clock
+    setInterval(() => {
+        const now = new Date();
+        document.getElementById('clock').innerText = now.toLocaleTimeString();
+    }, 1000);
 </script>
 
 </body>
     </html>
+    
