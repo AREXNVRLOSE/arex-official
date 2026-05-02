@@ -12,16 +12,18 @@
 
     <style>
         :root {
-            --primary: #f97316; /* WebPro Orange */
-            --bg-deep: #0f172a;
-            --bg-card: #1e293b;
-            --text-light: #f8fafc;
-            --text-dim: #94a3b8;
-            --border: rgba(255, 255, 255, 0.05);
+    --bg: #ffffff;
+    --primary: #dc2626;       /* main red */
+    --primary-dark: #b91c1c;  /* dark red */
+    --accent: #ef4444;        /* soft red */
+    --text: #0f172a;
+    --dim: #64748b;
+    --card: #ffffff;
+    --border: #e5e7eb;
+        }body {
+    background: linear-gradient(to bottom, #ffffff, #f8fafc);
+    color: var(--text);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; transition: 0.3s ease; }
-        body { background-color: var(--bg-deep); color: var(--text-light); }
 
         /* Sidebar Modern UI */
         .sidebar {
