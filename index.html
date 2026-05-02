@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AREX HOSTING | Advanced Cloud Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>AREX HOSTING | Official Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- CORE STYLES --- */
         :root {
             --primary: #0066cc;
             --primary-hover: #004c99;
@@ -23,132 +22,83 @@
 
         /* --- HEADER --- */
         .header { background: var(--white); height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; border-bottom: 1px solid var(--border); position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
-        .menu-btn { font-size: 28px; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
+        .menu-btn { font-size: 28px; cursor: pointer; color: var(--text-dark); padding: 10px; }
         .logo { font-weight: 800; font-size: 1.3rem; color: var(--text-dark); cursor: pointer; display: flex; align-items: center; gap: 8px; }
         .logo span { color: var(--primary); }
-        
-        .header-right { display: flex; align-items: center; gap: 15px; }
         .login-btn-top { font-weight: 600; color: var(--primary); cursor: pointer; padding: 8px 15px; background: #eff6ff; border-radius: 8px; }
 
         /* --- SIDEBAR --- */
-        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1001; visibility: hidden; opacity: 0; transition: 0.3s ease; }
-        .sidebar-overlay.active { visibility: visible; opacity: 1; }
-        
-        .sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100vh; background: var(--white); z-index: 1002; transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; padding-top: 20px; box-shadow: 5px 0 25px rgba(0,0,0,0.1); }
-        .sidebar.active { left: 0; }
-        
-        .sidebar-brand { padding: 0 20px 20px; font-size: 1.5rem; font-weight: 800; border-bottom: 1px solid var(--border); margin-bottom: 15px; color: var(--primary); }
+        .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1001; display: none; }
+        .sidebar { position: fixed; top: 0; left: -300px; width: 280px; height: 100vh; background: var(--white); z-index: 1002; transition: 0.3s ease; overflow-y: auto; padding-top: 20px; box-shadow: 5px 0 25px rgba(0,0,0,0.1); }
+        .sidebar-brand { padding: 0 20px 20px; font-size: 1.5rem; font-weight: 800; border-bottom: 1px solid var(--border); margin-bottom: 15px; color: var(--primary); cursor: pointer; }
 
         .nav-item { padding: 0 15px; margin-bottom: 5px; }
         .nav-link { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; font-weight: 600; color: var(--text-dark); border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
         .nav-link:hover { background: #f8fafc; color: var(--primary); }
         
-        /* Accordion Logic */
-        .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 15px; }
-        .nav-item.open .submenu { max-height: 400px; padding-top: 5px; padding-bottom: 5px; }
-        .nav-item.open .nav-link { color: var(--primary); background: #eff6ff; }
-        .arrow { transition: transform 0.3s ease; font-size: 0.8rem; }
-        .nav-item.open .arrow { transform: rotate(180deg); }
-        
-        /* Routing Links (Divs instead of Anchor tags for mobile safety) */
-        .route-link { display: block; padding: 12px 16px; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; border-radius: 6px; cursor: pointer; transition: 0.2s; }
-        .route-link:hover, .route-link.active-route { background: #eff6ff; color: var(--primary); font-weight: 600; }
+        .submenu { display: none; padding-left: 15px; }
+        .submenu div { padding: 12px 15px; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; cursor: pointer; border-radius: 6px; }
+        .submenu div:hover { color: var(--primary); background: #eff6ff; }
+        .arrow { font-size: 0.8rem; }
 
-        /* --- MAIN CONTENT ROUTER --- */
+        /* --- MAIN CONTENT --- */
         .main-wrapper { margin-top: 70px; padding: 25px; min-height: calc(100vh - 70px); }
-        .page-view { display: none; animation: fadeIn 0.4s ease; }
-        .page-view.active-page { display: block; }
+        .page { display: none; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- UI COMPONENTS --- */
         .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
         .page-desc { color: var(--text-muted); margin-bottom: 30px; font-size: 1rem; }
-        
         .card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
         
         .btn { display: block; width: 100%; padding: 16px; border-radius: 10px; font-weight: 700; text-align: center; border: none; cursor: pointer; transition: 0.2s; font-size: 1rem; }
-        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,102,204,0.2); }
-        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
-        .btn-wa { background: var(--success); color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-wa { background: #22c55e; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        /* Plans */
         .plan-price { font-size: 2.5rem; font-weight: 800; margin: 15px 0; color: var(--text-dark); }
         .plan-price span { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
         .feature-list { list-style: none; margin-bottom: 25px; }
         .feature-list li { padding: 10px 0; border-bottom: 1px solid var(--bg-light); color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
         .feature-list li b { color: var(--text-dark); }
-
-        /* Forms */
-        .input-group { margin-bottom: 20px; }
-        .input-group input { width: 100%; padding: 16px; border-radius: 10px; border: 1px solid var(--border); outline: none; font-size: 1rem; background: var(--bg-light); transition: 0.2s; }
-        .input-group input:focus { border-color: var(--primary); background: var(--white); box-shadow: 0 0 0 3px #eff6ff; }
-
-        /* Responsive Desktop */
-        @media (min-width: 1024px) {
-            .menu-btn { display: none; }
-            .sidebar { left: 0; box-shadow: none; border-right: 1px solid var(--border); }
-            .sidebar-overlay { display: none !important; }
-            .main-wrapper { margin-left: 280px; padding: 40px; }
-            .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        }
+        
+        input { width: 100%; padding: 16px; border-radius: 10px; border: 1px solid var(--border); outline: none; font-size: 1rem; background: var(--bg-light); margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
     <header class="header">
         <div style="display: flex; align-items: center; gap: 10px;">
-            <div class="menu-btn" id="menuToggle">☰</div>
-            <div class="logo route-trigger" data-target="dashboard">AREX <span>HOSTING</span></div>
+            <div class="menu-btn" onclick="openMenu()">☰</div>
+            <div class="logo" onclick="nav('dashboard')">AREX <span>HOSTING</span></div>
         </div>
-        <div class="header-right">
-            <div class="login-btn-top route-trigger" data-target="login">Client Login</div>
-        </div>
+        <div class="login-btn-top" onclick="nav('login')">Client Login</div>
     </header>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-overlay" id="overlay" onclick="closeMenu()"></div>
     
     <nav class="sidebar" id="sidebar">
-        <div class="sidebar-brand route-trigger" data-target="dashboard" style="cursor: pointer;">AREX HOSTING</div>
+        <div class="sidebar-brand" onclick="nav('dashboard')">AREX HOSTING</div>
         
+        <div class="nav-item"><div class="nav-link" onclick="nav('dashboard')">📊 Dashboard</div></div>
+
         <div class="nav-item">
-            <div class="nav-link route-trigger" data-target="dashboard">
-                <span>📊 Dashboard</span>
-            </div>
-        </div>
-
-        <div class="nav-item has-submenu">
-            <div class="nav-link">
-                <span>📦 Products</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="submenu">
-                <div class="route-link route-trigger" data-target="shared">Shared Hosting</div>
-                <div class="route-link route-trigger" data-target="vps">VPS Cloud Nodes</div>
-                <div class="route-link route-trigger" data-target="reseller">Reseller Hosting</div>
-            </div>
-        </div>
-
-        <div class="nav-item has-submenu">
-            <div class="nav-link">
-                <span>🌐 Domains</span>
-                <span class="arrow">▼</span>
-            </div>
-            <div class="submenu">
-                <div class="route-link route-trigger" data-target="domains">Register Domain</div>
+            <div class="nav-link" onclick="toggleSub('prod-sub')">📦 Products <span class="arrow">▼</span></div>
+            <div class="submenu" id="prod-sub">
+                <div onclick="nav('shared')">Shared Hosting</div>
+                <div onclick="nav('vps')">VPS Cloud Nodes</div>
+                <div onclick="nav('reseller')">Reseller Hosting</div>
             </div>
         </div>
 
         <div class="nav-item">
-            <div class="nav-link route-trigger" data-target="status">
-                <span>📉 Network Status</span>
+            <div class="nav-link" onclick="toggleSub('dom-sub')">🌐 Domains <span class="arrow">▼</span></div>
+            <div class="submenu" id="dom-sub">
+                <div onclick="nav('domains')">Register Domain</div>
             </div>
         </div>
 
-        <div class="nav-item">
-            <div class="nav-link route-trigger" data-target="checkout">
-                <span>💳 Billing & Payment</span>
-            </div>
-        </div>
+        <div class="nav-item"><div class="nav-link" onclick="nav('status')">📉 Network Status</div></div>
+        <div class="nav-item"><div class="nav-link" onclick="nav('checkout')">💳 Billing & Payment</div></div>
 
         <div style="padding: 25px 15px; margin-top: 20px; border-top: 1px solid var(--border);">
             <a href="https://wa.me/918979785907" class="btn btn-wa">💬 WhatsApp Support</a>
@@ -157,66 +107,58 @@
 
     <main class="main-wrapper">
         
-        <div id="dashboard" class="page-view active-page">
+        <div id="dashboard" class="page" style="display: block;">
             <h1 class="page-title">Enterprise Dashboard</h1>
             <p class="page-desc">Manage your high-performance cloud infrastructure.</p>
             
-            <div class="card-grid">
-                <div class="card" style="background: var(--text-dark); color: white;">
-                    <div style="background: #f59e0b; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; display: inline-block; margin-bottom: 15px;">SPECIAL OFFER</div>
-                    <h2 style="margin-bottom: 10px;">Affordable Web Hosting</h2>
-                    <p style="color: #94a3b8; margin-bottom: 20px; line-height: 1.5;">Start your online journey with blazing fast NVMe SSD servers starting at just ₹31/month.</p>
-                    <button class="btn route-trigger" data-target="shared" style="background: white; color: var(--text-dark);">View Hosting Plans</button>
+            <div class="card" style="background: #0f172a; color: white;">
+                <div style="background: #f59e0b; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; display: inline-block; margin-bottom: 15px;">SPECIAL OFFER</div>
+                <h2 style="margin-bottom: 10px;">Affordable Web Hosting</h2>
+                <p style="color: #94a3b8; margin-bottom: 20px; line-height: 1.5;">Start your online journey with blazing fast NVMe SSD servers starting at just ₹31/month.</p>
+                <button class="btn" style="background: white; color: var(--text-dark);" onclick="nav('shared')">View Hosting Plans</button>
+            </div>
+            
+            <div class="card">
+                <h3 style="color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase;">System Health</h3>
+                <div style="display: flex; align-items: center; gap: 10px; margin: 15px 0;">
+                    <div style="width: 14px; height: 14px; background: #10b981; border-radius: 50%;"></div>
+                    <h2 style="font-size: 1.5rem;">All Systems Operational</h2>
                 </div>
-                
-                <div class="card">
-                    <h3 style="color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase;">System Health</h3>
-                    <div style="display: flex; align-items: center; gap: 10px; margin: 15px 0;">
-                        <div style="width: 14px; height: 14px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success);"></div>
-                        <h2 style="font-size: 1.5rem;">All Systems Operational</h2>
-                    </div>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">Global Uptime: 99.99%</p>
-                    <button class="btn btn-primary route-trigger" data-target="status" style="background: #eff6ff; color: var(--primary); box-shadow: none;">View Detailed Stats</button>
-                </div>
+                <button class="btn btn-primary" style="background: #eff6ff; color: var(--primary);" onclick="nav('status')">View Detailed Stats</button>
             </div>
         </div>
 
-        <div id="shared" class="page-view">
+        <div id="shared" class="page">
             <h1 class="page-title">Web Hosting</h1>
             <p class="page-desc">LiteSpeed powered servers for ultimate performance.</p>
             
-            <div class="card-grid">
-                <div class="card">
-                    <h2 style="color: var(--primary);">Starter Node</h2>
-                    <div class="plan-price">₹31<span>/month</span></div>
-                    <ul class="feature-list">
-                        <li>✅ <b>1</b> Hosted Website</li>
-                        <li>✅ <b>10 GB</b> NVMe SSD Storage</li>
-                        <li>✅ <b>1 GB</b> Dedicated RAM</li>
-                        <li>✅ Free SSL Certificate</li>
-                    </ul>
-                    <button class="btn btn-primary route-trigger" data-target="checkout">Deploy Starter Node</button>
-                </div>
+            <div class="card">
+                <h2 style="color: var(--primary);">Starter Node</h2>
+                <div class="plan-price">₹31<span>/month</span></div>
+                <ul class="feature-list">
+                    <li>✅ <b>1</b> Hosted Website</li>
+                    <li>✅ <b>10 GB</b> NVMe SSD Storage</li>
+                    <li>✅ <b>1 GB</b> Dedicated RAM</li>
+                    <li>✅ Free SSL Certificate</li>
+                </ul>
+                <button class="btn btn-primary" onclick="nav('checkout')">Deploy Starter Node</button>
+            </div>
 
-                <div class="card" style="border: 2px solid var(--primary); position: relative;">
-                    <div style="position: absolute; top: 0; right: 0; background: var(--primary); color: white; padding: 5px 15px; border-bottom-left-radius: 15px; font-size: 0.8rem; font-weight: 700;">POPULAR</div>
-                    <h2 style="color: var(--primary);">Professional Node</h2>
-                    <div class="plan-price">₹99<span>/month</span></div>
-                    <ul class="feature-list">
-                        <li>✅ <b>5</b> Hosted Websites</li>
-                        <li>✅ <b>40 GB</b> NVMe SSD Storage</li>
-                        <li>✅ <b>4 GB</b> Dedicated RAM</li>
-                        <li>✅ Unlimited Databases</li>
-                    </ul>
-                    <button class="btn btn-primary route-trigger" data-target="checkout">Deploy Pro Node</button>
-                </div>
+            <div class="card" style="border: 2px solid var(--primary);">
+                <h2 style="color: var(--primary);">Professional Node</h2>
+                <div class="plan-price">₹99<span>/month</span></div>
+                <ul class="feature-list">
+                    <li>✅ <b>5</b> Hosted Websites</li>
+                    <li>✅ <b>40 GB</b> NVMe SSD Storage</li>
+                    <li>✅ <b>4 GB</b> Dedicated RAM</li>
+                    <li>✅ Unlimited Databases</li>
+                </ul>
+                <button class="btn btn-primary" onclick="nav('checkout')">Deploy Pro Node</button>
             </div>
         </div>
 
-        <div id="vps" class="page-view">
-            <h1 class="page-title">VPS Cloud Infrastructure</h1>
-            <p class="page-desc">Dedicated resources with full root access.</p>
-            
+        <div id="vps" class="page">
+            <h1 class="page-title">VPS Cloud</h1>
             <div class="card">
                 <h2>Standard Cloud Instance</h2>
                 <div class="plan-price">₹299<span>/month</span></div>
@@ -224,62 +166,42 @@
                     <li>✅ <b>1 vCPU</b> Core</li>
                     <li>✅ <b>2 GB</b> RAM Memory</li>
                     <li>✅ <b>40 GB</b> NVMe Storage</li>
-                    <li>✅ Dedicated IPv4 Address</li>
                 </ul>
-                <button class="btn btn-primary route-trigger" data-target="checkout">Configure Server</button>
+                <button class="btn btn-primary" onclick="nav('checkout')">Configure Server</button>
             </div>
         </div>
 
-        <div id="reseller" class="page-view">
+        <div id="reseller" class="page">
             <h1 class="page-title">Reseller Hosting</h1>
-            <p class="page-desc">Start your own hosting company today.</p>
             <div class="card" style="text-align: center; padding: 40px 20px;">
                 <div style="font-size: 3rem; margin-bottom: 15px;">🏢</div>
                 <h2>Master Reseller WHM</h2>
-                <p style="color: var(--text-muted); margin: 15px 0 25px;">Create packages, manage clients, and build your business.</p>
-                <button class="btn btn-primary route-trigger" data-target="checkout">Start at ₹149/mo</button>
+                <button class="btn btn-primary" style="margin-top: 20px;" onclick="nav('checkout')">Start at ₹149/mo</button>
             </div>
         </div>
 
-        <div id="domains" class="page-view">
+        <div id="domains" class="page">
             <h1 class="page-title">Register Domain</h1>
-            <p class="page-desc">Find the perfect identity for your project.</p>
-            
             <div class="card">
-                <div class="input-group">
-                    <input type="text" placeholder="Search your perfect domain (e.g. arex.com)">
-                </div>
+                <input type="text" placeholder="Search domain (e.g. arex.com)">
                 <button class="btn btn-primary" onclick="alert('Searching domain database...')">Search Availability</button>
-                
-                <div style="display: flex; gap: 15px; margin-top: 30px; overflow-x: auto; padding-bottom: 10px;">
-                    <div style="background: var(--bg-light); padding: 15px 25px; border-radius: 10px; min-width: 120px; text-align: center; border: 1px solid var(--border);">
-                        <h3 style="color: var(--primary);">.com</h3><p style="font-weight: 600; font-size: 0.9rem; margin-top: 5px;">₹899</p>
-                    </div>
-                    <div style="background: var(--bg-light); padding: 15px 25px; border-radius: 10px; min-width: 120px; text-align: center; border: 1px solid var(--border);">
-                        <h3 style="color: var(--primary);">.in</h3><p style="font-weight: 600; font-size: 0.9rem; margin-top: 5px;">₹499</p>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <div id="status" class="page-view">
+        <div id="status" class="page">
             <h1 class="page-title">Network Status</h1>
-            <p class="page-desc">Real-time health of global datacenters.</p>
-            
-            <div class="card" style="border-left: 5px solid var(--success);">
+            <div class="card" style="border-left: 5px solid #10b981;">
                 <h2 style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <div style="width: 12px; height: 12px; background: var(--success); border-radius: 50%;"></div>
+                    <div style="width: 12px; height: 12px; background: #10b981; border-radius: 50%;"></div>
                     Global Network is Online
                 </h2>
-                <p style="color: var(--text-muted);">All systems operating normally. Uptime: <b>99.98%</b></p>
+                <p style="color: var(--text-muted);">Uptime: <b>99.98%</b></p>
             </div>
         </div>
 
-        <div id="checkout" class="page-view">
+        <div id="checkout" class="page">
             <h1 class="page-title" style="text-align: center;">Secure Checkout</h1>
-            <p class="page-desc" style="text-align: center;">Scan to activate your services.</p>
-            
-            <div class="card" style="max-width: 450px; margin: 0 auto; text-align: center; border-top: 4px solid var(--primary);">
+            <div class="card" style="max-width: 450px; margin: 0 auto; text-align: center;">
                 <img src="1000003225.jpg" alt="Payment QR" style="width: 200px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border); padding: 10px;">
                 <p style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px;">Official Business UPI</p>
                 <div style="background: #eff6ff; color: var(--primary); padding: 15px; border-radius: 10px; font-weight: 800; border: 2px dashed var(--primary); font-size: 1.2rem; margin-bottom: 25px;">
@@ -289,65 +211,58 @@
             </div>
         </div>
 
-        <div id="login" class="page-view">
+        <div id="login" class="page">
             <h1 class="page-title" style="text-align: center;">Client Login</h1>
-            <p class="page-desc" style="text-align: center;">Access your management panel.</p>
-            
             <div class="card" style="max-width: 450px; margin: 0 auto;">
-                <div class="input-group">
-                    <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">Email Address</label>
-                    <input type="email" placeholder="client@example.com">
-                </div>
-                <div class="input-group">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                        <label style="font-size: 0.9rem; font-weight: 600;">Password</label>
-                        <a href="#" style="font-size: 0.85rem; font-weight: 600; color: var(--primary);">Forgot?</a>
-                    </div>
-                    <input type="password" placeholder="••••••••">
-                </div>
-                <button class="btn btn-primary" style="margin-top: 10px;" onclick="alert('System initializing...')">Login to Portal</button>
+                <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">Email Address</label>
+                <input type="email" placeholder="client@example.com">
+                <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">Password</label>
+                <input type="password" placeholder="••••••••">
+                <button class="btn btn-primary" onclick="alert('System initializing...')">Login to Portal</button>
             </div>
         </div>
 
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // 1. Sidebar Functions
+        function openMenu() {
+            document.getElementById('sidebar').style.left = '0';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeMenu() {
+            document.getElementById('sidebar').style.left = '-300px';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        // 2. Dropdown (Accordion) Function
+        function toggleSub(id) {
+            var el = document.getElementById(id);
+            if (el.style.display === "block") {
+                el.style.display = "none";
+            } else {
+                el.style.display = "block";
+            }
+        }
+
+        // 3. Page Router Function (The Fix)
+        function nav(pageId) {
+            // Hide all pages manually
+            var pages = document.getElementsByClassName('page');
+            for(var i = 0; i < pages.length; i++) {
+                pages[i].style.display = 'none';
+            }
             
-            // Elements
-            const menuToggle = document.getElementById('menuToggle');
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const navItems = document.querySelectorAll('.has-submenu');
-            const routeTriggers = document.querySelectorAll('.route-trigger');
-            const pages = document.querySelectorAll('.page-view');
-
-            // 1. Sidebar Control
-            function closeSidebar() {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-            }
-
-            function openSidebar() {
-                sidebar.classList.add('active');
-                overlay.classList.add('active');
-            }
-
-            menuToggle.addEventListener('click', openSidebar);
-            overlay.addEventListener('click', closeSidebar);
-
-            // 2. Accordion Logic
-            navItems.forEach(item => {
-                const header = item.querySelector('.nav-link');
-                header.addEventListener('click', () => {
-                    // Close others
-                    navItems.forEach(otherItem => {
-                        if (otherItem !== item) otherItem.classList.remove('open');
-                    });
-                    // Toggle current
-                    item.classList.toggle('open');
-                });
-            });
-
-            // 3. Routing Engine (The Magic)
-     
+            // Show the target page
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Close the sidebar if open
+            closeMenu();
+            
+            // Scroll to the top of the page
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
