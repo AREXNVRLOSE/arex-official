@@ -24,9 +24,7 @@
             --primary: #f97316;
             --primary-dark: #ea580c;
             --primary-light: #ffedd5;
-            --primary-glow: rgba(249, 115, 22, 0.35);
-            --bg-gradient-start: #0f172a;
-            --bg-gradient-end: #1e293b;
+            --primary-glow: rgba(249, 115, 22, 0.4);
             --card-bg: rgba(255, 255, 255, 0.98);
             --sidebar-bg: rgba(15, 23, 42, 0.95);
             --text-primary: #0f172a;
@@ -43,9 +41,41 @@
             display: flex;
             color: var(--text-primary);
             position: relative;
+            transition: background 0.3s ease;
         }
 
-        /* Animated background */
+        body.dark {
+            background: #0a0f1c;
+        }
+
+        body.dark .glass-card,
+        body.dark .stat-card-modern,
+        body.dark .channel-card,
+        body.dark .plan-premium:not(.popular) {
+            background: #1e293b;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+        body.dark .glass-card h2 {
+            background: linear-gradient(135deg, #f97316, #ff8c42);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        body.dark .stat-card-modern p,
+        body.dark .stat-card-modern h3 {
+            color: #f1f5f9;
+        }
+        body.dark .top-bar h1 {
+            background: linear-gradient(135deg, #f97316, #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        body.dark .profile-card {
+            background: #334155;
+            color: white;
+        }
+
+        /* Animated background orbs */
         body::before {
             content: '';
             position: fixed;
@@ -441,6 +471,28 @@
             color: white;
         }
 
+        /* Simple Chart */
+        .chart-container {
+            margin-top: 32px;
+            padding: 20px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 28px;
+        }
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            height: 180px;
+            margin-top: 20px;
+        }
+        .bar {
+            flex: 1;
+            background: linear-gradient(180deg, #f97316, #ea580c);
+            border-radius: 12px 12px 6px 6px;
+            transition: height 0.5s ease;
+            min-width: 40px;
+        }
+
         /* Toast Notification */
         .toast-notification {
             position: fixed;
@@ -518,7 +570,7 @@
         </div>
     </div>
 
-    <!-- DASHBOARD - Enhanced -->
+    <!-- DASHBOARD - Enhanced with Live Chart -->
     <div id="dashboard" class="page active">
         <div class="glass-card">
             <h2>⚡ System Telemetry</h2>
@@ -527,7 +579,7 @@
                 <div class="stat-card-modern">
                     <div class="stat-icon"><i class="fas fa-server"></i></div>
                     <h3>Active Nodes</h3>
-                    <p style="font-size: 32px; font-weight: 800; margin-top: 8px;">24</p>
+                    <p style="font-size: 32px; font-weight: 800; margin-top: 8px;" id="activeNodes">24</p>
                     <span style="color: #10b981;">▲ +3 this week</span>
                 </div>
                 <div class="stat-card-modern">
@@ -539,12 +591,28 @@
                 <div class="stat-card-modern">
                     <div class="stat-icon"><i class="fas fa-database"></i></div>
                     <h3>Storage Used</h3>
-                    <p style="font-size: 32px; font-weight: 800; margin-top: 8px;">3.8 TB</p>
+                    <p style="font-size: 32px; font-weight: 800; margin-top: 8px;" id="storageUsed">3.8</p>
                     <span>/ 15 TB cluster</span>
                 </div>
             </div>
-            <div style="background: linear-gradient(135deg, #fef3c7, #ffedd5); border-radius: 24px; padding: 20px; margin-top: 24px;">
-                <i class="fas fa-chart-line" style="color:#f97316;"></i> <strong>Bandwidth this month:</strong> 4.2 TB · Projected savings 18%
+            <!-- Live Bandwidth Chart -->
+            <div class="chart-container">
+                <div style="display: flex; justify-content: space-between;">
+                    <strong><i class="fas fa-chart-line"></i> Weekly Bandwidth (TB)</strong>
+                    <span id="bandwidthTotal" style="color:#f97316;">4.2 TB this month</span>
+                </div>
+                <div class="bar-chart" id="barChart">
+                    <div class="bar" style="height: 40px;"></div>
+                    <div class="bar" style="height: 65px;"></div>
+                    <div class="bar" style="height: 110px;"></div>
+                    <div class="bar" style="height: 85px;"></div>
+                    <div class="bar" style="height: 145px;"></div>
+                    <div class="bar" style="height: 170px;"></div>
+                    <div class="bar" style="height: 130px;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 12px; color: #64748b;">
+                    <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                </div>
             </div>
         </div>
     </div>
@@ -565,51 +633,4 @@
                     </ul>
                     <button class="deploy-btn">Deploy Instance →</button>
                 </div>
-                <div class="plan-premium popular" data-plan="Velocity Core">
-                    <div class="popular-tag">🔥 Most Popular</div>
-                    <h3>Velocity Core</h3>
-                    <div class="price-display">$19 <small>/month</small></div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> 250GB NVMe Storage</li>
-                        <li><i class="fas fa-check"></i> 5TB Premium Bandwidth</li>
-                        <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
-                    </ul>
-                    <button class="deploy-btn">Activate HyperCore ⚡</button>
-                </div>
-                <div class="plan-premium" data-plan="Enterprise">
-                    <h3>🏢 Enterprise Edge</h3>
-                    <div class="price-display">$49 <small>/month</small></div>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> 1TB Dedicated Cache</li>
-                        <li><i class="fas fa-check"></i> Unlimited Egress</li>
-                        <li><i class="fas fa-check"></i> Custom SLAs</li>
-                        <li><i class="fas fa-check"></i> Dedicated Architect</li>
-                    </ul>
-                    <button class="deploy-btn">Contact Sales →</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- BILLING - Enhanced -->
-    <div id="billing" class="page">
-        <div class="glass-card">
-            <h2>💳 Payment Center</h2>
-            <p>Manage subscriptions, invoices, and payment methods</p>
-            <div class="stats-grid" style="margin-top: 24px;">
-                <div class="stat-card-modern">
-                    <h3>Current Balance</h3>
-                    <p style="font-size: 32px; font-weight: 800;">$0.00</p>
-                    <span>Fully paid</span>
-                </div>
-                <div class="stat-card-modern">
-                    <h3>Next Invoice</h3>
-                    <p style="font-size: 32px; font-weight: 800;">$19.00</p>
-                    <span>Due June 1, 2026</span>
-                </div>
-            </div>
-            <div class="invoice-section">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-                    <div>
-                        <i class="
+                <div class="plan
