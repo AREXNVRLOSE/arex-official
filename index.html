@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="HsYnoFWLu8CwqFze48EK2fjGONopioQx73js35MjOEY" />
+    <!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>AREX HOISTING · Hosting Seller Dashboard</title>
@@ -19,21 +25,21 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f5f7fb;
+      background: #faf9f6; /* soft warm beige background */
       display: flex;
       min-height: 100vh;
-      color: #0f172a;
+      color: #1e293b;
     }
 
-    /* ===== PROFESSIONAL SIDEBAR – hosting business vibe ===== */
+    /* ===== SIDEBAR – beige / blue / white palette ===== */
     .sidebar {
       width: 280px;
       background: #ffffff;
-      border-right: 1px solid #eef2f6;
+      border-right: 1px solid #e8e0d5; /* warm beige border */
       display: flex;
       flex-direction: column;
       padding: 24px 14px 20px;
-      box-shadow: 8px 0 28px rgba(0, 0, 0, 0.03);
+      box-shadow: 8px 0 28px rgba(0, 0, 0, 0.02);
       position: fixed;
       height: 100vh;
       left: 0;
@@ -43,33 +49,33 @@
       overflow-y: auto;
     }
 
-    /* Logo / Brand */
+    /* Brand area */
     .brand-area {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 4px 8px 24px;
       margin-bottom: 20px;
-      border-bottom: 1px solid #f0f4f9;
+      border-bottom: 1px solid #f0ebe0;
     }
 
     .brand-icon {
       width: 42px;
       height: 42px;
-      background: linear-gradient(135deg, #f97316, #ea580c);
+      background: #2c5f8a; /* deep blue instead of orange */
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-size: 20px;
-      box-shadow: 0 10px 18px -8px rgba(249,115,22,0.35);
+      box-shadow: 0 10px 18px -8px rgba(44, 95, 138, 0.25);
     }
 
     .brand-text h2 {
       font-size: 20px;
       font-weight: 700;
-      color: #0f172a;
+      color: #1e293b;
       letter-spacing: -0.4px;
       line-height: 1.2;
     }
@@ -77,7 +83,7 @@
     .brand-text span {
       font-size: 12px;
       font-weight: 600;
-      color: #f97316;
+      color: #2c5f8a;
       letter-spacing: 0.4px;
       display: block;
     }
@@ -93,27 +99,27 @@
       left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      color: #94a3b8;
+      color: #8b9aab;
       font-size: 14px;
     }
 
     .search-box input {
       width: 100%;
       padding: 12px 14px 12px 40px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #e0d7cc;
       border-radius: 14px;
-      background: #f8fafc;
+      background: #fdfbf7;
       font-size: 14px;
       font-weight: 500;
-      color: #0f172a;
+      color: #1e293b;
       outline: none;
       transition: 0.2s;
     }
 
     .search-box input:focus {
-      border-color: #f97316;
+      border-color: #2c5f8a;
       background: white;
-      box-shadow: 0 0 0 3px rgba(249,115,22,0.06);
+      box-shadow: 0 0 0 3px rgba(44, 95, 138, 0.06);
     }
 
     .nav-menu {
@@ -123,14 +129,14 @@
       gap: 2px;
     }
 
-    /* Sidebar buttons – professional hosting seller style */
+    /* Sidebar buttons – beige & blue style */
     .sidebar-btn {
       width: 100%;
       padding: 12px 16px;
       border: none;
       border-radius: 14px;
       background: transparent;
-      color: #334155;
+      color: #475569;
       font-weight: 500;
       font-size: 15px;
       display: flex;
@@ -145,33 +151,33 @@
     .sidebar-btn i {
       width: 22px;
       font-size: 1.15rem;
-      color: #64748b;
+      color: #7c8b9a;
       transition: color 0.2s;
     }
 
     .sidebar-btn:hover {
-      background: #f8fafc;
+      background: #f5f0e8; /* warm beige hover */
       color: #0f172a;
     }
 
     .sidebar-btn:hover i {
-      color: #f97316;
+      color: #2c5f8a;
     }
 
-    /* Active – dark background with orange accent (business look) */
+    /* Active state – blue background with beige accent */
     .sidebar-btn.active {
-      background: #0f172a;
+      background: #2c5f8a;
       color: white;
-      box-shadow: 0 10px 18px -8px rgba(15, 23, 42, 0.3);
+      box-shadow: 0 10px 18px -8px rgba(44, 95, 138, 0.3);
       font-weight: 600;
     }
 
     .sidebar-btn.active i {
-      color: #f97316;
+      color: #f5e7d3; /* warm beige accent */
     }
 
     .sidebar-bottom {
-      border-top: 1px solid #f0f4f9;
+      border-top: 1px solid #f0ebe0;
       padding-top: 16px;
       display: flex;
       flex-direction: column;
@@ -197,11 +203,11 @@
     .logout-btn i {
       width: 22px;
       font-size: 1.15rem;
-      color: #64748b;
+      color: #7c8b9a;
     }
 
     .logout-btn:hover {
-      background: #fee2e2;
+      background: #fae8e8;
       color: #b91c1c;
     }
 
@@ -209,12 +215,12 @@
       color: #b91c1c;
     }
 
-    /* ===== MAIN CONTENT – professional hosting cards ===== */
+    /* ===== MAIN CONTENT ===== */
     .main {
       margin-left: 280px;
       flex: 1;
       padding: 36px 40px;
-      background: #f8fafc;
+      background: #faf9f6; /* beige background */
       min-height: 100vh;
       transition: margin-left 0.25s ease;
     }
@@ -233,7 +239,7 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Top summary cards (hosting stats) */
+    /* Stats cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -245,7 +251,7 @@
       background: white;
       border-radius: 20px;
       padding: 22px 20px;
-      border: 1px solid #f1f5f9;
+      border: 1px solid #e8e0d5;
       box-shadow: 0 8px 18px rgba(0,0,0,0.02);
       display: flex;
       align-items: center;
@@ -262,21 +268,21 @@
       font-size: 22px;
     }
 
-    .stat-icon.blue { background: #eff6ff; color: #2563eb; }
-    .stat-icon.orange { background: #fff7ed; color: #f97316; }
-    .stat-icon.indigo { background: #eef2ff; color: #4f46e5; }
+    .stat-icon.blue { background: #eaf0f6; color: #2c5f8a; }
+    .stat-icon.beige { background: #fdf5e9; color: #b68b5c; }
+    .stat-icon.indigo { background: #e9eef3; color: #3b5c7a; }
 
     .stat-info h4 {
       font-size: 14px;
       font-weight: 600;
-      color: #475569;
+      color: #5c6b7a;
       margin-bottom: 4px;
     }
 
     .stat-info span {
       font-size: 24px;
       font-weight: 700;
-      color: #0f172a;
+      color: #1e293b;
     }
 
     .card {
@@ -284,7 +290,7 @@
       border-radius: 24px;
       padding: 36px 40px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.02);
-      border: 1px solid #f1f5f9;
+      border: 1px solid #e8e0d5;
       max-width: 820px;
       margin-bottom: 24px;
     }
@@ -292,7 +298,7 @@
     .card h2 {
       font-size: 24px;
       font-weight: 700;
-      color: #0f172a;
+      color: #1e293b;
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -306,8 +312,9 @@
       margin-bottom: 28px;
     }
 
+    /* Buttons – beige, blue, white palette */
     .btn-primary {
-      background: #0f172a;
+      background: #2c5f8a;
       color: white;
       border: none;
       padding: 14px 30px;
@@ -319,32 +326,32 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 10px 18px -8px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 10px 18px -8px rgba(44, 95, 138, 0.3);
       letter-spacing: -0.2px;
     }
 
     .btn-primary i { font-size: 1rem; }
     .btn-primary:hover {
-      background: #1e293b;
+      background: #1e4666;
       transform: translateY(-2px);
-      box-shadow: 0 16px 24px -10px rgba(15, 23, 42, 0.3);
+      box-shadow: 0 16px 24px -10px rgba(44, 95, 138, 0.35);
     }
 
     .btn-soft {
-      background: #f1f5f9;
-      color: #0f172a;
+      background: #f5f0e8;
+      color: #2c3e50;
       box-shadow: none;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #ddd2c0;
     }
-    .btn-soft:hover { background: #e2e8f0; }
+    .btn-soft:hover { background: #ede3d3; }
 
     .btn-accent {
-      background: #f97316;
+      background: #b68b5c;
       color: white;
-      box-shadow: 0 10px 18px -8px rgba(249,115,22,0.3);
-      border: 1px solid #f97316;
+      box-shadow: 0 10px 18px -8px rgba(182, 139, 92, 0.3);
+      border: 1px solid #b68b5c;
     }
-    .btn-accent:hover { background: #ea580c; }
+    .btn-accent:hover { background: #9e7548; }
 
     .pricing-grid {
       display: grid;
@@ -354,30 +361,31 @@
     }
 
     .plan {
-      background: #f9fafb;
+      background: #fdfbf7;
       border-radius: 20px;
       padding: 24px;
-      border: 1px solid #e9eef3;
+      border: 1px solid #e0d7cc;
     }
-    .plan h4 { font-size: 18px; font-weight: 700; color: #0f172a; }
-    .plan .price { font-weight: 700; font-size: 28px; color: #0f172a; margin-bottom: 16px; }
+    .plan h4 { font-size: 18px; font-weight: 700; color: #1e293b; }
+    .plan .price { font-weight: 700; font-size: 28px; color: #1e293b; margin-bottom: 16px; }
     .plan .price small { font-size: 16px; color: #64748b; }
 
     .plan-btn {
       background: white;
-      border: 1px solid #d1d5db;
+      border: 1px solid #cbb295;
       padding: 10px 22px;
       border-radius: 30px;
       font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
-      color: #0f172a;
+      color: #3b3b3b;
     }
-    .plan-btn:hover { background: #0f172a; color: white; border-color: #0f172a; }
+    .plan-btn:hover { background: #2c5f8a; color: white; border-color: #2c5f8a; }
 
-    .dark-plan { background: #0f172a; border-color: #0f172a; }
+    .dark-plan { background: #2c5f8a; border-color: #2c5f8a; }
     .dark-plan h4, .dark-plan .price { color: white; }
-    .dark-plan .plan-btn { background: #f97316; border-color: #f97316; color: white; }
+    .dark-plan .plan-btn { background: #f5e7d3; border-color: #f5e7d3; color: #2c3e50; }
+    .dark-plan .plan-btn:hover { background: #e8d5bb; }
 
     .button-group { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
@@ -389,12 +397,13 @@
     .domain-input {
       flex: 1;
       padding: 14px 18px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #e0d7cc;
       border-radius: 40px;
       font-size: 15px;
       outline: none;
+      background: #fdfbf7;
     }
-    .domain-input:focus { border-color: #f97316; }
+    .domain-input:focus { border-color: #2c5f8a; }
 
     @media (max-width: 850px) {
       .sidebar { width: 80px; padding: 20px 8px; }
@@ -408,7 +417,7 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar: professional hosting seller -->
+  <!-- Sidebar with beige, blue, white palette -->
   <aside class="sidebar">
     <div class="brand-area">
       <div class="brand-icon"><i class="fas fa-cloud-upload-alt"></i></div>
@@ -451,9 +460,9 @@
     </div>
   </aside>
 
-  <!-- Main Content: hosting business pages -->
+  <!-- Main Content -->
   <main class="main">
-    <!-- Dashboard with hosting stats -->
+    <!-- Dashboard -->
     <div id="dashboard" class="page active">
       <div class="stats-grid">
         <div class="stat-card">
@@ -461,7 +470,7 @@
           <div class="stat-info"><h4>Active Services</h4><span>14</span></div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon orange"><i class="fas fa-users"></i></div>
+          <div class="stat-icon beige"><i class="fas fa-users"></i></div>
           <div class="stat-info"><h4>Clients</h4><span>38</span></div>
         </div>
         <div class="stat-card">
@@ -470,7 +479,7 @@
         </div>
       </div>
       <div class="card">
-        <h2><i class="fas fa-chart-line" style="color:#f97316;"></i> Seller Dashboard</h2>
+        <h2><i class="fas fa-chart-line" style="color:#2c5f8a;"></i> Seller Dashboard</h2>
         <p>Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.</p>
         <div class="button-group">
           <button class="btn-primary"><i class="fas fa-chart-bar"></i> View Analytics</button>
@@ -482,7 +491,7 @@
     <!-- Pricing -->
     <div id="pricing" class="page">
       <div class="card">
-        <h2><i class="fas fa-tags" style="color:#f97316;"></i> Hosting Plans</h2>
+        <h2><i class="fas fa-tags" style="color:#2c5f8a;"></i> Hosting Plans</h2>
         <p>White‑label ready plans for your clients. Set your own margin.</p>
         <div class="pricing-grid">
           <div class="plan">
@@ -503,7 +512,7 @@
     <!-- Billing -->
     <div id="billing" class="page">
       <div class="card">
-        <h2><i class="fas fa-credit-card" style="color:#f97316;"></i> Billing & Invoices</h2>
+        <h2><i class="fas fa-credit-card" style="color:#2c5f8a;"></i> Billing & Invoices</h2>
         <p>Next invoice: <strong>June 1, 2026</strong>. All payments are up to date.</p>
         <div class="button-group">
           <button class="btn-primary"><i class="fas fa-money-check"></i> Pay Now</button>
@@ -512,10 +521,10 @@
       </div>
     </div>
 
-    <!-- Domains (enhanced business vibe) -->
+    <!-- Domains -->
     <div id="domains" class="page">
       <div class="card">
-        <h2><i class="fas fa-globe" style="color:#f97316;"></i> Domain Manager</h2>
+        <h2><i class="fas fa-globe" style="color:#2c5f8a;"></i> Domain Manager</h2>
         <p>Register, transfer, or manage domains for your hosting clients.</p>
         <div class="domain-search-row">
           <input class="domain-input" type="text" placeholder="Find your domain (e.g., example.com)" />
@@ -531,7 +540,7 @@
     <!-- Support -->
     <div id="support" class="page">
       <div class="card">
-        <h2><i class="fas fa-life-ring" style="color:#f97316;"></i> 24/7 Seller Support</h2>
+        <h2><i class="fas fa-life-ring" style="color:#2c5f8a;"></i> 24/7 Seller Support</h2>
         <p>Dedicated support for hosting resellers. Average reply time under 2 minutes.</p>
         <div class="button-group">
           <button class="btn-primary btn-soft"><i class="fab fa-telegram"></i> Telegram</button>
@@ -543,7 +552,7 @@
     <!-- Profile -->
     <div id="profile" class="page">
       <div class="card">
-        <h2><i class="fas fa-id-badge" style="color:#f97316;"></i> Seller Profile</h2>
+        <h2><i class="fas fa-id-badge" style="color:#2c5f8a;"></i> Seller Profile</h2>
         <p>Manage your personal info, API keys, and white‑label branding.</p>
         <div class="button-group">
           <button class="btn-primary"><i class="fas fa-edit"></i> Edit Profile</button>
@@ -569,7 +578,6 @@
         }
       };
 
-      // ensure active page on load
       const active = document.querySelector('.sidebar-btn.active');
       if (active) {
         const attr = active.getAttribute('onclick');
@@ -587,4 +595,4 @@
     })();
   </script>
 </body>
- </html>
+  </html>
