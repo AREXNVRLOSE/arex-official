@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- GOOGLE VERIFICATION (तुमने दिया हुआ) -->
     <meta name="google-site-verification" content="HsYnoFWLu8CwqFze48EK2fjGONopioQx73js35MjOEY" />
 
     <title>AREX HOSTING</title>
 
-    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -24,148 +22,103 @@
         .navbar {
             display: flex;
             justify-content: space-between;
-            padding: 20px;
+            align-items: center;
+            padding: 20px 40px;
             background: #020617;
             border-bottom: 1px solid #1e293b;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             color: #06b6d4;
+            letter-spacing: 1px;
         }
 
-        .nav-btn {
+        /* LOGIN BUTTON */
+        .login-btn {
             background: #06b6d4;
+            color: #000;
             border: none;
-            padding: 8px 15px;
-            color: black;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .hero h1 {
-            font-size: 40px;
-        }
-
-        .hero p {
-            color: #94a3b8;
-        }
-
-        .btn {
-            margin-top: 20px;
-            padding: 12px 25px;
-            border: none;
-            background: #06b6d4;
-            color: black;
+            padding: 10px 20px;
             border-radius: 8px;
+            font-weight: 700;
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* PLANS */
-        .plans {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            padding: 40px;
-            flex-wrap: wrap;
+        .login-btn:hover {
+            background: #fff;
+            transform: scale(1.05);
         }
 
-        .plan {
-            background: #020617;
-            padding: 20px;
-            border-radius: 12px;
-            width: 250px;
-            border: 1px solid #1e293b;
+        /* MAIN CONTENT */
+        .content {
+            padding: 50px 40px;
             text-align: center;
         }
 
-        .price {
-            font-size: 30px;
-            color: #06b6d4;
+        .content h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
         }
 
+        .content p {
+            color: #94a3b8;
+            font-size: 18px;
+        }
     </style>
 </head>
-<!-- Firebase (COMPAT VERSION - WORKING FOR HTML) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
-
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-  <script>
-    // Step 3: Yahan Firebase Dashboard se apni keys daalni hain
-    const firebaseConfig = {
-      apiKey: "YAHAN_APNI_API_KEY_DAALO",
-      authDomain: "arex-hosting.firebaseapp.com", // Aapka domain
-      projectId: "arex-hosting", // Aapka project ID
-      storageBucket: "arex-hosting.appspot.com",
-      messagingSenderId: "YAHAN_SENDER_ID",
-      appId: "YAHAN_APP_ID"
-    };
-
-    // Firebase ko Start karna
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    // Google Login Function
-    function arexGoogleLogin() {
-      auth.signInWithPopup(provider)
-        .then((result) => {
-          const user = result.user;
-          // Login successful hone par mast alert aayega
-          alert("Welcome to AREX PRO, " + user.displayName + "!\nEmail: " + user.email);
-          
-          // Aap chaho toh login ke baad user ka naam/photo UI mein badal sakte ho
-          console.log("Logged in User:", user);
-        })
-        .catch((error) => {
-          console.error("Login Error:", error);
-          alert("Login fail ho gaya: " + error.message);
-        });
-    }
-  </script>
-    
-
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo">AREX HOSTING</div>
-    <button class="nav-btn" onclick="alert('Login system next step')">Login</button>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-    <h1>Powerful Hosting For Everyone</h1>
-    <p>Fast, Secure & Affordable Hosting Services</p>
-    <button class="btn">Get Started</button>
-</div>
-
-<!-- PLANS -->
-<div class="plans">
-    <div class="plan">
-        <h3>Starter</h3>
-        <div class="price">₹99/mo</div>
-        <p>1 Website<br>5GB Storage<br>Free SSL</p>
-        <button class="btn">Buy</button>
+    <div class="navbar">
+        <div class="logo">AREX HOSTING</div>
+        <button class="login-btn" onclick="arexGoogleLogin()">Login with Google</button>
     </div>
 
-    <div class="plan">
-        <h3>Pro</h3>
-        <div class="price">₹199/mo</div>
-        <p>5 Website<br>20GB Storage<br>Free SSL</p>
-        <button class="btn">Buy</button>
+    <div class="content">
+        <h1>Welcome to the Future of Hosting</h1>
+        <p id="user-status">Please click the button above to login securely via Firebase.</p>
     </div>
-</div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+    <script>
+        // Aapki exact Firebase Keys
+        const firebaseConfig = {
+            apiKey: "AIzaSyD_lt41h8yEvPsEwsJlYSBK8RL5aDvnd3Q",
+            authDomain: "arex-hosting.firebaseapp.com",
+            projectId: "arex-hosting",
+            storageBucket: "arex-hosting.firebasestorage.app",
+            messagingSenderId: "1035658227174",
+            appId: "1:1035658227174:web:67ef3effc74ab01d15fa27",
+            measurementId: "G-2ZFV6GGBWL"
+        };
+
+        // Firebase Initialize
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        // Google Login Function
+        function arexGoogleLogin() {
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    
+                    // Alert Message
+                    alert("✅ Welcome, " + user.displayName + "!");
+                    
+                    // Update Text on Website
+                    document.getElementById('user-status').innerText = "Logged in successfully as: " + user.email;
+                    document.getElementById('user-status').style.color = "#4ade80"; // Green color
+                })
+                .catch((error) => {
+                    console.error("Login Error:", error);
+                    alert("❌ Login Failed: " + error.message);
+                });
+        }
+    </script>
 </body>
 </html>
