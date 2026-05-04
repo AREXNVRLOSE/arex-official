@@ -140,6 +140,10 @@
       margin-top: 8px;
       box-shadow: 0 10px 18px -8px rgba(44, 95, 138, 0.3);
       letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .login-btn:hover {
@@ -168,6 +172,18 @@
     .error-message {
       background: #fee2e2;
       color: #b91c1c;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .success-message {
+      background: #d1fae5;
+      color: #065f46;
       padding: 12px 16px;
       border-radius: 12px;
       font-size: 14px;
@@ -560,6 +576,21 @@
     }
     .domain-input:focus { border-color: #2c5f8a; }
 
+    /* Owner badge */
+    .owner-badge {
+      background: #f5e7d3;
+      color: #2c5f8a;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 12px;
+      letter-spacing: 0.3px;
+    }
+
     @media (max-width: 850px) {
       .sidebar { width: 80px; padding: 20px 8px; }
       .brand-text, .search-box, .sidebar-btn span, .logout-btn span {
@@ -585,7 +616,11 @@
         <i class="fas fa-exclamation-circle"></i> <span id="errorText"></span>
       </div>
 
-      <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i> <span>Login successful! Redirecting...</span>
+      </div>
+
+      <form id="loginForm" onsubmit="return handleLogin(event)">
         <div class="form-group">
           <label>Email address</label>
           <div class="input-wrapper">
@@ -602,13 +637,13 @@
           </div>
         </div>
 
-        <button type="submit" class="login-btn">
+        <button type="submit" class="login-btn" id="loginButton">
           <i class="fas fa-sign-in-alt"></i> Sign In
         </button>
       </form>
 
       <div class="login-footer">
-        <p>Demo credentials: <strong>admin</strong> / <strong>admin123</strong></p>
+        <p>Owner access only</p>
         <p style="margin-top: 8px;"><a href="#">Forgot password?</a> · <a href="#">Contact support</a></p>
       </div>
     </div>
@@ -678,8 +713,11 @@
           </div>
         </div>
         <div class="card">
-          <h2><i class="fas fa-chart-line" style="color:#2c5f8a;"></i> Seller Dashboard</h2>
-          <p>Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.</p>
+          <h2>
+            <i class="fas fa-chart-line" style="color:#2c5f8a;"></i> Seller Dashboard
+            <span class="owner-badge"><i class="fas fa-crown"></i> OWNER</span>
+          </h2>
+          <p>Welcome back, <strong>Aryan Massey</strong>. Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.</p>
           <div class="button-group">
             <button class="btn-primary"><i class="fas fa-chart-bar"></i> View Analytics</button>
             <button class="btn-primary btn-accent"><i class="fas fa-plus-circle"></i> New Hosting Order</button>
@@ -723,22 +761,4 @@
       <!-- Domains -->
       <div id="domains" class="page">
         <div class="card">
-          <h2><i class="fas fa-globe" style="color:#2c5f8a;"></i> Domain Manager</h2>
-          <p>Register, transfer, or manage domains for your hosting clients.</p>
-          <div class="domain-search-row">
-            <input class="domain-input" type="text" placeholder="Find your domain (e.g., example.com)" />
-            <button class="btn-primary"><i class="fas fa-search"></i> Search</button>
-          </div>
-          <div class="button-group">
-            <button class="btn-primary btn-soft"><i class="fas fa-list"></i> My Domains</button>
-            <button class="btn-primary btn-accent"><i class="fas fa-cart-plus"></i> Bulk Register</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Support -->
-      <div id="support" class="page">
-        <div class="card">
-          <h2><i class="fas fa-life-ring" style="color:#2c5f8a;"></i> 24/7 Seller Support</h2>
-          <p>Dedicated support for hosting resellers. Average reply time under 2 minutes.</p>
-   
+          <h2><i class="fas fa-globe" st
