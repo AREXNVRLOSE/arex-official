@@ -93,7 +93,24 @@
 
     </style>
 </head>
+<!-- Firebase (COMPAT VERSION - WORKING FOR HTML) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
 
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCbg4dY0RrUcUx_izV...",
+    authDomain: "arex-hosting-e061d.firebaseapp.com",
+    projectId: "arex-hosting-e061d",
+    storageBucket: "arex-hosting-e061d.appspot.com",
+    messagingSenderId: "472655427890",
+    appId: "1:472655427890:web:3701e6..."
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  console.log("🔥 Firebase Connected Successfully");
+</script>
 <body>
 
 <!-- NAVBAR -->
