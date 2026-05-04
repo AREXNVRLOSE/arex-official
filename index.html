@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arex Hoisting · Business Portal</title>
+    <title>Arex Hoisting · Premium Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -15,115 +15,252 @@
         }
 
         body {
-            background: #f4f6f9;
+            background: #f5f7fa;
             display: flex;
             min-height: 100vh;
         }
 
-        /* ---------- CLASSIC BUSINESS SIDEBAR ---------- */
+        /* ---------- PREMIUM SIDEBAR ---------- */
         .sidebar {
-            width: 250px;
-            background: #0b1a2e;
-            /* deep navy */
-            border-right: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 28px 16px;
+            width: 260px;
+            background: linear-gradient(180deg, #0a0e1a 0%, #0d1529 40%, #0f1b33 100%);
+            border-right: 1px solid rgba(200, 164, 78, 0.15);
+            padding: 32px 20px;
             display: flex;
             flex-direction: column;
-            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+            box-shadow: 8px 0 40px rgba(0, 0, 0, 0.25), 2px 0 10px rgba(200, 164, 78, 0.05);
             position: fixed;
             height: 100vh;
             left: 0;
             top: 0;
             z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Subtle gold glow at top */
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c8a44e, transparent);
+            opacity: 0.6;
         }
 
         .logo {
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 40px;
             padding-bottom: 28px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(200, 164, 78, 0.2);
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c8a44e, transparent);
+            border-radius: 50%;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #c8a44e, #e0c06a);
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            box-shadow: 0 8px 20px rgba(200, 164, 78, 0.3);
+            font-size: 18px;
+            color: #0a0e1a;
+            font-weight: 700;
         }
 
         .logo h2 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             color: #ffffff;
-            letter-spacing: -0.3px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
         .logo h2 span {
-            color: #c8a44e;
-            /* classic gold accent */
+            background: linear-gradient(135deg, #c8a44e, #e0c46a, #c8a44e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(200, 164, 78, 0.5);
+            padding: 8px 12px 4px;
             font-weight: 600;
+            margin-top: 8px;
         }
 
         .sidebar-btn {
             width: 100%;
-            padding: 13px 16px;
+            padding: 12px 16px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             background: transparent;
-            color: #b0bec5;
-            /* soft blue-grey */
+            color: #9aa4bf;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 13.5px;
             display: flex;
             align-items: center;
-            gap: 13px;
+            gap: 14px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            margin-bottom: 6px;
-            letter-spacing: 0.2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 2px;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: #c8a44e;
+            border-radius: 0 4px 4px 0;
+            transition: height 0.3s ease;
         }
 
         .sidebar-btn i {
             width: 20px;
             font-size: 15px;
-            color: #6b7c8e;
-            transition: color 0.2s;
+            color: #5a6580;
+            transition: all 0.3s ease;
+            text-align: center;
         }
 
         .sidebar-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
+            background: rgba(200, 164, 78, 0.08);
+            color: #e8eaf0;
+            transform: translateX(2px);
+        }
+
+        .sidebar-btn:hover::before {
+            height: 60%;
         }
 
         .sidebar-btn:hover i {
             color: #c8a44e;
-            /* gold on hover */
+            transform: scale(1.1);
         }
 
         .sidebar-btn.active {
-            background: #c8a44e;
-            /* solid gold */
-            color: #0b1a2e;
-            /* navy text */
+            background: linear-gradient(135deg, rgba(200, 164, 78, 0.15) 0%, rgba(200, 164, 78, 0.05) 100%);
+            color: #ffffff;
             font-weight: 600;
-            box-shadow: 0 6px 16px rgba(200, 164, 78, 0.25);
+            box-shadow: 0 4px 15px rgba(200, 164, 78, 0.1), inset 0 1px 0 rgba(200, 164, 78, 0.2);
+            border: 1px solid rgba(200, 164, 78, 0.25);
+        }
+
+        .sidebar-btn.active::before {
+            height: 80%;
+            background: linear-gradient(180deg, #c8a44e, #e0c46a);
+            box-shadow: 0 0 10px rgba(200, 164, 78, 0.5);
         }
 
         .sidebar-btn.active i {
-            color: #0b1a2e;
+            color: #c8a44e;
+            filter: drop-shadow(0 0 6px rgba(200, 164, 78, 0.4));
+        }
+
+        .badge {
+            margin-left: auto;
+            background: linear-gradient(135deg, #c8a44e, #b8942e);
+            color: #0a0e1a;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(200, 164, 78, 0.3);
         }
 
         .sidebar-footer {
             margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(200, 164, 78, 0.15);
             padding-top: 20px;
+            position: relative;
+        }
+
+        .user-mini {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            margin-bottom: 10px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #c8a44e, #e0c06a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #0a0e1a;
+            box-shadow: 0 4px 10px rgba(200, 164, 78, 0.25);
+        }
+
+        .user-info {
+            flex: 1;
+        }
+        .user-info .name {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .user-info .plan {
+            color: #c8a44e;
+            font-size: 11px;
+            letter-spacing: 0.5px;
         }
 
         /* ---------- MAIN AREA ---------- */
         .main {
-            margin-left: 250px;
+            margin-left: 260px;
             flex: 1;
             padding: 40px;
-            background: #f4f6f9;
+            background: #f5f7fa;
             min-height: 100vh;
         }
 
         .page {
             display: none;
-            animation: fadeSlide 0.3s ease;
+            animation: fadeSlide 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .page.active {
@@ -133,7 +270,7 @@
         @keyframes fadeSlide {
             0% {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(16px);
             }
             100% {
                 opacity: 1;
@@ -145,8 +282,8 @@
             background: #ffffff;
             border-radius: 20px;
             padding: 44px;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.03);
-            border: 1px solid #e9ecf1;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef0f5;
             max-width: 720px;
         }
 
@@ -167,7 +304,6 @@
 
         .btn-primary {
             background: #0b1a2e;
-            /* navy */
             color: white;
             border: none;
             padding: 14px 34px;
@@ -187,6 +323,17 @@
             transform: translateY(-2px);
             background: #132d47;
             box-shadow: 0 10px 22px -6px rgba(11, 26, 46, 0.28);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #c8a44e, #b8942e);
+            color: #0a0e1a;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(200, 164, 78, 0.3);
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #d4b35a, #c8a44e);
+            box-shadow: 0 12px 26px rgba(200, 164, 78, 0.4);
         }
 
         .btn-soft {
@@ -213,11 +360,12 @@
             border-radius: 18px;
             padding: 24px;
             border: 1px solid #e4e7ec;
-            transition: 0.2s;
+            transition: all 0.3s ease;
         }
 
         .plan:hover {
             border-color: #c8a44e;
+            box-shadow: 0 8px 20px rgba(200, 164, 78, 0.1);
         }
 
         .plan h4 {
@@ -263,7 +411,11 @@
                 padding: 20px 8px;
             }
 
-            .sidebar-btn span {
+            .sidebar-btn span,
+            .badge,
+            .nav-label,
+            .user-mini,
+            .logo-icon {
                 display: none;
             }
 
@@ -273,7 +425,8 @@
             }
 
             .logo h2 {
-                font-size: 13px;
+                font-size: 12px;
+                letter-spacing: 1px;
             }
 
             .main {
@@ -291,28 +444,41 @@
 
     <aside class="sidebar">
         <div class="logo">
-            <h2>AREX <span>HOISTING</span></h2>
+            <div class="logo-icon">A</div>
+            <h2>Arex <span>Hoisting</span></h2>
         </div>
 
-        <nav>
+        <div class="nav-section">
+            <div class="nav-label">Main Menu</div>
             <button class="sidebar-btn active" onclick="showPage('dashboard', this)">
-                <i class="fas fa-home"></i> <span>Dashboard</span>
+                <i class="fas fa-th-large"></i> <span>Dashboard</span>
+                <span class="badge">3</span>
             </button>
             <button class="sidebar-btn" onclick="showPage('pricing', this)">
-                <i class="fas fa-cubes"></i> <span>Pricing</span>
+                <i class="fas fa-crown"></i> <span>Pricing</span>
             </button>
             <button class="sidebar-btn" onclick="showPage('billing', this)">
-                <i class="fas fa-wallet"></i> <span>Billing</span>
+                <i class="fas fa-credit-card"></i> <span>Billing</span>
+                <span class="badge">1</span>
             </button>
+
+            <div class="nav-label">Support</div>
             <button class="sidebar-btn" onclick="showPage('support', this)">
                 <i class="fas fa-headset"></i> <span>Support</span>
             </button>
             <button class="sidebar-btn" onclick="showPage('profile', this)">
                 <i class="fas fa-user-circle"></i> <span>Profile</span>
             </button>
-        </nav>
+        </div>
 
         <div class="sidebar-footer">
+            <div class="user-mini">
+                <div class="user-avatar">JD</div>
+                <div class="user-info">
+                    <div class="name">John Doe</div>
+                    <div class="plan">✦ Pro Plan</div>
+                </div>
+            </div>
             <button class="sidebar-btn" onclick="showPage('settings', this)">
                 <i class="fas fa-cog"></i> <span>Settings</span>
             </button>
@@ -324,8 +490,8 @@
         <div id="dashboard" class="page active">
             <div class="card">
                 <h2>🟢 Dashboard</h2>
-                <p>Everything is running smoothly. You have 3 active services and 0 unpaid invoices.</p>
-                <button class="btn-primary"><i class="fas fa-chart-line"></i> View Analytics</button>
+                <p>Everything is running smoothly. You have <strong>3 active services</strong> and <strong>0 unpaid invoices</strong>.</p>
+                <button class="btn-primary btn-gold"><i class="fas fa-chart-line"></i> View Analytics</button>
             </div>
         </div>
 
@@ -343,7 +509,7 @@
                     <div class="plan" style="background: #0b1a2e; border-color: #0b1a2e;">
                         <h4 style="color: #e8d5a3;">Pro</h4>
                         <div class="price" style="color: white;">$19 <small style="color: #cbd5e1;">/mo</small></div>
-                        <button class="plan-btn" style="background: #c8a44e; border-color: #c8a44e; color: #0b1a2e; font-weight: 700;">Choose</button>
+                        <button class="plan-btn" style="background: linear-gradient(135deg, #c8a44e, #b8942e); border-color: #c8a44e; color: #0b1a2e; font-weight: 700;">Choose</button>
                     </div>
                 </div>
                 <button class="btn-primary btn-soft"><i class="fas fa-file-invoice"></i> Compare Plans</button>
@@ -354,8 +520,8 @@
         <div id="billing" class="page">
             <div class="card">
                 <h2>🧾 Billing</h2>
-                <p>Your next invoice will be generated on 1st June. Current subscription is active.</p>
-                <button class="btn-primary"><i class="fas fa-credit-card"></i> Pay Now</button>
+                <p>Your next invoice will be generated on <strong>1st June</strong>. Current subscription is active.</p>
+                <button class="btn-primary btn-gold"><i class="fas fa-credit-card"></i> Pay Now</button>
                 <button class="btn-primary btn-soft" style="margin-left: 10px;"><i class="fas fa-download"></i> Download Invoice</button>
             </div>
         </div>
@@ -364,9 +530,9 @@
         <div id="support" class="page">
             <div class="card">
                 <h2>💬 Support</h2>
-                <p>Reach out to us anytime. Average response time is under 2 minutes.</p>
+                <p>Reach out to us anytime. Average response time is under <strong>2 minutes</strong>.</p>
                 <button class="btn-primary btn-soft"><i class="fab fa-telegram"></i> Telegram</button>
-                <button class="btn-primary" style="margin-left: 10px;"><i class="fas fa-comments"></i> Live Chat</button>
+                <button class="btn-primary btn-gold" style="margin-left: 10px;"><i class="fas fa-comments"></i> Live Chat</button>
             </div>
         </div>
 
@@ -375,7 +541,7 @@
             <div class="card">
                 <h2>👤 Profile</h2>
                 <p>Manage your personal information and API keys here.</p>
-                <button class="btn-primary"><i class="fas fa-edit"></i> Edit Profile</button>
+                <button class="btn-primary btn-gold"><i class="fas fa-edit"></i> Edit Profile</button>
                 <button class="btn-primary btn-soft" style="margin-left: 10px;"><i class="fas fa-key"></i> Reset Password</button>
             </div>
         </div>
@@ -386,7 +552,7 @@
                 <h2>⚙️ Settings</h2>
                 <p>Customize your hosting portal preferences.</p>
                 <button class="btn-primary btn-soft"><i class="fas fa-palette"></i> Theme</button>
-                <button class="btn-primary" style="margin-left: 10px;"><i class="fas fa-bell"></i> Notifications</button>
+                <button class="btn-primary btn-gold" style="margin-left: 10px;"><i class="fas fa-bell"></i> Notifications</button>
             </div>
         </div>
     </main>
@@ -400,4 +566,4 @@
         }
     </script>
 </body>
-    </html>
+</html>
