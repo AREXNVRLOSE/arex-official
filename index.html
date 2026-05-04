@@ -80,7 +80,8 @@
         <h1>Welcome to the Future of Hosting</h1>
         <p id="user-status">Please click the button above to login securely via Firebase.</p>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+       <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
     <script>
@@ -100,35 +101,33 @@
         const auth = firebase.auth();
         const provider = new firebase.auth.GoogleAuthProvider();
 
-        // 1. LOGIN BUTTON DABAANE PAR KYA HOGA (Mobile ke liye Redirect)
-        function arexGoogleLogin() {
-            document.getElementById('user-status').innerText = "Loading Google Login...";
-            auth.signInWithRedirect(provider);
-        }
-
-        // 2. PAGE WAPAS AANE PAR CHECK KAREGA KI LOGIN HUA YA NAHI
-        auth.getRedirectResult().then((result) => {
-            if (result && result.user) {
-                const user = result.user;
-                // Update Text on Website
-                document.getElementById('user-status').innerText = "Logged in successfully as: " + user.email;
-                document.getElementById('user-status').style.color = "#4ade80"; // Green color
-                alert("✅ Welcome, " + user.displayName + "!");
-            }
-        }).catch((error) => {
-            console.error("Login Error:", error);
-            document.getElementById('user-status').innerText = "❌ Login Failed: " + error.message;
-            document.getElementById('user-status').style.color = "#ef4444"; // Red color
-        });
-
-        // 3. AGAR PEHLE SE LOGIN HAI TOH AUTOMATIC DIKHAYEGA
+        // Pehle se login check karne ka system
         auth.onAuthStateChanged((user) => {
             if (user) {
-                document.getElementById('user-status').innerText = "Logged in successfully as: " + user.email;
-                document.getElementById('user-status').style.color = "#4ade80";
+                document.getElementById('user-status').innerText = "✅ Logged in successfully as: " + user.email;
+                document.getElementById('user-status').style.color = "#4ade80"; // Green
             }
         });
-    </script>
+
+        // Naya aur Fast Popup Login
+        function arexGoogleLogin() {
+            document.getElementById('user-status').innerText = "Opening Google Login...";
+            document.getElementById('user-status').style.color = "#facc15"; // Yellow (Loading)
+
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    document.getElementById('user-status').innerText = "✅ Welcome to AREX, " + user.displayName + "!";
+                    document.getElementById('user-status').style.color = "#4ade80"; // Green (Success)
+                })
+                .catch((error) => {
+                    console.error("Login Error:", error);
+                    // Agar koi error aayi toh screen par dikhegi
+                    document.getElementById('user-status').innerText = "❌ Error: " + error.message;
+                    document.getElementById('user-status').style.color = "#ef4444"; // Red (Fail)
+                });
+        }
+                                    </script>
     
 
         
