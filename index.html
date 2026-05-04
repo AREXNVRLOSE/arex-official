@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>AREX hosting · seller dashboard</title>
+  <title>AREX HOISTING · seller dashboard</title>
   <!-- Google Fonts Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,84 +25,120 @@
       color: #0b1a2f;
     }
 
-    /* ===== SIDEBAR (hosting seller style) ===== */
+    /* ===== SIDEBAR – inspired by image but keeping AREX colors ===== */
     .sidebar {
-      width: 260px;
+      width: 280px;
       background: #ffffff;
       border-right: 1px solid #eef2f6;
       display: flex;
       flex-direction: column;
-      padding: 28px 16px 20px;
+      padding: 24px 12px 20px;
       box-shadow: 8px 0 24px rgba(0, 0, 0, 0.02);
       position: fixed;
       height: 100vh;
       left: 0;
       top: 0;
       z-index: 20;
-      transition: width 0.2s ease;
+      transition: width 0.25s ease;
+      overflow-y: auto;
     }
 
-    .logo-area {
-      padding: 0 8px 24px;
-      margin-bottom: 24px;
+    /* Profile card style (like Stella Army) */
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 8px 20px;
+      margin-bottom: 20px;
       border-bottom: 1px solid #f0f4f9;
+    }
+
+    .profile-img {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-radius: 14px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .logo i {
-      font-size: 26px;
-      color: #f97316;
-      filter: drop-shadow(0 6px 8px rgba(249, 115, 22, 0.2));
-    }
-
-    .logo h2 {
-      font-size: 22px;
+      justify-content: center;
+      color: white;
       font-weight: 700;
-      letter-spacing: -0.5px;
+      font-size: 20px;
+      box-shadow: 0 8px 14px rgba(15, 23, 42, 0.15);
+      flex-shrink: 0;
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile-name {
+      font-weight: 700;
+      font-size: 16px;
       color: #0f172a;
+      letter-spacing: -0.3px;
     }
 
-    .logo h2 span {
-      color: #f97316;
-      font-weight: 700;
-    }
-
-    .sidebar-toggle {
-      background: none;
-      border: none;
+    .profile-role {
+      font-size: 13px;
       color: #64748b;
-      font-size: 18px;
-      cursor: pointer;
-      padding: 6px;
-      border-radius: 8px;
-      transition: background 0.2s;
-      display: none;
+      font-weight: 500;
+      margin-top: 2px;
     }
 
-    .sidebar-toggle:hover {
-      background: #f1f5f9;
+    /* Search box (image style) */
+    .search-box {
+      margin: 0 4px 20px;
+      position: relative;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 15px;
+      pointer-events: none;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 14px 12px 42px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: #f8fafc;
+      font-size: 14px;
+      font-weight: 500;
       color: #0f172a;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .search-box input::placeholder {
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    .search-box input:focus {
+      border-color: #f97316;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(249,115,22,0.08);
     }
 
     .nav-menu {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 2px;
+      margin-bottom: 16px;
     }
 
-    /* sidebar buttons – hosting seller active style */
+    /* Sidebar buttons – keeping your original style, active color same */
     .sidebar-btn {
       width: 100%;
-      padding: 12px 14px;
+      padding: 13px 16px;
       border: none;
       border-radius: 14px;
       background: transparent;
@@ -135,7 +171,7 @@
       color: #f97316;
     }
 
-    /* Active state – same color theme as brand (dark + orange accent) */
+    /* Active state – exactly same dark + orange accent */
     .sidebar-btn.active {
       background: #0f172a;
       color: white;
@@ -147,20 +183,100 @@
       color: #f97316;
     }
 
-    .sidebar-footer {
-      margin-top: auto;
+    /* Logout & Light mode section (bottom style from image) */
+    .sidebar-bottom {
       border-top: 1px solid #f0f4f9;
       padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .logout-btn {
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 14px;
+      background: transparent;
+      color: #475569;
+      font-weight: 500;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .logout-btn i {
+      width: 22px;
+      font-size: 1.2rem;
+      color: #64748b;
+    }
+
+    .logout-btn:hover {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .logout-btn:hover i {
+      color: #b91c1c;
+    }
+
+    .light-mode-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      color: #334155;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .light-mode-row i {
+      color: #64748b;
+      margin-right: 10px;
+    }
+
+    .toggle-switch {
+      width: 44px;
+      height: 24px;
+      background: #cbd5e1;
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+
+    .toggle-switch::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: 0.25s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .toggle-switch.active {
+      background: #f97316;
+    }
+
+    .toggle-switch.active::after {
+      left: 22px;
     }
 
     /* ===== MAIN CONTENT ===== */
     .main {
-      margin-left: 260px;
+      margin-left: 280px;
       flex: 1;
       padding: 36px 40px;
       background: #f8fafc;
       min-height: 100vh;
-      transition: margin-left 0.2s ease;
+      transition: margin-left 0.25s ease;
     }
 
     .page {
@@ -173,24 +289,18 @@
     }
 
     @keyframes fadeSlide {
-      0% {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cards */
+    /* Cards (unchanged) */
     .card {
       background: #ffffff;
       border-radius: 28px;
       padding: 36px 40px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.02);
       border: 1px solid #f1f5f9;
-      max-width: 720px;
+      max-width: 750px;
       margin-bottom: 24px;
     }
 
@@ -211,7 +321,7 @@
       margin-bottom: 28px;
     }
 
-    /* Buttons – matching hosting seller aesthetic */
+    /* Buttons – same color and style */
     .btn-primary {
       background: #0f172a;
       color: white;
@@ -227,13 +337,9 @@
       gap: 10px;
       box-shadow: 0 10px 18px -8px rgba(15, 23, 42, 0.25);
       letter-spacing: -0.2px;
-      border: 1px solid transparent;
     }
 
-    .btn-primary i {
-      font-size: 1rem;
-    }
-
+    .btn-primary i { font-size: 1rem; }
     .btn-primary:hover {
       background: #1e293b;
       transform: translateY(-2px);
@@ -246,25 +352,7 @@
       box-shadow: none;
       border: 1px solid #e2e8f0;
     }
-
-    .btn-soft:hover {
-      background: #e2e8f0;
-      color: #0f172a;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-    }
-
-    .btn-outline-orange {
-      background: transparent;
-      border: 1px solid #f97316;
-      color: #f97316;
-      box-shadow: none;
-    }
-
-    .btn-outline-orange:hover {
-      background: #f97316;
-      color: white;
-      border-color: #f97316;
-    }
+    .btn-soft:hover { background: #e2e8f0; }
 
     .pricing-grid {
       display: grid;
@@ -278,33 +366,10 @@
       border-radius: 20px;
       padding: 24px;
       border: 1px solid #e9eef3;
-      transition: all 0.2s;
     }
-
-    .plan:hover {
-      border-color: #cbd5e1;
-      background: #ffffff;
-    }
-
-    .plan h4 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #0f172a;
-    }
-
-    .plan .price {
-      font-weight: 700;
-      font-size: 28px;
-      color: #0f172a;
-      margin-bottom: 16px;
-    }
-
-    .plan .price small {
-      font-size: 16px;
-      font-weight: 500;
-      color: #64748b;
-    }
+    .plan h4 { font-size: 18px; font-weight: 700; color: #0f172a; }
+    .plan .price { font-weight: 700; font-size: 28px; color: #0f172a; margin-bottom: 16px; }
+    .plan .price small { font-size: 16px; color: #64748b; }
 
     .plan-btn {
       background: white;
@@ -312,109 +377,47 @@
       padding: 10px 22px;
       border-radius: 30px;
       font-weight: 600;
-      font-size: 14px;
       cursor: pointer;
       transition: 0.2s;
-      background: #ffffff;
       color: #0f172a;
     }
+    .plan-btn:hover { background: #0f172a; color: white; border-color: #0f172a; }
 
-    .plan-btn:hover {
-      background: #0f172a;
-      color: white;
-      border-color: #0f172a;
-    }
+    .dark-plan { background: #0f172a; border-color: #0f172a; }
+    .dark-plan h4, .dark-plan .price { color: white; }
+    .dark-plan .plan-btn { background: #f97316; border-color: #f97316; color: white; }
 
-    .dark-plan {
-      background: #0f172a;
-      border-color: #0f172a;
-    }
+    .button-group { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
-    .dark-plan h4,
-    .dark-plan .price {
-      color: white;
-    }
-
-    .dark-plan .price small {
-      color: #cbd5e1;
-    }
-
-    .dark-plan .plan-btn {
-      background: #f97316;
-      border-color: #f97316;
-      color: white;
-    }
-
-    .dark-plan .plan-btn:hover {
-      background: #ea580c;
-      border-color: #ea580c;
-    }
-
-    .button-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-    }
-
-    /* Responsive */
     @media (max-width: 850px) {
-      .sidebar {
-        width: 80px;
-        padding: 20px 8px;
-      }
-      .sidebar .logo h2,
-      .sidebar-btn span,
-      .logo i {
+      .sidebar { width: 80px; padding: 20px 8px; }
+      .profile-card, .search-box, .sidebar-btn span, .profile-info, .light-mode-row span, .logout-btn span {
         display: none;
       }
-      .logo {
-        justify-content: center;
-      }
-      .logo h2 {
-        display: none;
-      }
-      .sidebar-btn {
-        justify-content: center;
-        padding: 14px;
-        gap: 0;
-      }
-      .sidebar-btn i {
-        margin: 0;
-        font-size: 1.3rem;
-      }
-      .main {
-        margin-left: 80px;
-        padding: 24px 20px;
-      }
-      .sidebar-toggle {
-        display: none;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
-      .card {
-        padding: 24px;
-      }
+      .sidebar-btn { justify-content: center; padding: 14px; }
+      .main { margin-left: 80px; padding: 24px 20px; }
     }
   </style>
 </head>
 <body>
-  <!-- Sidebar with hosting accent -->
+  <!-- Sidebar: structured like the image with profile, search, menu, logout, light mode -->
   <aside class="sidebar">
-    <div class="logo-area">
-      <div class="logo">
-        <i class="fas fa-server"></i>
-        <h2>AREX <span>hosting</span></h2>
+    <!-- Profile (Stella Army style) -->
+    <div class="profile-card">
+      <div class="profile-img">SA</div>
+      <div class="profile-info">
+        <span class="profile-name">Stella Army</span>
+        <span class="profile-role">Web developer</span>
       </div>
-      <button class="sidebar-toggle" id="sidebarToggleBtn">
-        <i class="fas fa-bars"></i>
-      </button>
     </div>
 
+    <!-- Search bar -->
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search..." />
+    </div>
+
+    <!-- Navigation (same button names) -->
     <nav class="nav-menu">
       <button class="sidebar-btn active" onclick="navigateTo('dashboard', this)">
         <i class="fas fa-th-large"></i> <span>Dashboard</span>
@@ -436,14 +439,19 @@
       </button>
     </nav>
 
-    <div class="sidebar-footer">
-      <button class="sidebar-btn" onclick="navigateTo('settings', this)">
-        <i class="fas fa-cog"></i> <span>Settings</span>
+    <!-- Bottom section: Logout + Light Mode (like image) -->
+    <div class="sidebar-bottom">
+      <button class="logout-btn" onclick="alert('Logout function (demo)')">
+        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
       </button>
+      <div class="light-mode-row">
+        <i class="fas fa-sun"></i> <span>Light Mode</span>
+        <div class="toggle-switch active" id="lightModeToggle" onclick="toggleLightMode()"></div>
+      </div>
     </div>
   </aside>
 
-  <!-- Main dashboard pages -->
+  <!-- Main Content (exactly same pages, title unchanged) -->
   <main class="main">
     <!-- Dashboard -->
     <div id="dashboard" class="page active">
@@ -514,7 +522,7 @@
       </div>
     </div>
 
-    <!-- Domains (extra seller page) -->
+    <!-- Domains -->
     <div id="domains" class="page">
       <div class="card">
         <h2><i class="fas fa-globe" style="color:#f97316;"></i> Domains</h2>
@@ -541,53 +549,44 @@
 
   <script>
     (function() {
-      // current active button and page handling
-      function navigateTo(pageId, clickedBtn) {
-        // hide all pages
+      // Page navigation (unchanged)
+      window.navigateTo = function(pageId, clickedBtn) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        // show selected page
         const targetPage = document.getElementById(pageId);
-        if (targetPage) {
-          targetPage.classList.add('active');
-        }
+        if (targetPage) targetPage.classList.add('active');
         
-        // update sidebar active state
         document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
         if (clickedBtn) {
           clickedBtn.classList.add('active');
         } else {
-          // fallback: find button by pageId if needed
-          const correspondingBtn = document.querySelector(`.sidebar-btn[onclick*="'${pageId}'"]`);
-          if (correspondingBtn) correspondingBtn.classList.add('active');
+          const fallback = document.querySelector(`.sidebar-btn[onclick*="'${pageId}'"]`);
+          if (fallback) fallback.classList.add('active');
         }
-      }
+      };
 
-      // expose to global scope for onclick attributes
-      window.navigateTo = navigateTo;
+      // Light mode toggle (cosmetic)
+      window.toggleLightMode = function() {
+        const toggle = document.getElementById('lightModeToggle');
+        if (!toggle) return;
+        toggle.classList.toggle('active');
+        // simple demo: change body background (not permanent)
+        if (toggle.classList.contains('active')) {
+          document.body.style.background = "#f5f7fb";
+        } else {
+          document.body.style.background = "#e2e8f0"; 
+        }
+      };
 
-      // small mobile toggle (optional) – we keep sidebar visible but if needed later.
-      const toggleBtn = document.getElementById('sidebarToggleBtn');
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', function() {
-          const sidebar = document.querySelector('.sidebar');
-          if (sidebar) {
-            sidebar.classList.toggle('collapsed');
-            // minimal effect: already responsive by css, but we can adjust if needed.
-          }
-        });
-      }
-
-      // Ensure that when page loads, if any button has active class but page mismatch, fix.
+      // Ensure active page matches sidebar on load
       const activeBtn = document.querySelector('.sidebar-btn.active');
       if (activeBtn) {
-        const onclickAttr = activeBtn.getAttribute('onclick');
-        if (onclickAttr) {
-          const match = onclickAttr.match(/'([^']+)'/);
+        const attr = activeBtn.getAttribute('onclick');
+        if (attr) {
+          const match = attr.match(/'([^']+)'/);
           if (match && match[1]) {
             const pageId = match[1];
             const activePage = document.querySelector('.page.active');
             if (!activePage || activePage.id !== pageId) {
-              // correct it
               document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
               const page = document.getElementById(pageId);
               if (page) page.classList.add('active');
@@ -598,4 +597,4 @@
     })();
   </script>
 </body>
-                                                   </html>
+  </html>
