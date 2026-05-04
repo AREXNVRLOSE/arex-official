@@ -19,87 +19,21 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      /* NEXT LEVEL BACKGROUND: Multi-layered gradient with cosmic depth */
-      background: #0a1120;
-      background-image: 
-        /* Soft radial glows for atmosphere */
-        radial-gradient(ellipse at 10% 10%, rgba(44, 95, 138, 0.4) 0%, transparent 50%),
-        radial-gradient(ellipse at 90% 90%, rgba(182, 139, 92, 0.25) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 30%, rgba(100, 150, 200, 0.15) 0%, transparent 60%),
-        radial-gradient(ellipse at 30% 80%, rgba(44, 95, 138, 0.2) 0%, transparent 50%),
-        /* Linear gradients for base depth */
-        linear-gradient(135deg, #0d1b2a 0%, #0a1628 25%, #0c1f35 50%, #091525 75%, #0b1a2e 100%),
-        /* Animated gradient overlay */
-        linear-gradient(45deg, rgba(44, 95, 138, 0.05) 0%, transparent 50%, rgba(182, 139, 92, 0.05) 100%);
-      background-attachment: fixed;
+      background: #faf9f6; /* soft warm beige background */
       display: flex;
       min-height: 100vh;
-      color: #e2e8f0;
-      position: relative;
-      overflow-x: hidden;
+      color: #1e293b;
     }
 
-    /* Animated floating particles effect */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(1px 1px at 20% 60%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(2px 2px at 30% 10%, rgba(44, 95, 138, 0.5), transparent),
-        radial-gradient(1px 1px at 40% 80%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(2px 2px at 50% 40%, rgba(182, 139, 92, 0.4), transparent),
-        radial-gradient(1px 1px at 60% 15%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(2px 2px at 70% 70%, rgba(44, 95, 138, 0.5), transparent),
-        radial-gradient(1px 1px at 80% 30%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(2px 2px at 90% 55%, rgba(182, 139, 92, 0.4), transparent),
-        radial-gradient(1px 1px at 15% 90%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(2px 2px at 75% 45%, rgba(44, 95, 138, 0.35), transparent),
-        radial-gradient(1px 1px at 45% 25%, rgba(255, 255, 255, 0.3), transparent);
-      background-size: 200% 200%;
-      animation: particleFloat 20s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes particleFloat {
-      0%, 100% { background-position: 0% 0%; }
-      25% { background-position: 100% 0%; }
-      50% { background-position: 100% 100%; }
-      75% { background-position: 0% 100%; }
-    }
-
-    /* Subtle grid overlay */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ===== SIDEBAR – premium glassmorphism ===== */
+    /* ===== SIDEBAR – beige / blue / white palette ===== */
     .sidebar {
       width: 280px;
-      background: rgba(12, 20, 35, 0.75);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      background: #ffffff;
+      border-right: 1px solid #e8e0d5; /* warm beige border */
       display: flex;
       flex-direction: column;
       padding: 24px 14px 20px;
-      box-shadow: 20px 0 40px rgba(0, 0, 0, 0.6), inset -1px 0 0 rgba(255, 255, 255, 0.03);
+      box-shadow: 8px 0 28px rgba(0, 0, 0, 0.02);
       position: fixed;
       height: 100vh;
       left: 0;
@@ -109,21 +43,6 @@
       overflow-y: auto;
     }
 
-    .sidebar::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(180deg, 
-        rgba(44, 95, 138, 0.08) 0%, 
-        transparent 30%, 
-        transparent 70%, 
-        rgba(182, 139, 92, 0.05) 100%);
-      pointer-events: none;
-    }
-
     /* Brand area */
     .brand-area {
       display: flex;
@@ -131,52 +50,42 @@
       gap: 12px;
       padding: 4px 8px 24px;
       margin-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      z-index: 1;
+      border-bottom: 1px solid #f0ebe0;
     }
 
     .brand-icon {
       width: 42px;
       height: 42px;
-      background: linear-gradient(135deg, #2c5f8a 0%, #1a3f5c 100%);
+      background: #2c5f8a; /* deep blue instead of orange */
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #f5e7d3;
+      color: white;
       font-size: 20px;
-      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(44, 95, 138, 0.3);
-      border: 1px solid rgba(245, 231, 211, 0.2);
+      box-shadow: 0 10px 18px -8px rgba(44, 95, 138, 0.25);
     }
 
     .brand-text h2 {
       font-size: 20px;
       font-weight: 700;
-      background: linear-gradient(135deg, #e2e8f0 0%, #f5e7d3 50%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #1e293b;
       letter-spacing: -0.4px;
       line-height: 1.2;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
 
     .brand-text span {
-      font-size: 11px;
-      font-weight: 700;
-      color: #b68b5c;
-      letter-spacing: 0.8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #2c5f8a;
+      letter-spacing: 0.4px;
       display: block;
-      text-transform: uppercase;
-      margin-top: 2px;
     }
 
     /* Search */
     .search-box {
       margin: 0 4px 22px;
       position: relative;
-      z-index: 1;
     }
 
     .search-box i {
@@ -184,37 +93,27 @@
       left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      color: #5a7a9a;
+      color: #8b9aab;
       font-size: 14px;
-      transition: color 0.2s;
     }
 
     .search-box input {
       width: 100%;
       padding: 12px 14px 12px 40px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid #e0d7cc;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.03);
+      background: #fdfbf7;
       font-size: 14px;
       font-weight: 500;
-      color: #e2e8f0;
+      color: #1e293b;
       outline: none;
-      transition: all 0.3s;
-    }
-
-    .search-box input::placeholder {
-      color: #5a6f85;
+      transition: 0.2s;
     }
 
     .search-box input:focus {
       border-color: #2c5f8a;
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 0 0 4px rgba(44, 95, 138, 0.15), 0 0 20px rgba(44, 95, 138, 0.1);
-    }
-
-    .search-box input:focus + i,
-    .search-box input:focus ~ i {
-      color: #b68b5c;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(44, 95, 138, 0.06);
     }
 
     .nav-menu {
@@ -222,128 +121,92 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-      position: relative;
-      z-index: 1;
     }
 
-    /* Sidebar buttons – enhanced glass */
+    /* Sidebar buttons – beige & blue style */
     .sidebar-btn {
       width: 100%;
-      padding: 13px 16px;
+      padding: 12px 16px;
       border: none;
       border-radius: 14px;
       background: transparent;
-      color: #8fa3b8;
+      color: #475569;
       font-weight: 500;
       font-size: 15px;
       display: flex;
       align-items: center;
       gap: 14px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.2s ease;
       text-align: left;
       white-space: nowrap;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .sidebar-btn::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 3px;
-      height: 0;
-      background: linear-gradient(180deg, #2c5f8a, #b68b5c);
-      border-radius: 0 3px 3px 0;
-      transition: height 0.3s ease;
     }
 
     .sidebar-btn i {
       width: 22px;
       font-size: 1.15rem;
-      color: #5a7a9a;
-      transition: all 0.2s;
+      color: #7c8b9a;
+      transition: color 0.2s;
     }
 
     .sidebar-btn:hover {
-      background: rgba(255, 255, 255, 0.04);
-      color: #d4e0f0;
-      padding-left: 20px;
-    }
-
-    .sidebar-btn:hover::before {
-      height: 60%;
+      background: #f5f0e8; /* warm beige hover */
+      color: #0f172a;
     }
 
     .sidebar-btn:hover i {
-      color: #b68b5c;
-      transform: scale(1.1);
+      color: #2c5f8a;
     }
 
-    /* Active state – premium gradient */
+    /* Active state – blue background with beige accent */
     .sidebar-btn.active {
-      background: linear-gradient(135deg, rgba(44, 95, 138, 0.3) 0%, rgba(26, 60, 90, 0.4) 100%);
+      background: #2c5f8a;
       color: white;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(44, 95, 138, 0.15);
+      box-shadow: 0 10px 18px -8px rgba(44, 95, 138, 0.3);
       font-weight: 600;
-      border: 1px solid rgba(245, 231, 211, 0.15);
-      padding-left: 20px;
-    }
-
-    .sidebar-btn.active::before {
-      height: 70%;
-      background: linear-gradient(180deg, #f5e7d3, #b68b5c);
     }
 
     .sidebar-btn.active i {
-      color: #f5e7d3;
-      filter: drop-shadow(0 0 8px rgba(245, 231, 211, 0.5));
+      color: #f5e7d3; /* warm beige accent */
     }
 
     .sidebar-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid #f0ebe0;
       padding-top: 16px;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      position: relative;
-      z-index: 1;
     }
 
     .logout-btn {
       width: 100%;
-      padding: 13px 16px;
+      padding: 12px 16px;
       border: none;
       border-radius: 14px;
       background: transparent;
-      color: #8fa3b8;
+      color: #475569;
       font-weight: 500;
       font-size: 15px;
       display: flex;
       align-items: center;
       gap: 14px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.2s;
     }
 
     .logout-btn i {
       width: 22px;
       font-size: 1.15rem;
-      color: #5a7a9a;
-      transition: 0.2s;
+      color: #7c8b9a;
     }
 
     .logout-btn:hover {
-      background: rgba(220, 80, 80, 0.15);
-      color: #f4a2a2;
-      box-shadow: 0 0 20px rgba(220, 80, 80, 0.1);
+      background: #fae8e8;
+      color: #b91c1c;
     }
 
     .logout-btn:hover i {
-      color: #e57373;
-      transform: scale(1.1);
+      color: #b91c1c;
     }
 
     /* ===== MAIN CONTENT ===== */
@@ -351,16 +214,14 @@
       margin-left: 280px;
       flex: 1;
       padding: 36px 40px;
-      background: transparent;
+      background: #faf9f6; /* beige background */
       min-height: 100vh;
       transition: margin-left 0.25s ease;
-      position: relative;
-      z-index: 1;
     }
 
     .page {
       display: none;
-      animation: fadeSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: fadeSlide 0.3s ease;
     }
 
     .page.active {
@@ -368,11 +229,11 @@
     }
 
     @keyframes fadeSlide {
-      0% { opacity: 0; transform: translateY(15px); }
+      0% { opacity: 0; transform: translateY(10px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Stats cards – premium glass */
+    /* Stats cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -381,196 +242,110 @@
     }
 
     .stat-card {
-      background: rgba(15, 25, 42, 0.5);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 22px;
-      padding: 24px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      background: white;
+      border-radius: 20px;
+      padding: 22px 20px;
+      border: 1px solid #e8e0d5;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.02);
       display: flex;
       align-items: center;
-      gap: 18px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(44, 95, 138, 0.1), transparent 70%);
-      pointer-events: none;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(44, 95, 138, 0.1);
+      gap: 16px;
     }
 
     .stat-icon {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      position: relative;
-      z-index: 1;
+      font-size: 22px;
     }
 
-    .stat-icon.blue { 
-      background: linear-gradient(135deg, rgba(44, 95, 138, 0.3), rgba(30, 70, 110, 0.4)); 
-      color: #7bb3d9; 
-      box-shadow: 0 8px 20px rgba(44, 95, 138, 0.2);
-      border: 1px solid rgba(44, 95, 138, 0.3);
-    }
-    .stat-icon.beige { 
-      background: linear-gradient(135deg, rgba(182, 139, 92, 0.25), rgba(140, 100, 60, 0.35)); 
-      color: #d4b68c; 
-      box-shadow: 0 8px 20px rgba(182, 139, 92, 0.2);
-      border: 1px solid rgba(182, 139, 92, 0.3);
-    }
-    .stat-icon.indigo { 
-      background: linear-gradient(135deg, rgba(59, 92, 122, 0.3), rgba(40, 65, 90, 0.4)); 
-      color: #9bb7d4; 
-      box-shadow: 0 8px 20px rgba(59, 92, 122, 0.2);
-      border: 1px solid rgba(59, 92, 122, 0.3);
-    }
+    .stat-icon.blue { background: #eaf0f6; color: #2c5f8a; }
+    .stat-icon.beige { background: #fdf5e9; color: #b68b5c; }
+    .stat-icon.indigo { background: #e9eef3; color: #3b5c7a; }
 
     .stat-info h4 {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      color: #8fa3b8;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      color: #5c6b7a;
+      margin-bottom: 4px;
     }
 
     .stat-info span {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
-      background: linear-gradient(135deg, #f0e6d9 0%, #ffffff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #1e293b;
     }
 
     .card {
-      background: rgba(15, 25, 42, 0.5);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 28px;
-      padding: 38px 42px;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(44, 95, 138, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 36px 40px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e8e0d5;
       max-width: 820px;
       margin-bottom: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(44, 95, 138, 0.5), rgba(182, 139, 92, 0.5), transparent);
     }
 
     .card h2 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
-      color: #f1e9db;
-      margin-bottom: 14px;
+      color: #1e293b;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      letter-spacing: -0.5px;
+      gap: 10px;
     }
 
     .card p {
-      color: #a0b9ce;
+      color: #475569;
       font-size: 15px;
-      line-height: 1.8;
-      margin-bottom: 30px;
+      line-height: 1.7;
+      margin-bottom: 28px;
     }
 
-    /* Buttons – powerful gradients */
+    /* Buttons – beige, blue, white palette */
     .btn-primary {
-      background: linear-gradient(135deg, #2c5f8a 0%, #1a4060 100%);
+      background: #2c5f8a;
       color: white;
-      border: 1px solid rgba(245, 231, 211, 0.2);
-      padding: 14px 32px;
+      border: none;
+      padding: 14px 30px;
       border-radius: 60px;
       font-weight: 600;
       font-size: 15px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.25s;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 12px 28px -8px rgba(44, 95, 138, 0.5), 0 0 20px rgba(44, 95, 138, 0.2);
+      box-shadow: 0 10px 18px -8px rgba(44, 95, 138, 0.3);
       letter-spacing: -0.2px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .btn-primary:hover::after {
-      opacity: 1;
     }
 
     .btn-primary i { font-size: 1rem; }
     .btn-primary:hover {
-      background: linear-gradient(135deg, #3670a3 0%, #204d70 100%);
-      transform: translateY(-3px);
-      box-shadow: 0 18px 35px -10px rgba(44, 95, 138, 0.6), 0 0 30px rgba(44, 95, 138, 0.3);
-      border-color: rgba(245, 231, 211, 0.35);
+      background: #1e4666;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 24px -10px rgba(44, 95, 138, 0.35);
     }
 
     .btn-soft {
-      background: rgba(255, 255, 255, 0.04);
-      color: #d4e0f0;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #f5f0e8;
+      color: #2c3e50;
+      box-shadow: none;
+      border: 1px solid #ddd2c0;
     }
-    .btn-soft:hover { 
-      background: rgba(255, 255, 255, 0.08); 
-      border-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
-    }
+    .btn-soft:hover { background: #ede3d3; }
 
     .btn-accent {
-      background: linear-gradient(135deg, #b68b5c 0%, #8b653b 100%);
+      background: #b68b5c;
       color: white;
-      box-shadow: 0 12px 28px -8px rgba(182, 139, 92, 0.5), 0 0 20px rgba(182, 139, 92, 0.2);
-      border: 1px solid rgba(245, 231, 211, 0.25);
+      box-shadow: 0 10px 18px -8px rgba(182, 139, 92, 0.3);
+      border: 1px solid #b68b5c;
     }
-    .btn-accent:hover { 
-      background: linear-gradient(135deg, #c89a6a 0%, #9e7548 100%);
-      box-shadow: 0 18px 35px -10px rgba(182, 139, 92, 0.6), 0 0 30px rgba(182, 139, 92, 0.3);
-      border-color: rgba(245, 231, 211, 0.4);
-    }
+    .btn-accent:hover { background: #9e7548; }
 
     .pricing-grid {
       display: grid;
@@ -580,94 +355,49 @@
     }
 
     .plan {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-radius: 22px;
-      padding: 28px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: all 0.3s;
-      position: relative;
+      background: #fdfbf7;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid #e0d7cc;
     }
-
-    .plan:hover {
-      border-color: rgba(255, 255, 255, 0.12);
-      transform: translateY(-2px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .plan h4 { font-size: 18px; font-weight: 700; color: #f1e9db; }
-    .plan .price { 
-      font-weight: 700; 
-      font-size: 30px; 
-      background: linear-gradient(135deg, #f5e7d3 0%, #ffffff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 10px 0 18px; 
-    }
-    .plan .price small { font-size: 16px; color: #7b8ea3; -webkit-text-fill-color: #7b8ea3; }
+    .plan h4 { font-size: 18px; font-weight: 700; color: #1e293b; }
+    .plan .price { font-weight: 700; font-size: 28px; color: #1e293b; margin-bottom: 16px; }
+    .plan .price small { font-size: 16px; color: #64748b; }
 
     .plan-btn {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 12px 26px;
+      background: white;
+      border: 1px solid #cbb295;
+      padding: 10px 22px;
       border-radius: 30px;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
-      color: #d4e0f0;
-      font-size: 14px;
+      transition: 0.2s;
+      color: #3b3b3b;
     }
-    .plan-btn:hover { 
-      background: #2c5f8a; 
-      color: white; 
-      border-color: #2c5f8a; 
-      box-shadow: 0 8px 20px rgba(44, 95, 138, 0.4);
-    }
+    .plan-btn:hover { background: #2c5f8a; color: white; border-color: #2c5f8a; }
 
-    .dark-plan { 
-      background: rgba(44, 95, 138, 0.2); 
-      border-color: rgba(44, 95, 138, 0.3); 
-      box-shadow: 0 0 30px rgba(44, 95, 138, 0.1);
-    }
-    .dark-plan h4, .dark-plan .price { color: white; -webkit-text-fill-color: white; }
-    .dark-plan .plan-btn { 
-      background: #f5e7d3; 
-      border-color: #f5e7d3; 
-      color: #1e293b; 
-      font-weight: 700; 
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    .dark-plan .plan-btn:hover { 
-      background: #e8d5bb; 
-      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-    }
+    .dark-plan { background: #2c5f8a; border-color: #2c5f8a; }
+    .dark-plan h4, .dark-plan .price { color: white; }
+    .dark-plan .plan-btn { background: #f5e7d3; border-color: #f5e7d3; color: #2c3e50; }
+    .dark-plan .plan-btn:hover { background: #e8d5bb; }
 
     .button-group { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
     .domain-search-row {
       display: flex;
       gap: 12px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
     .domain-input {
       flex: 1;
-      padding: 15px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 18px;
+      border: 1px solid #e0d7cc;
       border-radius: 40px;
       font-size: 15px;
       outline: none;
-      background: rgba(255, 255, 255, 0.04);
-      color: #e2e8f0;
-      transition: all 0.3s;
+      background: #fdfbf7;
     }
-    .domain-input::placeholder { color: #5a6f85; }
-    .domain-input:focus { 
-      border-color: #2c5f8a; 
-      background: rgba(0,0,0,0.3); 
-      box-shadow: 0 0 20px rgba(44, 95, 138, 0.15);
-    }
+    .domain-input:focus { border-color: #2c5f8a; }
 
     @media (max-width: 850px) {
       .sidebar { width: 80px; padding: 20px 8px; }
@@ -681,7 +411,7 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar with ultra premium glass effect -->
+  <!-- Sidebar with beige, blue, white palette -->
   <aside class="sidebar">
     <div class="brand-area">
       <div class="brand-icon"><i class="fas fa-cloud-upload-alt"></i></div>
@@ -701,4 +431,162 @@
         <i class="fas fa-th-large"></i> <span>Dashboard</span>
       </button>
       <button class="sidebar-btn" onclick="navigateTo('pricing', this)">
-    
+        <i class="fas fa-cubes"></i> <span>Pricing</span>
+      </button>
+      <button class="sidebar-btn" onclick="navigateTo('billing', this)">
+        <i class="fas fa-wallet"></i> <span>Billing</span>
+      </button>
+      <button class="sidebar-btn" onclick="navigateTo('domains', this)">
+        <i class="fas fa-globe"></i> <span>Domains</span>
+      </button>
+      <button class="sidebar-btn" onclick="navigateTo('support', this)">
+        <i class="fas fa-headset"></i> <span>Support</span>
+      </button>
+      <button class="sidebar-btn" onclick="navigateTo('profile', this)">
+        <i class="fas fa-user-circle"></i> <span>Profile</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <button class="logout-btn" onclick="alert('Logout demo')">
+        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Dashboard -->
+    <div id="dashboard" class="page active">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fas fa-server"></i></div>
+          <div class="stat-info"><h4>Active Services</h4><span>14</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon beige"><i class="fas fa-users"></i></div>
+          <div class="stat-info"><h4>Clients</h4><span>38</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon indigo"><i class="fas fa-file-invoice"></i></div>
+          <div class="stat-info"><h4>Unpaid</h4><span>0</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2><i class="fas fa-chart-line" style="color:#2c5f8a;"></i> Seller Dashboard</h2>
+        <p>Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.</p>
+        <div class="button-group">
+          <button class="btn-primary"><i class="fas fa-chart-bar"></i> View Analytics</button>
+          <button class="btn-primary btn-accent"><i class="fas fa-plus-circle"></i> New Hosting Order</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div id="pricing" class="page">
+      <div class="card">
+        <h2><i class="fas fa-tags" style="color:#2c5f8a;"></i> Hosting Plans</h2>
+        <p>White‑label ready plans for your clients. Set your own margin.</p>
+        <div class="pricing-grid">
+          <div class="plan">
+            <h4>Starter</h4>
+            <div class="price">$9 <small>/mo</small></div>
+            <button class="plan-btn"><i class="fas fa-shopping-cart"></i> Choose</button>
+          </div>
+          <div class="plan dark-plan">
+            <h4>Business Pro</h4>
+            <div class="price">$19 <small>/mo</small></div>
+            <button class="plan-btn"><i class="fas fa-bolt"></i> Popular</button>
+          </div>
+        </div>
+        <button class="btn-primary btn-soft"><i class="fas fa-file-invoice"></i> Compare Plans</button>
+      </div>
+    </div>
+
+    <!-- Billing -->
+    <div id="billing" class="page">
+      <div class="card">
+        <h2><i class="fas fa-credit-card" style="color:#2c5f8a;"></i> Billing & Invoices</h2>
+        <p>Next invoice: <strong>June 1, 2026</strong>. All payments are up to date.</p>
+        <div class="button-group">
+          <button class="btn-primary"><i class="fas fa-money-check"></i> Pay Now</button>
+          <button class="btn-primary btn-soft"><i class="fas fa-download"></i> Download Invoice</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Domains -->
+    <div id="domains" class="page">
+      <div class="card">
+        <h2><i class="fas fa-globe" style="color:#2c5f8a;"></i> Domain Manager</h2>
+        <p>Register, transfer, or manage domains for your hosting clients.</p>
+        <div class="domain-search-row">
+          <input class="domain-input" type="text" placeholder="Find your domain (e.g., example.com)" />
+          <button class="btn-primary"><i class="fas fa-search"></i> Search</button>
+        </div>
+        <div class="button-group">
+          <button class="btn-primary btn-soft"><i class="fas fa-list"></i> My Domains</button>
+          <button class="btn-primary btn-accent"><i class="fas fa-cart-plus"></i> Bulk Register</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Support -->
+    <div id="support" class="page">
+      <div class="card">
+        <h2><i class="fas fa-life-ring" style="color:#2c5f8a;"></i> 24/7 Seller Support</h2>
+        <p>Dedicated support for hosting resellers. Average reply time under 2 minutes.</p>
+        <div class="button-group">
+          <button class="btn-primary btn-soft"><i class="fab fa-telegram"></i> Telegram</button>
+          <button class="btn-primary"><i class="fas fa-comments"></i> Live Chat</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <div id="profile" class="page">
+      <div class="card">
+        <h2><i class="fas fa-id-badge" style="color:#2c5f8a;"></i> Seller Profile</h2>
+        <p>Manage your personal info, API keys, and white‑label branding.</p>
+        <div class="button-group">
+          <button class="btn-primary"><i class="fas fa-edit"></i> Edit Profile</button>
+          <button class="btn-primary btn-soft"><i class="fas fa-key"></i> API Keys</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      window.navigateTo = function(pageId, clickedBtn) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active');
+
+        document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+        if (clickedBtn) {
+          clickedBtn.classList.add('active');
+        } else {
+          const fb = document.querySelector(`.sidebar-btn[onclick*="'${pageId}'"]`);
+          if (fb) fb.classList.add('active');
+        }
+      };
+
+      const active = document.querySelector('.sidebar-btn.active');
+      if (active) {
+        const attr = active.getAttribute('onclick');
+        if (attr) {
+          const m = attr.match(/'([^']+)'/);
+          if (m && m[1]) {
+            const page = document.getElementById(m[1]);
+            if (page && !page.classList.contains('active')) {
+              document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+              page.classList.add('active');
+            }
+          }
+        }
+      }
+    })();
+  </script>
+</body>
+            </html>
