@@ -97,20 +97,44 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyCbg4dY0RrUcUx_izV...",
-    authDomain: "arex-hosting-e061d.firebaseapp.com",
-    projectId: "arex-hosting-e061d",
-    storageBucket: "arex-hosting-e061d.appspot.com",
-    messagingSenderId: "472655427890",
-    appId: "1:472655427890:web:3701e6..."
-  };
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
-  firebase.initializeApp(firebaseConfig);
+  <script>
+    // Step 3: Yahan Firebase Dashboard se apni keys daalni hain
+    const firebaseConfig = {
+      apiKey: "YAHAN_APNI_API_KEY_DAALO",
+      authDomain: "arex-hosting.firebaseapp.com", // Aapka domain
+      projectId: "arex-hosting", // Aapka project ID
+      storageBucket: "arex-hosting.appspot.com",
+      messagingSenderId: "YAHAN_SENDER_ID",
+      appId: "YAHAN_APP_ID"
+    };
 
-  console.log("🔥 Firebase Connected Successfully");
-</script>
+    // Firebase ko Start karna
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    // Google Login Function
+    function arexGoogleLogin() {
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          // Login successful hone par mast alert aayega
+          alert("Welcome to AREX PRO, " + user.displayName + "!\nEmail: " + user.email);
+          
+          // Aap chaho toh login ke baad user ka naam/photo UI mein badal sakte ho
+          console.log("Logged in User:", user);
+        })
+        .catch((error) => {
+          console.error("Login Error:", error);
+          alert("Login fail ho gaya: " + error.message);
+        });
+    }
+  </script>
+    
+
 <body>
 
 <!-- NAVBAR -->
