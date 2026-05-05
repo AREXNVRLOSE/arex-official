@@ -1,151 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="google-site-verification" content="HsYnoFWLu8CwqFze48EK2fjGONopioQx73js35MjOEY" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AREX HOSTING</title>
+<meta name="google-site-verification" content="HsYnoFWLu8CwqFze48EK2fjGONopioQx73js35MjOEY" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>AREX HOSTING</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: #0f172a;
-            color: white;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-        /* NAVBAR */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: #020617;
-            border-bottom: 1px solid #1e293b;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0f172a;
+    color: white;
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #06b6d4;
-            letter-spacing: 1px;
-        }
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #020617;
+    border-bottom: 1px solid #1e293b;
+}
 
-        /* LOGIN BUTTON */
-        .login-btn {
-            background: #06b6d4;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #06b6d4;
+}
 
-        .login-btn:hover {
-            background: #fff;
-            transform: scale(1.05);
-        }
+/* LOGIN BUTTON */
+.login-btn {
+    background: #06b6d4;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
 
-        /* MAIN CONTENT */
-        .content {
-            padding: 50px 40px;
-            text-align: center;
-        }
+/* CONTENT */
+.content {
+    padding: 50px;
+    text-align: center;
+}
 
-        .content h1 {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .content p {
-            color: #94a3b8;
-            font-size: 18px;
-        }
-    </style>
+/* DASHBOARD */
+#dashboard {
+    display: none;
+    text-align: center;
+    padding: 50px;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="navbar">
-        <div class="logo">AREX HOSTING</div>
-        <button class="login-btn" onclick="arexGoogleLogin()">Login with Google</button>
-    </div>
+<div class="navbar">
+    <div class="logo">AREX HOSTING</div>
+    <button class="login-btn" onclick="arexGoogleLogin()">Login with Google</button>
+</div>
 
-    <div class="content">
-        <div id="dashboard" style="display:none; padding:40px; text-align:center;">
+<!-- LOGIN PAGE -->
+<div class="content" id="loginPage">
+    <h1>Welcome to AREX Hosting</h1>
+    <p id="user-status">Click login to continue</p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
     <h2>🚀 AREX DASHBOARD</h2>
-    <p>Welcome, your hosting control panel is ready.</p>
+    <p>You are logged in successfully</p>
 
-    <button onclick="logout()" style="padding:10px 20px; border:none; border-radius:8px; background:red; color:white;">
+    <button onclick="logout()" style="padding:10px 20px;background:red;color:white;border:none;border-radius:6px;">
         Logout
     </button>
-        </div>
+</div>
 
-       <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
-    <script>
-        // Aapki exact Firebase Keysfunction logout() {
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyD_lt41h8yEvPsEwsJlYSBK8RL5aDvnd3Q",
+    authDomain: "arex-hosting.firebaseapp.com",
+    projectId: "arex-hosting",
+    storageBucket: "arex-hosting.firebasestorage.app",
+    messagingSenderId: "1035658227174",
+    appId: "1:1035658227174:web:67ef3effc74ab01d15fa27"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+function arexGoogleLogin() {
+    document.getElementById('user-status').innerText = "Opening login...";
+    
+    auth.signInWithPopup(provider)
+    .then((result) => {
+        document.getElementById('user-status').innerText = "Welcome " + result.user.displayName;
+    })
+    .catch((error) => {
+        document.getElementById('user-status').innerText = error.message;
+    });
+}
+
+function logout() {
     auth.signOut();
-        }
-        const firebaseConfig = {
-            apiKey: "AIzaSyD_lt41h8yEvPsEwsJlYSBK8RL5aDvnd3Q",
-            authDomain: "arex-hosting.firebaseapp.com",
-            projectId: "arex-hosting",
-            storageBucket: "arex-hosting.firebasestorage.app",
-            messagingSenderId: "1035658227174",
-            appId: "1:1035658227174:web:67ef3effc74ab01d15fa27",
-            measurementId: "G-2ZFV6GGBWL"
-        };
+}
 
-        // Firebase Initialize
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const provider = new firebase.auth.GoogleAuthProvider();
-
-        // Pehle se login check karne ka system
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                document.getElementById('user-status').innerText = "✅ Logged in successfully as: " + user.email;
-                document.getElementById('user-status').style.color = "#4ade80"; // Green
-            }
-        });
-
-        // Naya aur Fast Popup Login
-        function arexGoogleLogin() {
-            document.getElementById('user-status').innerText = "Opening Google Login...";
-            document.getElementById('user-status').style.color = "#facc15"; // Yellow (Loading)
-
-            auth.signInWithPopup(provider)
-                .then((result) => {
-                    const user = result.user;
-                    document.getElementById('user-status').innerText = "✅ Welcome to AREX, " + user.displayName + "!";
-                    document.getElementById('user-status').style.color = "#4ade80"; // Green (Success)
-                })
-                .catch((error) => {
-                    console.error("Login Error:", error);
-                    // Agar koi error aayi toh screen par dikhegi
-                    document.getElementById('user-status').innerText = "❌ Error: " + error.message;
-                    document.getElementById('user-status').style.color = "#ef4444"; // Red (Fail)
-                });
-        }
-        auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged((user) => {
     if (user) {
-        document.querySelector('.content').style.display = "none";
-        document.getElementById('dashboard').style.display = "block";
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
     } else {
-        document.querySelector('.content').style.display = "block";
-        document.getElementById('dashboard').style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
+        document.getElementById("dashboard").style.display = "none";
     }
 });
-                                    </script>
-    
+</script>
 
-        
 </body>
-</html>
+        </html>
