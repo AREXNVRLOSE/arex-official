@@ -77,15 +77,22 @@
     </div>
 
     <div class="content">
-        <h1>Welcome to the Future of Hosting</h1>
-        <p id="user-status">Please click the button above to login securely via Firebase.</p>
-    </div>
+        <div id="dashboard" style="display:none; padding:40px; text-align:center;">
+    <h2>🚀 AREX DASHBOARD</h2>
+    <p>Welcome, your hosting control panel is ready.</p>
+
+    <button onclick="logout()" style="padding:10px 20px; border:none; border-radius:8px; background:red; color:white;">
+        Logout
+    </button>
+        </div>
 
        <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
     <script>
-        // Aapki exact Firebase Keys
+        // Aapki exact Firebase Keysfunction logout() {
+    auth.signOut();
+        }
         const firebaseConfig = {
             apiKey: "AIzaSyD_lt41h8yEvPsEwsJlYSBK8RL5aDvnd3Q",
             authDomain: "arex-hosting.firebaseapp.com",
@@ -127,6 +134,15 @@
                     document.getElementById('user-status').style.color = "#ef4444"; // Red (Fail)
                 });
         }
+        auth.onAuthStateChanged((user) => {
+    if (user) {
+        document.querySelector('.content').style.display = "none";
+        document.getElementById('dashboard').style.display = "block";
+    } else {
+        document.querySelector('.content').style.display = "block";
+        document.getElementById('dashboard').style.display = "none";
+    }
+});
                                     </script>
     
 
