@@ -75,11 +75,12 @@
     }
 
     .brand-text span {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: #2c5f8a;
       letter-spacing: 0.4px;
       display: block;
+      word-break: break-all;
     }
 
     /* Search */
@@ -416,7 +417,7 @@
       <div class="brand-icon"><i class="fas fa-cloud-upload-alt"></i></div>
       <div class="brand-text">
         <h2>AREX HOISTING</h2>
-        <span>SELLER PORTAL</span>
+        <span id="user-email-display">SELLER PORTAL</span>
       </div>
     </div>
 
@@ -565,20 +566,26 @@
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    // UI Status Update (Checks if user is logged in)
+    // 1. UI Status Update (Checks if user is logged in)
     auth.onAuthStateChanged((user) => {
       const authBtnText = document.getElementById('auth-text');
       const authIcon = document.getElementById('auth-icon');
+      const emailDisplay = document.getElementById('user-email-display'); // Email dikhane wali jagah
+
       if (user) {
+        // Logged IN
         if(authBtnText) authBtnText.innerText = "Logout (" + user.displayName.split(" ")[0] + ")";
         if(authIcon) authIcon.className = "fas fa-sign-out-alt";
+        if(emailDisplay) emailDisplay.innerText = user.email; // Yahan Email set ho jayega
       } else {
+        // Logged OUT
         if(authBtnText) authBtnText.innerText = "Google Login";
         if(authIcon) authIcon.className = "fab fa-google";
+        if(emailDisplay) emailDisplay.innerText = "SELLER PORTAL"; // Wapas normal text
       }
     });
 
-    // Login/Logout Button Click Logic (REDIRECT USE KIYA HAI)
+    // 2. Login/Logout Button Click Logic (REDIRECT)
     function toggleArexAuth() {
       if (auth.currentUser) {
         auth.signOut().then(() => alert("Logged out successfully."));
@@ -587,10 +594,10 @@
       }
     }
 
-    // Redirect se wapas aane par Result Catch karega
+    // 3. Redirect se wapas aane par Result Catch karega aur "Login Successful" alert dega
     auth.getRedirectResult().then((result) => {
       if (result && result.user) {
-        alert("✅ Welcome to AREX HOISTING, " + result.user.displayName + "!");
+        alert("✅ Login Successful!\nWelcome back, " + result.user.displayName);
       }
     }).catch((error) => {
       console.error("Login Error:", error);
@@ -630,5 +637,5 @@
     })();
   </script>
 </body>
-            </html>
-            
+              </html>
+              
