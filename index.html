@@ -19,17 +19,17 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #faf9f6; /* soft warm beige background */
+      background: #faf9f6; 
       display: flex;
       min-height: 100vh;
       color: #1e293b;
     }
 
-    /* ===== SIDEBAR – beige / blue / white palette ===== */
+    /* ===== SIDEBAR ===== */
     .sidebar {
       width: 280px;
       background: #ffffff;
-      border-right: 1px solid #e8e0d5; /* warm beige border */
+      border-right: 1px solid #e8e0d5; 
       display: flex;
       flex-direction: column;
       padding: 24px 14px 20px;
@@ -43,7 +43,6 @@
       overflow-y: auto;
     }
 
-    /* Brand area */
     .brand-area {
       display: flex;
       align-items: center;
@@ -56,7 +55,7 @@
     .brand-icon {
       width: 42px;
       height: 42px;
-      background: #2c5f8a; /* deep blue instead of orange */
+      background: #2c5f8a; 
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -83,7 +82,6 @@
       word-break: break-all;
     }
 
-    /* Search */
     .search-box {
       margin: 0 4px 22px;
       position: relative;
@@ -124,7 +122,6 @@
       gap: 2px;
     }
 
-    /* Sidebar buttons – beige & blue style */
     .sidebar-btn {
       width: 100%;
       padding: 12px 16px;
@@ -151,7 +148,7 @@
     }
 
     .sidebar-btn:hover {
-      background: #f5f0e8; /* warm beige hover */
+      background: #f5f0e8; 
       color: #0f172a;
     }
 
@@ -159,7 +156,6 @@
       color: #2c5f8a;
     }
 
-    /* Active state – blue background with beige accent */
     .sidebar-btn.active {
       background: #2c5f8a;
       color: white;
@@ -168,7 +164,7 @@
     }
 
     .sidebar-btn.active i {
-      color: #f5e7d3; /* warm beige accent */
+      color: #f5e7d3; 
     }
 
     .sidebar-bottom {
@@ -215,7 +211,7 @@
       margin-left: 280px;
       flex: 1;
       padding: 36px 40px;
-      background: #faf9f6; /* beige background */
+      background: #faf9f6; 
       min-height: 100vh;
       transition: margin-left 0.25s ease;
     }
@@ -234,7 +230,6 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Stats cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -307,7 +302,6 @@
       margin-bottom: 28px;
     }
 
-    /* Buttons – beige, blue, white palette */
     .btn-primary {
       background: #2c5f8a;
       color: white;
@@ -400,6 +394,7 @@
     }
     .domain-input:focus { border-color: #2c5f8a; }
 
+    /* YAHI RULE MOBILE PAR TEXT HIDE KARTA HAI - LEKIN HUM UI CHANGE NAHI KARENGE */
     @media (max-width: 850px) {
       .sidebar { width: 80px; padding: 20px 8px; }
       .brand-text, .search-box, .sidebar-btn span, .logout-btn span {
@@ -472,7 +467,9 @@
       </div>
       <div class="card">
         <h2><i class="fas fa-chart-line" style="color:#2c5f8a;"></i> Seller Dashboard</h2>
-        <p>Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.</p>
+        
+        <p id="dashboard-intro-text">Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.</p>
+        
         <div class="button-group">
           <button class="btn-primary"><i class="fas fa-chart-bar"></i> View Analytics</button>
           <button class="btn-primary btn-accent"><i class="fas fa-plus-circle"></i> New Hosting Order</button>
@@ -566,43 +563,55 @@
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    // 1. UI Status Update (Checks if user is logged in)
+    // 1. UI Update Logic
     auth.onAuthStateChanged((user) => {
       const authBtnText = document.getElementById('auth-text');
       const authIcon = document.getElementById('auth-icon');
-      const emailDisplay = document.getElementById('user-email-display'); // Email dikhane wali jagah
+      const emailDisplay = document.getElementById('user-email-display'); 
+      const dashboardText = document.getElementById('dashboard-intro-text'); 
 
       if (user) {
-        // Logged IN
-        if(authBtnText) authBtnText.innerText = "Logout (" + user.displayName.split(" ")[0] + ")";
+        // UI updates for Logged In
+        if(authBtnText) authBtnText.innerText = "Logout";
         if(authIcon) authIcon.className = "fas fa-sign-out-alt";
-        if(emailDisplay) emailDisplay.innerText = user.email; // Yahan Email set ho jayega
+        if(emailDisplay) emailDisplay.innerText = user.email; // Desktop par email dikhega
+        
+        // Mobile walo ke liye Dashboard par Email display
+        if(dashboardText) {
+          dashboardText.innerHTML = `Welcome back, <strong style="color: #2c5f8a;">${user.email}</strong>!<br>Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.`;
+        }
+
+        // Agar user abhi turant login karke wapas aaya hai toh hi Alert dikhao
+        if (localStorage.getItem('isLoggingIn') === 'true') {
+          alert("✅ Login Successful!\nWelcome: " + user.displayName);
+          localStorage.removeItem('isLoggingIn'); // Flag hataya
+        }
+
       } else {
-        // Logged OUT
+        // UI updates for Logged Out
         if(authBtnText) authBtnText.innerText = "Google Login";
         if(authIcon) authIcon.className = "fab fa-google";
-        if(emailDisplay) emailDisplay.innerText = "SELLER PORTAL"; // Wapas normal text
+        if(emailDisplay) emailDisplay.innerText = "SELLER PORTAL";
+        
+        if(dashboardText) {
+          dashboardText.innerText = "Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.";
+        }
       }
     });
 
-    // 2. Login/Logout Button Click Logic (REDIRECT)
+    // 2. Login/Logout Logic
     function toggleArexAuth() {
       if (auth.currentUser) {
-        auth.signOut().then(() => alert("Logged out successfully."));
+        auth.signOut().then(() => {
+          alert("Logged out successfully.");
+          window.location.reload(); 
+        });
       } else {
+        // Login shuru hone par ek flag set kar rahe hain alert ke liye
+        localStorage.setItem('isLoggingIn', 'true'); 
         auth.signInWithRedirect(provider);
       }
     }
-
-    // 3. Redirect se wapas aane par Result Catch karega aur "Login Successful" alert dega
-    auth.getRedirectResult().then((result) => {
-      if (result && result.user) {
-        alert("✅ Login Successful!\nWelcome back, " + result.user.displayName);
-      }
-    }).catch((error) => {
-      console.error("Login Error:", error);
-      alert("❌ Login Error: " + error.message);
-    });
   </script>
   <script>
     (function() {
@@ -619,23 +628,8 @@
           if (fb) fb.classList.add('active');
         }
       };
-
-      const active = document.querySelector('.sidebar-btn.active');
-      if (active) {
-        const attr = active.getAttribute('onclick');
-        if (attr) {
-          const m = attr.match(/'([^']+)'/);
-          if (m && m[1]) {
-            const page = document.getElementById(m[1]);
-            if (page && !page.classList.contains('active')) {
-              document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-              page.classList.add('active');
-            }
-          }
-        }
-      }
     })();
   </script>
 </body>
-              </html>
-              
+  </html>
+  
