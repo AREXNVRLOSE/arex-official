@@ -242,7 +242,7 @@
       border-radius: 20px;
       padding: 22px 20px;
       border: 1px solid #e8e0d5;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.02);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.02);
       display: flex;
       align-items: center;
       gap: 16px;
@@ -394,7 +394,6 @@
     }
     .domain-input:focus { border-color: #2c5f8a; }
 
-    /* YAHI RULE MOBILE PAR TEXT HIDE KARTA HAI - LEKIN HUM UI CHANGE NAHI KARENGE */
     @media (max-width: 850px) {
       .sidebar { width: 80px; padding: 20px 8px; }
       .brand-text, .search-box, .sidebar-btn span, .logout-btn span {
@@ -418,28 +417,16 @@
 
     <div class="search-box">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search services..." />
+      <input type="text" placeholder="Search services..." onkeypress="if(event.key === 'Enter') alert('🔍 Searching for: ' + this.value)" />
     </div>
 
     <nav class="nav-menu">
-      <button class="sidebar-btn active" onclick="navigateTo('dashboard', this)">
-        <i class="fas fa-th-large"></i> <span>Dashboard</span>
-      </button>
-      <button class="sidebar-btn" onclick="navigateTo('pricing', this)">
-        <i class="fas fa-cubes"></i> <span>Pricing</span>
-      </button>
-      <button class="sidebar-btn" onclick="navigateTo('billing', this)">
-        <i class="fas fa-wallet"></i> <span>Billing</span>
-      </button>
-      <button class="sidebar-btn" onclick="navigateTo('domains', this)">
-        <i class="fas fa-globe"></i> <span>Domains</span>
-      </button>
-      <button class="sidebar-btn" onclick="navigateTo('support', this)">
-        <i class="fas fa-headset"></i> <span>Support</span>
-      </button>
-      <button class="sidebar-btn" onclick="navigateTo('profile', this)">
-        <i class="fas fa-user-circle"></i> <span>Profile</span>
-      </button>
+      <button class="sidebar-btn active" onclick="navigateTo('dashboard', this)"><i class="fas fa-th-large"></i> <span>Dashboard</span></button>
+      <button class="sidebar-btn" onclick="navigateTo('pricing', this)"><i class="fas fa-cubes"></i> <span>Pricing</span></button>
+      <button class="sidebar-btn" onclick="navigateTo('billing', this)"><i class="fas fa-wallet"></i> <span>Billing</span></button>
+      <button class="sidebar-btn" onclick="navigateTo('domains', this)"><i class="fas fa-globe"></i> <span>Domains</span></button>
+      <button class="sidebar-btn" onclick="navigateTo('support', this)"><i class="fas fa-headset"></i> <span>Support</span></button>
+      <button class="sidebar-btn" onclick="navigateTo('profile', this)"><i class="fas fa-user-circle"></i> <span>Profile</span></button>
     </nav>
 
     <div class="sidebar-bottom">
@@ -452,27 +439,18 @@
   <main class="main">
     <div id="dashboard" class="page active">
       <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon blue"><i class="fas fa-server"></i></div>
-          <div class="stat-info"><h4>Active Services</h4><span>14</span></div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon beige"><i class="fas fa-users"></i></div>
-          <div class="stat-info"><h4>Clients</h4><span>38</span></div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon indigo"><i class="fas fa-file-invoice"></i></div>
-          <div class="stat-info"><h4>Unpaid</h4><span>0</span></div>
-        </div>
+        <div class="stat-card"><div class="stat-icon blue"><i class="fas fa-server"></i></div><div class="stat-info"><h4>Active Services</h4><span>14</span></div></div>
+        <div class="stat-card"><div class="stat-icon beige"><i class="fas fa-users"></i></div><div class="stat-info"><h4>Clients</h4><span>38</span></div></div>
+        <div class="stat-card"><div class="stat-icon indigo"><i class="fas fa-file-invoice"></i></div><div class="stat-info"><h4>Unpaid</h4><span>0</span></div></div>
       </div>
       <div class="card">
-        <h2><i class="fas fa-chart-line" style="color:#2c5f8a;"></i> Seller Dashboard</h2>
+        <h2><i class="fas fa-chart-line" style="color:#2c5f8a;"></i> <span id="dashboard-title">Seller Dashboard</span></h2>
         
         <p id="dashboard-intro-text">Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.</p>
         
         <div class="button-group">
-          <button class="btn-primary"><i class="fas fa-chart-bar"></i> View Analytics</button>
-          <button class="btn-primary btn-accent"><i class="fas fa-plus-circle"></i> New Hosting Order</button>
+          <button class="btn-primary" onclick="alert('📊 Loading Live Server Analytics...')"><i class="fas fa-chart-bar"></i> View Analytics</button>
+          <button class="btn-primary btn-accent" onclick="alert('🚀 Opening New Order Provisioning System...')"><i class="fas fa-plus-circle"></i> New Hosting Order</button>
         </div>
       </div>
     </div>
@@ -485,15 +463,15 @@
           <div class="plan">
             <h4>Starter</h4>
             <div class="price">$9 <small>/mo</small></div>
-            <button class="plan-btn"><i class="fas fa-shopping-cart"></i> Choose</button>
+            <button class="plan-btn" onclick="alert('🛒 Starter Plan added to cart!')"><i class="fas fa-shopping-cart"></i> Choose</button>
           </div>
           <div class="plan dark-plan">
             <h4>Business Pro</h4>
             <div class="price">$19 <small>/mo</small></div>
-            <button class="plan-btn"><i class="fas fa-bolt"></i> Popular</button>
+            <button class="plan-btn" onclick="alert('⚡ Business Pro Plan selected!')"><i class="fas fa-bolt"></i> Popular</button>
           </div>
         </div>
-        <button class="btn-primary btn-soft"><i class="fas fa-file-invoice"></i> Compare Plans</button>
+        <button class="btn-primary btn-soft" onclick="alert('📋 Loading Plan Comparison Chart...')"><i class="fas fa-file-invoice"></i> Compare Plans</button>
       </div>
     </div>
 
@@ -502,8 +480,8 @@
         <h2><i class="fas fa-credit-card" style="color:#2c5f8a;"></i> Billing & Invoices</h2>
         <p>Next invoice: <strong>June 1, 2026</strong>. All payments are up to date.</p>
         <div class="button-group">
-          <button class="btn-primary"><i class="fas fa-money-check"></i> Pay Now</button>
-          <button class="btn-primary btn-soft"><i class="fas fa-download"></i> Download Invoice</button>
+          <button class="btn-primary" onclick="alert('🔒 Redirecting to Secure Payment Gateway...')"><i class="fas fa-money-check"></i> Pay Now</button>
+          <button class="btn-primary btn-soft" onclick="alert('📄 Generating PDF Invoice...')"><i class="fas fa-download"></i> Download Invoice</button>
         </div>
       </div>
     </div>
@@ -513,12 +491,12 @@
         <h2><i class="fas fa-globe" style="color:#2c5f8a;"></i> Domain Manager</h2>
         <p>Register, transfer, or manage domains for your hosting clients.</p>
         <div class="domain-search-row">
-          <input class="domain-input" type="text" placeholder="Find your domain (e.g., example.com)" />
-          <button class="btn-primary"><i class="fas fa-search"></i> Search</button>
+          <input id="domain-search-input" class="domain-input" type="text" placeholder="Find your domain (e.g., example.com)" />
+          <button class="btn-primary" onclick="alert('🌐 Checking availability for: ' + document.getElementById('domain-search-input').value)"><i class="fas fa-search"></i> Search</button>
         </div>
         <div class="button-group">
-          <button class="btn-primary btn-soft"><i class="fas fa-list"></i> My Domains</button>
-          <button class="btn-primary btn-accent"><i class="fas fa-cart-plus"></i> Bulk Register</button>
+          <button class="btn-primary btn-soft" onclick="alert('📁 Fetching your registered domains...')"><i class="fas fa-list"></i> My Domains</button>
+          <button class="btn-primary btn-accent" onclick="alert('📦 Opening Bulk Domain Registration Tool...')"><i class="fas fa-cart-plus"></i> Bulk Register</button>
         </div>
       </div>
     </div>
@@ -528,8 +506,8 @@
         <h2><i class="fas fa-life-ring" style="color:#2c5f8a;"></i> 24/7 Seller Support</h2>
         <p>Dedicated support for hosting resellers. Average reply time under 2 minutes.</p>
         <div class="button-group">
-          <button class="btn-primary btn-soft"><i class="fab fa-telegram"></i> Telegram</button>
-          <button class="btn-primary"><i class="fas fa-comments"></i> Live Chat</button>
+          <button class="btn-primary btn-soft" onclick="window.open('https://t.me/Arex_owner', '_blank')"><i class="fab fa-telegram"></i> Telegram</button>
+          <button class="btn-primary" onclick="alert('💬 Connecting to a Live Support Agent...')"><i class="fas fa-comments"></i> Live Chat</button>
         </div>
       </div>
     </div>
@@ -539,8 +517,8 @@
         <h2><i class="fas fa-id-badge" style="color:#2c5f8a;"></i> Seller Profile</h2>
         <p>Manage your personal info, API keys, and white‑label branding.</p>
         <div class="button-group">
-          <button class="btn-primary"><i class="fas fa-edit"></i> Edit Profile</button>
-          <button class="btn-primary btn-soft"><i class="fas fa-key"></i> API Keys</button>
+          <button class="btn-primary" onclick="alert('⚙️ Opening Profile Settings...')"><i class="fas fa-edit"></i> Edit Profile</button>
+          <button class="btn-primary btn-soft" onclick="alert('🔑 Loading Secure API Keys Configuration...')"><i class="fas fa-key"></i> API Keys</button>
         </div>
       </div>
     </div>
@@ -562,8 +540,9 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
-    // 1. UI Update Logic
+    // Jab user login hota hai toh ye Function chalega
     auth.onAuthStateChanged((user) => {
       const authBtnText = document.getElementById('auth-text');
       const authIcon = document.getElementById('auth-icon');
@@ -571,24 +550,29 @@
       const dashboardText = document.getElementById('dashboard-intro-text'); 
 
       if (user) {
-        // UI updates for Logged In
-        if(authBtnText) authBtnText.innerText = "Logout";
-        if(authIcon) authIcon.className = "fas fa-sign-out-alt";
-        if(emailDisplay) emailDisplay.innerText = user.email; // Desktop par email dikhega
-        
-        // Mobile walo ke liye Dashboard par Email display
-        if(dashboardText) {
-          dashboardText.innerHTML = `Welcome back, <strong style="color: #2c5f8a;">${user.email}</strong>!<br>Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.`;
+        // 1. ALERT TRICK: Ye ensure karega ki Alert bas ek baar aaye login hote hi
+        if (!sessionStorage.getItem('signupAlertShown')) {
+            alert("✅ Signup Successfully!\nEmail: " + user.email);
+            sessionStorage.setItem('signupAlertShown', 'true'); // Flag set kar diya taaki refresh pe dobara na aaye
         }
 
-        // Agar user abhi turant login karke wapas aaya hai toh hi Alert dikhao
-        if (localStorage.getItem('isLoggingIn') === 'true') {
-          alert("✅ Login Successful!\nWelcome: " + user.displayName);
-          localStorage.removeItem('isLoggingIn'); // Flag hataya
+        // 2. SIDEBAR UPDATE (Desktop ke liye)
+        if(authBtnText) authBtnText.innerText = "Logout";
+        if(authIcon) authIcon.className = "fas fa-sign-out-alt";
+        if(emailDisplay) emailDisplay.innerText = user.email;
+
+        // 3. MAIN DASHBOARD UPDATE (Mobile aur Desktop dono pe "Upar ki side" Email dikhega)
+        if(dashboardText) {
+          dashboardText.innerHTML = `
+            <span style="color: #2c5f8a; font-weight: 700; font-size: 16px;">✅ Signup Successfully!</span><br>
+            Logged in Email: <strong style="color: #1e293b;">${user.email}</strong><br><br>
+            Your hosting business is running smoothly. Manage all services, invoices, and clients from one place.`;
         }
 
       } else {
-        // UI updates for Logged Out
+        // Agar Logout ho gaya toh sab reset kar do
+        sessionStorage.removeItem('signupAlertShown');
+        
         if(authBtnText) authBtnText.innerText = "Google Login";
         if(authIcon) authIcon.className = "fab fa-google";
         if(emailDisplay) emailDisplay.innerText = "SELLER PORTAL";
@@ -599,7 +583,7 @@
       }
     });
 
-    // 2. Login/Logout Logic
+    // Login/Logout Button Handler
     function toggleArexAuth() {
       if (auth.currentUser) {
         auth.signOut().then(() => {
@@ -607,9 +591,13 @@
           window.location.reload(); 
         });
       } else {
-        // Login shuru hone par ek flag set kar rahe hain alert ke liye
-        localStorage.setItem('isLoggingIn', 'true'); 
-        auth.signInWithRedirect(provider);
+        auth.signInWithPopup(provider).catch((error) => {
+          if (error.code === 'auth/popup-blocked' || error.message.includes('popup')) {
+             auth.signInWithRedirect(provider);
+          } else {
+             alert("❌ Login Failed: " + error.message);
+          }
+        });
       }
     }
   </script>
@@ -622,14 +610,4 @@
 
         document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
         if (clickedBtn) {
-          clickedBtn.classList.add('active');
-        } else {
-          const fb = document.querySelector(`.sidebar-btn[onclick*="'${pageId}'"]`);
-          if (fb) fb.classList.add('active');
-        }
-      };
-    })();
-  </script>
-</body>
-  </html>
-  
+          clickedBtn.classL
